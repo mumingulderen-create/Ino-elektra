@@ -59,7 +59,7 @@ function wireAjaxForm(form, { successMsg = "Je aanvraag is verzonden naar INO. W
     if (result) result.hidden = true;
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@ino-elektra.nl", {
+      const response = await fetch("https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6", {
         method: "POST",
         body: data,
         headers: { "Accept": "application/json" }
@@ -112,7 +112,7 @@ if (appointmentForm) {
     }
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/info@ino-elektra.nl", {
+      const response = await fetch("https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6", {
         method: "POST",
         body: data,
         headers: { "Accept": "application/json" }
@@ -130,6 +130,20 @@ if (appointmentForm) {
     }
   });
 }
+
+// Pre-fill wijkselectie if query param ?wijk= is present
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const wijkParam = params.get("wijk");
+  if (wijkParam) {
+    const wijkName = decodeURIComponent(wijkParam).replace(/-/g, " ");
+    const quoteMessage = document.querySelector("#quoteForm textarea[name='message'], textarea[name='message']");
+    if (quoteMessage) {
+      quoteMessage.value = `Betreft klus in ${wijkName}:\n\n`;
+      quoteMessage.focus();
+    }
+  }
+});
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
