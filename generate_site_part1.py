@@ -77,7 +77,7 @@ PAGES["index.html"] = """<!doctype html>
         </div>
       </div>
       <div class="hero-image-wrapper">
-        <img src="Electrician_working_on_electrica…_2K_20260920005946.jpg" onerror="const f=['Electrician_working_on_electrical_2K_20260920005946.jpg','Electrician_working_on_electrical_panel_2K_20260920005946.jpg','Electrician_working_on_electrica…_2K_20260920005946.png','Electrician_working_on_electrical_2K_20260920005946.png','Electrician_working_on_electrica…_2K_20260920005946.jpeg','Electrician_working_on_electrical_2K_20260920005946.jpeg','hero-elektricien.jpg'];const i=parseInt(this.dataset.s||'0',10);if(i<f.length){this.dataset.s=i+1;this.src=f[i];}else{this.onerror=null;}" alt="INO Techniek en Installatie monteur werkend aan groepenkast in Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+        <img src="hero-elektricien.jpg" onerror="this.onerror=null; this.src='hero-elektricien.jpg.jpg';" alt="INO Techniek en Installatie monteur werkend aan groepenkast in Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
         <div class="hero-badge-floating">Erkend Vakman · NEN 1010 gecertificeerd</div>
       </div>
     </div>
