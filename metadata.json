@@ -1,0 +1,6 @@
+{
+  "name": "INO Techniek en Installatie",
+  "description": "Website van INO Techniek en Installatie, elektricien in Utrecht en omstreken.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
