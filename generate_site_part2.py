@@ -58,7 +58,7 @@ PAGES_PART2["laadpaal-installeren.html"] = """<!DOCTYPE html>
         </div>
       </div>
       <div class="hero-image-wrapper">
-        <img src="laadpaal-installatie.jpg" alt="EV wallbox laadpaal installatie aan gevel Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+        <img src="Gemini_Generated_Image_mxhzxsmxhzxsmxhz.jpg" onerror="this.onerror=null; this.src='laadpaal-installatie.jpg';" alt="EV wallbox laadpaal installatie aan gevel Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
         <div class="hero-badge-floating">Veilig laden · NEN 1010 · Dynamic Load Balancing</div>
       </div>
     </div>

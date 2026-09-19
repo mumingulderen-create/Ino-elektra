@@ -77,7 +77,7 @@ PAGES["index.html"] = """<!doctype html>
         </div>
       </div>
       <div class="hero-image-wrapper">
-        <img src="hero-elektricien.jpg" alt="INO Techniek en Installatie erkend elektricien Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+        <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='hero-elektricien.jpg';" alt="INO Techniek en Installatie erkend elektricien Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
         <div class="hero-badge-floating">Erkend Vakman · NEN 1010 gecertificeerd</div>
       </div>
     </div>
@@ -190,14 +190,20 @@ PAGES["diensten.html"] = """<!doctype html>
   <section class="section soft">
     <div class="container split-grid">
       <a class="split-card" href="groepenkast.html" style="display:block">
+        <div style="margin-bottom:14px;border-radius:12px;overflow:hidden;max-height:160px;">
+          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Groepenkast montage Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" referrerPolicy="no-referrer">
+        </div>
         <h3>Groepenkast vervangen</h3>
         <p>1-fase (1–8 groepen) vanaf € 620, 3-fase (1–8 groepen) vanaf € 720. A-merk componenten, all-in en vaste prijs vooraf.</p>
         <span class="mini-link">Bekijk groepenkast-pakketten →</span>
       </a>
-      <a class="split-card" href="perilex.html" style="display:block">
-        <h3>Perilex &amp; kookgroep</h3>
-        <p>Perilex stekker aansluiten voor € 120, of leiding &amp; kookgroep trekken vanaf € 150. Voor inductie en ventilatie.</p>
-        <span class="mini-link">Bekijk perilex-opties →</span>
+      <a class="split-card" href="laadpaal-installeren.html" style="display:block">
+        <div style="margin-bottom:14px;border-radius:12px;overflow:hidden;max-height:160px;">
+          <img src="Gemini_Generated_Image_mxhzxsmxhzxsmxhz.jpg" onerror="this.onerror=null; this.src='laadpaal-installatie.jpg';" alt="Laadpaal installatie Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" referrerPolicy="no-referrer">
+        </div>
+        <h3>Laadpaal installeren</h3>
+        <p>Vakkundige montage en aansluiting van je EV wallbox inclusief Dynamic Load Balancing en kabelroute volgens NEN 1010.</p>
+        <span class="mini-link">Bekijk laadpalen →</span>
       </a>
     </div>
     <div class="container">
@@ -260,7 +266,7 @@ PAGES["groepenkast.html"] = """<!doctype html>
 
       <div class="showcase-block" style="margin-bottom: 34px;">
         <div class="hero-image-wrapper">
-          <img src="groepenkast-montage.jpg" alt="Vakkundige groepenkast montage Utrecht ABB Hager" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Vakkundige groepenkast montage Utrecht ABB Hager" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
           <div class="hero-badge-floating">Vakkundige montage · A-merk kasten (ABB / Hager) · NEN 1010 keuring</div>
         </div>
       </div>

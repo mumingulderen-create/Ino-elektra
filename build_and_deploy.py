@@ -5,6 +5,7 @@ from generate_site_part1 import PAGES as PAGES1
 from generate_site_part2 import PAGES_PART2 as PAGES2
 from generate_site_part3 import PAGES_PART3 as PAGES3
 from emoji_cleaner import strip_emojis
+from url_cleaner import clean_urls_in_html
 
 ALL_PAGES = {}
 ALL_PAGES.update(PAGES1)
@@ -37,14 +38,28 @@ for filename, content in ALL_PAGES.items():
         print(f"WARNING: Emojis still found in {filename}: {emojis_found}")
         for em in set(emojis_found):
             cleaned_content = cleaned_content.replace(em, "")
+    
+    # Clean all URLs (remove .html, link index to /)
+    cleaned_content = clean_urls_in_html(cleaned_content)
             
     with open(filename, "w", encoding="utf-8") as f:
         f.write(cleaned_content)
     with open(os.path.join("public", filename), "w", encoding="utf-8") as f:
         f.write(cleaned_content)
+
+    # Also create directory index.html (e.g. diensten/index.html) for maximum static host compatibility
+    if filename.endswith(".html") and filename != "index.html":
+        slug = filename[:-5]
+        os.makedirs(slug, exist_ok=True)
+        os.makedirs(os.path.join("public", slug), exist_ok=True)
+        with open(os.path.join(slug, "index.html"), "w", encoding="utf-8") as f:
+            f.write(cleaned_content)
+        with open(os.path.join("public", slug, "index.html"), "w", encoding="utf-8") as f:
+            f.write(cleaned_content)
+
     print(f"Generated {filename}")
 
-# Sitemap.xml
+# Sitemap.xml (Clean URLs without .html)
 sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -54,109 +69,109 @@ sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/diensten.html</loc>
+    <loc>https://ino-elektra.nl/diensten</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/groepenkast.html</loc>
+    <loc>https://ino-elektra.nl/groepenkast</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/perilex.html</loc>
+    <loc>https://ino-elektra.nl/perilex</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/laadpaal-installeren.html</loc>
+    <loc>https://ino-elektra.nl/laadpaal-installeren</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/krachtstroom-aanleggen.html</loc>
+    <loc>https://ino-elektra.nl/krachtstroom-aanleggen</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/frezen-stopcontacten-verleggen.html</loc>
+    <loc>https://ino-elektra.nl/frezen-stopcontacten-verleggen</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/tuinverlichting-buitenelektra.html</loc>
+    <loc>https://ino-elektra.nl/tuinverlichting-buitenelektra</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/spoed-elektricien-utrecht.html</loc>
+    <loc>https://ino-elektra.nl/spoed-elektricien-utrecht</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/tarieven.html</loc>
+    <loc>https://ino-elektra.nl/tarieven</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/werkwijze.html</loc>
+    <loc>https://ino-elektra.nl/werkwijze</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/werkgebied.html</loc>
+    <loc>https://ino-elektra.nl/werkgebied</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/wijken.html</loc>
+    <loc>https://ino-elektra.nl/wijken</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/vakmanschap.html</loc>
+    <loc>https://ino-elektra.nl/vakmanschap</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/reviews.html</loc>
+    <loc>https://ino-elektra.nl/reviews</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/offerte.html</loc>
+    <loc>https://ino-elektra.nl/offerte</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/afspraak.html</loc>
+    <loc>https://ino-elektra.nl/afspraak</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/faq.html</loc>
+    <loc>https://ino-elektra.nl/faq</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/contact.html</loc>
+    <loc>https://ino-elektra.nl/contact</loc>
     <lastmod>2026-09-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

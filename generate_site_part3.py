@@ -604,6 +604,12 @@ PAGES_PART3["vakmanschap.html"] = """<!doctype html>
         <span class="eyebrow">IN DE PRAKTIJK</span>
         <h2>Wat dat voor jou betekent.</h2>
       </div>
+      <div class="showcase-block" style="margin-bottom: 34px;">
+        <div class="hero-image-wrapper">
+          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="INO monteur aan het werk volgens NEN 1010 en NEN 3140 normen" class="showcase-img" loading="lazy" referrerPolicy="no-referrer">
+          <div class="hero-badge-floating">Vakmanschap · NEN 1010 gecertificeerd · Veiligheid voorop</div>
+        </div>
+      </div>
       <div class="guarantees-grid">
         <div class="guarantee-item"><span>Alleen A-merk componenten (Hager, ABB, Schneider, Eaton)</span></div>
         <div class="guarantee-item"><span>Elke installatie getest, doorgemeten en gelabeld</span></div>

@@ -1,3 +1,15 @@
+// Clean URLs: automatically strip .html and /index.html from the browser address bar
+(function cleanUrlBar() {
+  if (typeof window !== "undefined" && window.location) {
+    const p = window.location.pathname;
+    if (p.endsWith(".html") || p.endsWith("/index.html") || p === "/index.html") {
+      let clean = p.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+      if (!clean) clean = "/";
+      window.history.replaceState(null, "", clean + window.location.search + window.location.hash);
+    }
+  }
+})();
+
 const CONFIG = {
   phone: "+31628763775",
   whatsapp: "31628763775",
