@@ -1,4 +1,175 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+import os
+import shutil
+import re
+from generate_site_part1 import PAGES as PAGES1
+from generate_site_part2 import PAGES_PART2 as PAGES2
+from generate_site_part3 import PAGES_PART3 as PAGES3
+from emoji_cleaner import strip_emojis
+
+ALL_PAGES = {}
+ALL_PAGES.update(PAGES1)
+ALL_PAGES.update(PAGES2)
+ALL_PAGES.update(PAGES3)
+
+print(f"Total HTML pages to generate: {len(ALL_PAGES)}")
+
+# Verify all 19 HTML pages are present
+expected_pages = [
+    "index.html", "diensten.html", "groepenkast.html", "perilex.html",
+    "laadpaal-installeren.html", "krachtstroom-aanleggen.html", "frezen-stopcontacten-verleggen.html",
+    "tuinverlichting-buitenelektra.html", "spoed-elektricien-utrecht.html", "tarieven.html",
+    "werkwijze.html", "werkgebied.html", "wijken.html", "vakmanschap.html",
+    "reviews.html", "offerte.html", "afspraak.html", "faq.html", "contact.html"
+]
+
+for p in expected_pages:
+    if p not in ALL_PAGES:
+        print(f"WARNING: missing page {p}")
+
+# Write HTML pages
+os.makedirs("public", exist_ok=True)
+
+for filename, content in ALL_PAGES.items():
+    cleaned_content = strip_emojis(content)
+    # Check if any emoji still remains
+    emojis_found = re.findall(r'[\U0001F300-\U0001F6FF\U0001F900-\U0001F9FF\U0001FA00-\U0001FAFF\u2600-\u26FF\u2700-\u27BF\u2B50]', cleaned_content)
+    if emojis_found:
+        print(f"WARNING: Emojis still found in {filename}: {emojis_found}")
+        for em in set(emojis_found):
+            cleaned_content = cleaned_content.replace(em, "")
+            
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(cleaned_content)
+    with open(os.path.join("public", filename), "w", encoding="utf-8") as f:
+        f.write(cleaned_content)
+    print(f"Generated {filename}")
+
+# Sitemap.xml
+sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ino-elektra.nl/</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/diensten.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/groepenkast.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/perilex.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/laadpaal-installeren.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/krachtstroom-aanleggen.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/frezen-stopcontacten-verleggen.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/tuinverlichting-buitenelektra.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/spoed-elektricien-utrecht.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/tarieven.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/werkwijze.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/werkgebied.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/wijken.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/vakmanschap.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/reviews.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/offerte.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/afspraak.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/faq.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ino-elektra.nl/contact.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>"""
+
+with open("sitemap.xml", "w", encoding="utf-8") as f:
+    f.write(sitemap_content.strip())
+with open("public/sitemap.xml", "w", encoding="utf-8") as f:
+    f.write(sitemap_content.strip())
+
+# Style.css
+style_css = """@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--green:#6bd34d;--green-dark:#278a1d;--blue:#27a9ef;--yellow:#ffbf19;--ink:#111827;--muted:#65707d;--soft:#f5f8f4;--line:#e4e9e5;--white:#fff;--dark:#101712}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);line-height:1.6;background:#fff}a{text-decoration:none;color:inherit}.container{width:min(1120px,calc(100% - 40px));margin:auto}.site-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.nav-wrap{height:82px;display:flex;align-items:center;justify-content:space-between}.brand img{height:54px;max-width:240px;width:auto;display:block;object-fit:contain}.footer-logo{height:46px;max-width:200px;width:auto;display:block;object-fit:contain}.site-header nav{display:flex;align-items:center;gap:16px;font-size:13.5px;font-weight:600}.site-header nav a:hover,.site-header nav a.active{color:var(--green-dark)}.nav-cta{background:var(--green);padding:9px 15px;border-radius:9px;white-space:nowrap}.menu-btn{display:none;background:none;border:0;font-size:27px}.hero{padding:85px 0 70px;background:linear-gradient(135deg,#fbfdfb 0%,#f2faf0 55%,#eef9ff 100%)}.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:70px;align-items:center}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--green-dark)}h1{font-size:clamp(44px,6vw,76px);line-height:1.02;margin:16px 0 22px;letter-spacing:-3px}h1 span{color:var(--green-dark)}h2{font-size:clamp(30px,4vw,46px);line-height:1.1;margin:10px 0 16px;letter-spacing:-1.5px}h3{margin:9px 0;font-size:19px}.lead{font-size:18px;color:var(--muted);max-width:700px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}.btn{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:10px;padding:14px 20px;font-weight:800;font-size:14px;cursor:pointer}.btn-primary{background:var(--green);color:#10220d;box-shadow:0 7px 20px rgba(76,180,54,.2)}.btn-primary:hover{background:#58c63b}.btn-secondary{background:#fff;border:1px solid #cfd8d0}.btn-light{background:#fff;color:#164414}.btn-outline-light{color:#fff;border:1px solid rgba(255,255,255,.5)}.btn-whatsapp{background:var(--green);color:#10220d}.btn-whatsapp:hover{background:#58c63b}.btn-instagram{background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);color:#fff}.btn-instagram:hover{opacity:.9}.trust-row{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;font-weight:700}.hero-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:34px;box-shadow:0 20px 60px rgba(22,46,29,.1)}.card-icon{font-size:42px}.hero-card p{color:var(--muted)}.mini-link{font-weight:800;color:var(--green-dark)}.quick-actions{background:#111a14;color:#fff}.action-grid{display:grid;grid-template-columns:repeat(4,1fr)}.action-grid a{padding:24px 25px;border-right:1px solid rgba(255,255,255,.12)}.action-grid a:last-child{border:0}.action-grid strong,.action-grid span{display:block}.action-grid span{font-size:13px;color:#aeb8b1;margin-top:3px}.section{padding:90px 0}.section-heading{margin-bottom:42px;max-width:760px}.section-heading p{color:var(--muted)}.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.service-card{padding:28px;border:1px solid var(--line);border-radius:17px;background:#fff;transition:.2s}.service-card:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.06)}.service-icon{font-size:28px}.service-card p{color:var(--muted);font-size:14px}.service-card a{font-size:13px;font-weight:800;color:var(--green-dark)}.dark-section{padding:85px 0;background:var(--dark);color:#fff}.light .eyebrow{color:var(--green)}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.step{border-top:2px solid var(--green);padding-top:20px}.step b{font-size:13px;color:var(--green)}.step p{color:#aeb8b1;font-size:14px}.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.project-placeholder{min-height:270px;border-radius:17px;border:1px dashed #b9c8ba;background:linear-gradient(145deg,#f7faf7,#eef4ef);display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}.project-placeholder span{font-size:35px}.project-placeholder p{color:var(--muted);font-size:13px}.soft{background:var(--soft)}.form-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}.form-benefits{margin-top:25px;font-weight:700;display:grid;gap:10px}.quote-form,.appointment-form{background:#fff;padding:28px;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 35px rgba(0,0,0,.04)}label{display:grid;gap:7px;font-size:13px;font-weight:700;margin-bottom:16px}input,select,textarea{width:100%;font:inherit;border:1px solid #d5ddd6;border-radius:9px;padding:12px 13px;background:#fff;color:var(--ink)}textarea{resize:vertical}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}.check{display:flex;grid-template-columns:none;align-items:flex-start;gap:8px;font-weight:500}.check input{width:auto;margin-top:3px}.full{width:100%}.form-note{font-size:11px;color:var(--muted)}.photo-list{font-size:12px;color:var(--muted);margin:-8px 0 15px}.form-result{margin-top:15px;padding:14px;border-radius:10px;background:#edf9e9;border:1px solid #c6e8bb}.form-result-error{background:#fdecec;border:1px solid #f3c2c2}.form-result-error a{color:#b02a2a;font-weight:800}.appointment{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.appointment-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.appointment-form label{margin:0}.appointment-form .btn{grid-column:1/-1}.narrow{max-width:800px}.faq{border-top:1px solid var(--line)}.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:20px 0;font:700 15px Inter;cursor:pointer}.faq-q span{font-size:24px;color:var(--green-dark)}.faq-a{display:none;padding:0 0 20px;color:var(--muted);font-size:14px}.faq-a.open{display:block}.contact-cta{padding:85px 0;background:linear-gradient(120deg,#277e1e,#6bd34d);color:#fff}.contact-cta .eyebrow{color:#e7ffe0}.contact-cta p{color:#efffea}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:50px;padding:55px 0}.footer-logo{width:160px}.footer-grid p{color:var(--muted);font-size:13px}.footer-grid h4{margin-top:0}.footer-grid a{display:block;color:var(--muted);font-size:13px;margin:7px 0}.copyright{border-top:1px solid var(--line);padding:18px 20px;text-align:center;color:#89928b;font-size:11px}.mobile-bar{display:none;grid-template-columns:repeat(4,1fr)}
 .map-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}
@@ -237,3 +408,11 @@
     color: #ffffff;
   }
 }
+"""
+
+with open("style.css", "w", encoding="utf-8") as f:
+    f.write(style_css.strip())
+with open("public/style.css", "w", encoding="utf-8") as f:
+    f.write(style_css.strip())
+
+print("Site generation complete!")
