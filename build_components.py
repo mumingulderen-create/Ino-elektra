@@ -5,7 +5,8 @@ from emoji_cleaner import strip_emojis
 
 # Header component template with clean URLs (no .html)
 def make_header(active_nav=""):
-    diensten_active = " active" if active_nav in ["diensten", "groepenkast", "perilex", "laadpaal", "krachtstroom", "frezen", "tuinverlichting", "spoed"] else ""
+    spoed_active = " class=\"active\"" if active_nav == "spoed" else ""
+    diensten_active = " active" if active_nav in ["diensten", "groepenkast", "perilex", "laadpaal", "krachtstroom", "frezen", "tuinverlichting"] else ""
     tarieven_active = " class=\"active\"" if active_nav == "tarieven" else ""
     werkwijze_active = " class=\"active\"" if active_nav == "werkwijze" else ""
     werkgebied_active = " class=\"active\"" if active_nav == "werkgebied" else ""
@@ -20,6 +21,7 @@ def make_header(active_nav=""):
     </a>
     <button class="menu-btn" id="menuBtn" aria-label="Menu openen">☰</button>
     <nav id="nav">
+      <a href="spoed-elektricien-utrecht"{spoed_active}>Spoed</a>
       <div class="nav-dd">
         <a href="diensten" class="nav-dd-toggle{diensten_active}">Diensten <span class="caret" aria-hidden="true">▾</span></a>
         <div class="nav-dd-menu">
@@ -30,7 +32,6 @@ def make_header(active_nav=""):
           <a href="krachtstroom-aanleggen">Krachtstroom 400V</a>
           <a href="frezen-stopcontacten-verleggen">Frezen &amp; Elektra</a>
           <a href="tuinverlichting-buitenelektra">Tuinverlichting</a>
-          <a href="spoed-elektricien-utrecht">24/7 Spoedservice</a>
         </div>
       </div>
       <a href="tarieven"{tarieven_active}>Tarieven</a>

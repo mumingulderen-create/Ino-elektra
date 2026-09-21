@@ -15,6 +15,10 @@ PAGES_PART3["tarieven.html"] = """<!doctype html>
   <meta property="og:description" content="Transparante tarieven van INO: uurtarieven, gratis voorrijkosten in Utrecht en vaste prijzen voor groepenkast en perilex. Alles incl. 21% btw.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/tarieven.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -174,6 +178,10 @@ PAGES_PART3["werkwijze.html"] = """<!doctype html>
   <meta property="og:description" content="Zo werkt INO Techniek en Installatie: van aanvraag en foto's tot uitvoering en oplevering. Duidelijk, met vaste prijs vooraf.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/werkwijze.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -268,6 +276,10 @@ PAGES_PART3["werkgebied.html"] = """<!doctype html>
   <meta property="og:description" content="INO werkt in Utrecht, Nieuwegein, Houten, Zeist, Maarssen, De Bilt, IJsselstein, Woerden, Amersfoort en Veenendaal. Bekijk de kaart.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/werkgebied.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -464,6 +476,10 @@ PAGES_PART3["wijken.html"] = """<!doctype html>
   <meta name="twitter:title" content="Elektricien Utrecht per Wijk &amp; Regio | INO Techniek">
   <meta name="twitter:description" content="Erkend elektricien in alle wijken van Utrecht en omliggende gemeenten. NEN 1010 gecertificeerd.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -593,6 +609,10 @@ PAGES_PART3["vakmanschap.html"] = """<!doctype html>
   <meta property="og:description" content="NEN 1010, NEN 3140 VP en 12 maanden garantie: dit is waar INO Techniek en Installatie voor staat. Veilig werk aan je elektrische installatie.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/vakmanschap.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -681,6 +701,10 @@ PAGES_PART3["reviews.html"] = """<!doctype html>
   <meta property="og:description" content="Lees wat klanten op Google over INO Techniek en Installatie zeggen. Bekijk het volledige overzicht van reviews.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/reviews.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -762,6 +786,10 @@ PAGES_PART3["offerte.html"] = """<!doctype html>
   <meta property="og:description" content="Vraag een offerte aan bij INO Techniek en Installatie. Beschrijf je klus, voeg foto's toe en ontvang een vaste prijs vooraf.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/offerte.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -852,6 +880,10 @@ PAGES_PART3["afspraak.html"] = """<!doctype html>
   <meta property="og:description" content="Plan een afspraak of schouw met INO Techniek en Installatie. Geef je voorkeursdatum en -tijd door, wij bevestigen persoonlijk.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/afspraak.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -926,6 +958,10 @@ PAGES_PART3["faq.html"] = """<!doctype html>
   <meta property="og:description" content="Antwoorden op veelgestelde vragen over tarieven, garantie, schouw, voorrijkosten en werkzaamheden van INO Techniek en Installatie.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/faq.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
@@ -1002,6 +1038,10 @@ PAGES_PART3["contact.html"] = """<!doctype html>
   <meta name="twitter:title" content="Contact Elektricien Utrecht | INO Techniek">
   <meta name="twitter:description" content="Bel 06 28 76 37 75 of mail info@ino-elektra.nl. 24/7 bereikbaar bij storingen in Utrecht.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {

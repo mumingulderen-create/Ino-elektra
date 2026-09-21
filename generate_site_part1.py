@@ -32,6 +32,10 @@ PAGES["index.html"] = """<!doctype html>
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <meta name="google-site-verification" content="xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -267,6 +271,10 @@ PAGES["diensten.html"] = """<!doctype html>
   <meta name="twitter:title" content="Diensten Elektricien Utrecht | INO Techniek en Installatie">
   <meta name="twitter:description" content="Overzicht van elektrotechnische diensten in Utrecht: groepenkast vervangen, Perilex kookgroep, laadpaal installatie, krachtstroom en 24/7 storingsdienst.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -390,6 +398,10 @@ PAGES["groepenkast.html"] = """<!doctype html>
   <meta name="twitter:title" content="Groepenkast Vervangen Utrecht | INO Techniek">
   <meta name="twitter:description" content="Groepenkast vervangen in Utrecht en omstreken. 1-fase en 3-fase kasten vanaf € 620 all-in. NEN 1010 gekeurd met garantie.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -571,6 +583,10 @@ PAGES["perilex.html"] = """<!doctype html>
   <meta name="twitter:title" content="Perilex Aansluiten Utrecht | INO Techniek">
   <meta name="twitter:description" content="Perilex stopcontact of kookgroep aansluiten in Utrecht voor inductiekookplaat. Vaste all-in prijs vanaf € 120.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {

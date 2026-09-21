@@ -441,4 +441,12 @@ with open("style.css", "w", encoding="utf-8") as f:
 with open("public/style.css", "w", encoding="utf-8") as f:
     f.write(style_css.strip())
 
+# Copy favicon assets
+favicon_files = ["favicon-48x48.png", "favicon.svg", "favicon.ico", "apple-touch-icon.png"]
+for f in favicon_files:
+    if os.path.exists(f):
+        shutil.copy2(f, os.path.join("public", f))
+        if os.path.exists("dist"):
+            shutil.copy2(f, os.path.join("dist", f))
+
 print("Site generation complete!")

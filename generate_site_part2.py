@@ -15,6 +15,10 @@ PAGES_PART2["laadpaal-installeren.html"] = """<!DOCTYPE html>
   <meta property="og:description" content="Laadpaal monteren, verplaatsen of vervangen in Utrecht en Midden-Nederland. Veilig aangesloten op je groepenkast volgens NEN 1010.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/laadpaal-installeren.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -157,6 +161,10 @@ PAGES_PART2["krachtstroom-aanleggen.html"] = """<!DOCTYPE html>
   <meta property="og:description" content="Veilig krachtstroom (400V) aanleggen voor zware verbruikers. A-merk componenten, juiste kabeldikte tegen spanningsverlies en NEN 1010 gecertificeerd.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/krachtstroom-aanleggen.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -281,6 +289,10 @@ PAGES_PART2["frezen-stopcontacten-verleggen.html"] = """<!DOCTYPE html>
   <meta property="og:description" content="Professioneel en stofarm sleuven frezen met diamantfrees. Stopcontacten verplaatsen, bijmaken of inbouwen voor keukens en verbouwingen.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/frezen-stopcontacten-verleggen.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -429,6 +441,10 @@ PAGES_PART2["tuinverlichting-buitenelektra.html"] = """<!DOCTYPE html>
   <meta property="og:description" content="Veilige buitenelektra en sfeervolle tuinverlichting. Grondkabel aanleg, berekening tegen spanningsverlies en professionele samenwerking met ervaren stratenmakers.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ino-elektra.nl/tuinverlichting-buitenelektra.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
@@ -571,6 +587,10 @@ PAGES_PART2["spoed-elektricien-utrecht.html"] = """<!doctype html>
   <meta name="twitter:title" content="Spoed Elektricien Utrecht 24/7 | INO Techniek">
   <meta name="twitter:description" content="24/7 storingsdienst bij stroomuitval en kortsluiting in Utrecht en omstreken. Bel direct 06 28 76 37 75.">
   <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="style.css?v=6">
   
   <script type="application/ld+json">
@@ -665,7 +685,7 @@ PAGES_PART2["spoed-elektricien-utrecht.html"] = """<!doctype html>
             "name": "Hoe kan ik betalen bij een spoedklus?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Je kunt na afronding en controle eenvoudig betalen via een digitaal betaalverzoek (bijv. Tikkie of iDEAL), per bankoverschrijving of contant. Je ontvangt direct een officiële factuur per e-mail met specificatie voor je administratie, verzekering of verhuurder."
+              "text": "Je kunt na afronding en controle eenvoudig betalen via een digitaal betaalverzoek (bijv. Tikkie of iDEAL), per bankoverschrijving of contant. Je ontvangt direct een officiële factuur per e-mail met specificatie voor je administratie of verzekering."
             }
           }
         ]
@@ -880,7 +900,6 @@ PAGES_PART2["spoed-elektricien-utrecht.html"] = """<!doctype html>
           <span>KvK Geregistreerd</span>
           <span>Geen Tussenbureau</span>
           <span>Eerlijke All-in Tarieven</span>
-          <span>Betaalverzoek of Factuur</span>
           <span>12 Mnd Garantie</span>
         </div>
       </div>
