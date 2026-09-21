@@ -553,10 +553,49 @@ PAGES_PART2["spoed-elektricien-utrecht.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spoed elektricien Utrecht | Nu bereikbaar | INO Techniek en Installatie</title>
-  <meta name="description" content="Spoed elektricien nodig in Utrecht? INO is 24/7 bereikbaar bij stroomstoring of kortsluiting. Bel direct 06 28 76 37 75, snel ter plaatse.">
+  <title>Spoed Elektricien Utrecht 24/7 | Storingsdienst | INO Techniek</title>
+  <meta name="description" content="Spoed elektricien in Utrecht nodig? INO is 24/7 bereikbaar bij acute stroomstoring, uitval van de aardlekschakelaar of kortsluiting. Geen voorrijkosten in Utrecht.">
+  <link rel="canonical" href="https://ino-elektra.nl/spoed-elektricien-utrecht">
   <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Spoed Elektricien Utrecht 24/7 | Storingsdienst | INO Techniek">
+  <meta property="og:description" content="Spoed elektricien in Utrecht nodig? INO is 24/7 bereikbaar bij acute stroomstoring, uitval van de aardlekschakelaar of kortsluiting. Geen voorrijkosten in Utrecht.">
+  <meta property="og:url" content="https://ino-elektra.nl/spoed-elektricien-utrecht">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Spoed elektricien storingsdienst Utrecht INO Techniek">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spoed Elektricien Utrecht 24/7 | INO Techniek">
+  <meta name="twitter:description" content="24/7 storingsdienst bij stroomuitval en kortsluiting in Utrecht en omstreken. Bel 06 28 76 37 75.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Electrician", "EmergencyService"],
+    "name": "Spoed Elektricien Utrecht - INO Techniek",
+    "provider": {
+      "@type": "Electrician",
+      "name": "INO Techniek en Installatie",
+      "telephone": "+31628763775",
+      "url": "https://ino-elektra.nl/"
+    },
+    "telephone": "+31628763775",
+    "description": "24/7 spoed elektricien en storingsdienst in Utrecht en omstreken. Direct hulp bij stroomstoringen, aardlekautomaten en kortsluiting.",
+    "areaServed": ["Utrecht", "Nieuwegein", "Maarssen", "Houten", "IJsselstein", "De Meern", "Vleuten", "Zeist"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ]
+  }
+  </script>
   <style>
     .lp-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
     .lp-header .nav-wrap{height:76px;justify-content:space-between}

@@ -446,9 +446,39 @@ PAGES_PART3["wijken.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Elektricien per wijk en regio | INO Techniek en Installatie</title>
-  <meta name="description" content="INO Techniek en Installatie: elektricien in elke wijk van Utrecht en de regio. Meterkasten, storingen en elektra, lokaal en snel ter plaatse.">
+  <title>Elektricien Utrecht per Wijk &amp; Regio | INO Techniek</title>
+  <meta name="description" content="Erkend elektricien in alle wijken van Utrecht en omstreken (Binnenstad, Oost, Leidsche Rijn, Nieuwegein, Maarssen, Zeist). Vaste prijs en 24/7 storingsdienst.">
+  <link rel="canonical" href="https://ino-elektra.nl/wijken">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elektricien Utrecht per Wijk &amp; Regio | INO Techniek">
+  <meta property="og:description" content="Erkend elektricien in alle wijken van Utrecht en omstreken (Binnenstad, Oost, Leidsche Rijn, Nieuwegein, Maarssen, Zeist). Vaste prijs en 24/7 storingsdienst.">
+  <meta property="og:url" content="https://ino-elektra.nl/wijken">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Elektricien in alle wijken van Utrecht en omstreken">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elektricien Utrecht per Wijk &amp; Regio | INO Techniek">
+  <meta name="twitter:description" content="Erkend elektricien in alle wijken van Utrecht en omliggende gemeenten. NEN 1010 gecertificeerd.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "INO Techniek en Installatie - Utrecht en Regio",
+    "url": "https://ino-elektra.nl/wijken",
+    "telephone": "+31628763775",
+    "description": "Erkend elektricien werkzaam in alle wijken van Utrecht en de omliggende regio voor groepenkasten, Perilex en spoedklussen.",
+    "areaServed": [
+      "Binnenstad Utrecht", "Utrecht Oost", "Utrecht Noordoost", "Overvecht", "Zuilen", "Lombok", "Kanaleneiland", "Hoograven", "Leidsche Rijn", "Vleuten", "De Meern",
+      "Nieuwegein", "Houten", "Zeist", "Maarssen", "De Bilt", "IJsselstein", "Woerden", "Amersfoort", "Veenendaal"
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -464,8 +494,8 @@ PAGES_PART3["wijken.html"] = """<!doctype html>
   <section class="section" style="padding-top:22px">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow">WERKGEBIED</span>
-        <h2>Elektricien per wijk en regio.</h2>
+        <span class="eyebrow">WERKGEBIED UTRECHT &amp; REGIO</span>
+        <h1>Elektricien in Elke Wijk van Utrecht &amp; Regio</h1>
         <p>Kies je wijk of regio voor een elektricien die de buurt kent. Overal dezelfde vaste prijzen vooraf en 24/7 storingsdienst.</p>
       </div>
 
@@ -954,13 +984,50 @@ PAGES_PART3["contact.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact | INO Techniek en Installatie</title>
-  <meta name="description" content="Neem contact op met INO Techniek en Installatie: bel 06 28 76 37 75, stuur een WhatsApp of e-mail info@ino-elektra.nl. 24/7 bereikbaar bij storingen.">
-  <meta property="og:title" content="Contact | INO Techniek en Installatie">
-  <meta property="og:description" content="Neem contact op met INO Techniek en Installatie: bel 06 28 76 37 75, stuur een WhatsApp of e-mail info@ino-elektra.nl. 24/7 bereikbaar bij storingen.">
+  <title>Contact Elektricien Utrecht | INO Techniek en Installatie</title>
+  <meta name="description" content="Contact opnemen met elektricien INO in Utrecht. Bel direct 06 28 76 37 75, stuur een WhatsApp of e-mail naar info@ino-elektra.nl. 24/7 bereikbaar bij stroomstoringen.">
+  <link rel="canonical" href="https://ino-elektra.nl/contact">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ino-elektra.nl/contact.html">
+  <meta property="og:title" content="Contact Elektricien Utrecht | INO Techniek en Installatie">
+  <meta property="og:description" content="Neem direct contact op met INO Techniek en Installatie in Utrecht. Bel 06 28 76 37 75 voor spoed, advies of een vrijblijvende offerte.">
+  <meta property="og:url" content="https://ino-elektra.nl/contact">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Contact INO Techniek en Installatie elektricien Utrecht">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Elektricien Utrecht | INO Techniek">
+  <meta name="twitter:description" content="Bel 06 28 76 37 75 of mail info@ino-elektra.nl. 24/7 bereikbaar bij storingen in Utrecht.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "INO Techniek en Installatie",
+    "url": "https://ino-elektra.nl/contact",
+    "telephone": "+31628763775",
+    "email": "info@ino-elektra.nl",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Utrecht",
+      "addressRegion": "Utrecht",
+      "addressCountry": "NL"
+    },
+    "areaServed": ["Utrecht", "Nieuwegein", "Maarssen", "Houten", "IJsselstein", "De Meern", "Vleuten", "Zeist"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 

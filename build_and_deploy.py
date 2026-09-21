@@ -183,6 +183,17 @@ with open("sitemap.xml", "w", encoding="utf-8") as f:
 with open("public/sitemap.xml", "w", encoding="utf-8") as f:
     f.write(sitemap_content.strip())
 
+robots_txt = """User-agent: *
+Allow: /
+
+Sitemap: https://ino-elektra.nl/sitemap.xml
+"""
+
+with open("robots.txt", "w", encoding="utf-8") as f:
+    f.write(robots_txt.strip())
+with open("public/robots.txt", "w", encoding="utf-8") as f:
+    f.write(robots_txt.strip())
+
 # Style.css
 style_css = """@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root{--green:#6bd34d;--green-dark:#278a1d;--blue:#27a9ef;--yellow:#ffbf19;--ink:#111827;--muted:#65707d;--soft:#f5f8f4;--line:#e4e9e5;--white:#fff;--dark:#101712}

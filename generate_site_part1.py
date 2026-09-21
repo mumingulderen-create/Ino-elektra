@@ -12,30 +12,51 @@ PAGES["index.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>INO Techniek en Installatie | Elektrotechniek Utrecht</title>
-  <meta name="description" content="INO Techniek en Installatie: erkend elektrotechnisch vakman in Utrecht en omstreken. Meterkasten, groepen, elektra, montage en 24/7 storingsdienst.">
-  <meta property="og:title" content="INO Techniek en Installatie | Elektrotechniek Utrecht">
-  <meta property="og:description" content="INO Techniek en Installatie: erkend elektrotechnisch vakman in Utrecht en omstreken. Meterkasten, groepen, elektra, montage en 24/7 storingsdienst.">
-  <meta property="og:type" content="website">
+  <title>Elektricien Utrecht | Groepenkast Vervangen &amp; Perilex Aansluiten | INO Techniek</title>
+  <meta name="description" content="Erkend elektricien in Utrecht &amp; omstreken voor groepenkast vervangen, Perilex aansluiten en 24/7 storingsdienst. NEN 1010 gecertificeerd, vaste prijs vooraf.">
   <link rel="canonical" href="https://ino-elektra.nl/">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Elektricien Utrecht | Groepenkast Vervangen &amp; Perilex Aansluiten | INO Techniek">
+  <meta property="og:description" content="Erkend elektricien in Utrecht &amp; omstreken voor groepenkast vervangen, Perilex aansluiten en 24/7 storingsdienst. NEN 1010 gecertificeerd, vaste prijs vooraf.">
+  <meta property="og:url" content="https://ino-elektra.nl/">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Erkend elektricien van INO Techniek monteert een groepenkast in Utrecht">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Elektricien Utrecht | Groepenkast Vervangen &amp; Perilex Aansluiten | INO Techniek">
+  <meta name="twitter:description" content="Erkend elektricien in Utrecht &amp; omstreken voor groepenkast vervangen, Perilex aansluiten en 24/7 storingsdienst. NEN 1010 gecertificeerd, vaste prijs vooraf.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <meta name="google-site-verification" content="xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="style.css?v=6">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Electrician",
+    "@type": ["Electrician", "LocalBusiness"],
+    "@id": "https://ino-elektra.nl/#business",
     "name": "INO Techniek en Installatie",
-    "image": "https://ino-elektra.nl/logo.png",
+    "alternateName": "INO Elektra Utrecht",
+    "image": "https://ino-elektra.nl/hero-elektricien.jpg",
+    "logo": "https://ino-elektra.nl/logo.png",
     "url": "https://ino-elektra.nl/",
     "telephone": "+31628763775",
     "email": "info@ino-elektra.nl",
     "priceRange": "€€",
+    "description": "Erkend elektricien in Utrecht en omstreken voor groepenkast vervangen, Perilex aansluiten voor inductiekoken, 24/7 storingsdienst en complete elektrotechniek.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Utrecht",
       "addressRegion": "Utrecht",
       "addressCountry": "NL"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 52.0907,
+      "longitude": 5.1214
     },
     "openingHoursSpecification": [
       {
@@ -45,7 +66,85 @@ PAGES["index.html"] = """<!doctype html>
         "closes": "23:59"
       }
     ],
-    "areaServed": ["Utrecht", "Nieuwegein", "IJsselstein", "Maarssen", "Zeist", "Houten", "Vleuten", "De Meern"]
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Utrecht"
+      },
+      {
+        "@type": "City",
+        "name": "Nieuwegein"
+      },
+      {
+        "@type": "City",
+        "name": "Maarssen"
+      },
+      {
+        "@type": "City",
+        "name": "Houten"
+      },
+      {
+        "@type": "City",
+        "name": "IJsselstein"
+      },
+      {
+        "@type": "City",
+        "name": "De Meern"
+      },
+      {
+        "@type": "City",
+        "name": "Vleuten"
+      },
+      {
+        "@type": "City",
+        "name": "Zeist"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Elektrotechnische Diensten Utrecht",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Groepenkast vervangen & uitbreiden",
+            "description": "Vakkundig vervangen van 1-fase en 3-fase groepenkasten volgens NEN 1010 in Utrecht en omstreken.",
+            "url": "https://ino-elektra.nl/groepenkast"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Perilex aansluiten & kookgroep aanleggen",
+            "description": "Aansluiting van Perilex stopcontacten en kookgroepen voor inductiekookplaten en fornuizen.",
+            "url": "https://ino-elektra.nl/perilex"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "24/7 Storingsdienst & spoed elektricien",
+            "description": "Dag en nacht bereikbaar voor spoedhulp bij stroomstoringen en kortsluiting in Utrecht.",
+            "url": "https://ino-elektra.nl/spoed-elektricien-utrecht"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Algemene elektrotechniek & installatie",
+            "description": "Laadpalen installeren, krachtstroom 400V, sleuven frezen, stopcontacten verleggen en tuinverlichting.",
+            "url": "https://ino-elektra.nl/diensten"
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://www.instagram.com/ino_techniek_en_installatie"
+    ]
   }
   </script>
 </head>
@@ -57,9 +156,9 @@ PAGES["index.html"] = """<!doctype html>
   <section class="hero">
     <div class="container hero-grid-2col">
       <div>
-        <span class="eyebrow">TECHNIEK · INSTALLATIE · INNOVATIE</span>
-        <h1>Elektrotechniek die <span>klopt.</span></h1>
-        <p class="lead">Van een nieuwe groepenkast tot het opsporen van een storing. INO Techniek en Installatie helpt particulieren en bedrijven in Utrecht en omstreken met nette, veilige en professionele elektrotechnische werkzaamheden — en staat 24/7 klaar bij een storing.</p>
+        <span class="eyebrow">ERKEND ELEKTRICIEN UTRECHT &amp; OMSTREKEN</span>
+        <h1>Elektricien Utrecht: <span>Vakkundig &amp; Betrouwbaar</span></h1>
+        <p class="lead">Van een nieuwe groepenkast tot Perilex aansluiten en het snel oplossen van een stroomstoring. INO Techniek en Installatie helpt particulieren en bedrijven in Utrecht, Nieuwegein, Maarssen, Houten en omstreken met NEN 1010 gecertificeerd vakwerk en 24/7 storingsdienst.</p>
         <div class="hero-actions">
           <a class="btn btn-secondary" href="tel:+31628763775">Bel 06 28 76 37 75</a>
           <a class="btn btn-whatsapp" href="https://wa.me/31628763775?text=Hallo%20INO%2C%20ik%20heb%20een%20vraag%20over%20een%20elektrotechnische%20klus." target="_blank" rel="noopener">WhatsApp</a>
@@ -71,13 +170,13 @@ PAGES["index.html"] = """<!doctype html>
         </div>
         <div class="trust-row">
           <span>✓ Sinds 2021 actief in Utrecht</span>
-          <span>✓ NEN 3140 VP</span>
+          <span>✓ NEN 3140 VP &amp; NEN 1010</span>
           <span>✓ 24/7 storingsdienst</span>
           <span>✓ 12 mnd garantie op werk</span>
         </div>
       </div>
       <div class="hero-image-wrapper">
-        <img src="hero-elektricien.jpg" onerror="this.onerror=null; this.src='hero-elektricien.jpg.jpg';" alt="INO Techniek en Installatie monteur werkend aan groepenkast in Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+        <img src="hero-elektricien.jpg" onerror="this.onerror=null; this.src='hero-elektricien.jpg.jpg';" alt="Erkend elektricien van INO Techniek monteert een groepenkast in Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
         <div class="hero-badge-floating">Erkend Vakman · NEN 1010 gecertificeerd</div>
       </div>
     </div>
@@ -150,13 +249,45 @@ PAGES["diensten.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Diensten | INO Techniek en Installatie</title>
-  <meta name="description" content="Alle diensten van INO Techniek en Installatie: groepenkast, laadpaal, krachtstroom, perilex, frezen, tuinverlichting en 24/7 storingsdienst in Utrecht.">
-  <meta property="og:title" content="Diensten | INO Techniek en Installatie">
-  <meta property="og:description" content="Alle diensten van INO Techniek en Installatie: groepenkast, laadpaal, krachtstroom, perilex, frezen, tuinverlichting en 24/7 storingsdienst in Utrecht.">
+  <title>Diensten Elektricien Utrecht | Groepenkast, Perilex &amp; Storingen | INO Techniek</title>
+  <meta name="description" content="Overzicht van elektrotechnische diensten in Utrecht: groepenkast vervangen, Perilex kookgroep, laadpaal installatie, krachtstroom en 24/7 storingsdienst.">
+  <link rel="canonical" href="https://ino-elektra.nl/diensten">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ino-elektra.nl/diensten.html">
+  <meta property="og:title" content="Diensten Elektricien Utrecht | INO Techniek en Installatie">
+  <meta property="og:description" content="Overzicht van elektrotechnische diensten in Utrecht: groepenkast vervangen, Perilex kookgroep, laadpaal installatie, krachtstroom en 24/7 storingsdienst.">
+  <meta property="og:url" content="https://ino-elektra.nl/diensten">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Elektrotechnische werkzaamheden door elektricien INO in Utrecht">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diensten Elektricien Utrecht | INO Techniek en Installatie">
+  <meta name="twitter:description" content="Overzicht van elektrotechnische diensten in Utrecht: groepenkast vervangen, Perilex kookgroep, laadpaal installatie, krachtstroom en 24/7 storingsdienst.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Elektrotechnische Diensten Utrecht",
+    "provider": {
+      "@type": "Electrician",
+      "name": "INO Techniek en Installatie",
+      "telephone": "+31628763775",
+      "url": "https://ino-elektra.nl/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Utrecht",
+        "addressRegion": "Utrecht",
+        "addressCountry": "NL"
+      }
+    },
+    "areaServed": ["Utrecht", "Nieuwegein", "Maarssen", "Houten", "IJsselstein", "De Meern", "Vleuten", "Zeist"]
+  }
+  </script>
 </head>
 <body>
 
@@ -165,9 +296,9 @@ PAGES["diensten.html"] = """<!doctype html>
 <main>
   <section class="lp-hero">
     <div class="container">
-      <div class="badge">Diensten</div>
-      <h1>Van meterkast tot storing.</h1>
-      <p>Elektrotechnische werkzaamheden voor woning, bedrijf en verbouwing.</p>
+      <div class="badge">Diensten Elektricien Utrecht</div>
+      <h1>Elektrotechnische Diensten in Utrecht &amp; Omstreken</h1>
+      <p>Van groepenkast vervangen en Perilex aansluiten tot 24/7 storingsdienst en complete renovaties.</p>
       <div class="page-purpose"><strong>Waarvoor deze pagina?</strong><span>Dit is je startpunt om de juiste dienst te vinden. Kies je klus, lees op de dienstpagina wat het inhoudt en wat het kost, en vraag daarna een offerte aan.</span></div>
     </div>
   </section>
@@ -175,14 +306,14 @@ PAGES["diensten.html"] = """<!doctype html>
   <section class="section">
     <div class="container">
       <div class="service-grid">
-        <article class="service-card"><h3>Meterkasten</h3><p>Meterkast vernieuwen, 1-fase en 3-fase kasten met A-merk componenten.</p><a href="groepenkast.html">Bekijk pakketten →</a></article>
+        <article class="service-card"><h3>Groepenkasten</h3><p>Meterkast vernieuwen, 1-fase en 3-fase kasten met A-merk componenten.</p><a href="groepenkast.html">Bekijk groepenkasten →</a></article>
+        <article class="service-card"><h3>Perilex &amp; Kookgroep</h3><p>Perilex stekker aansluiten of leiding vanaf de meterkast trekken.</p><a href="perilex.html">Bekijk perilex →</a></article>
+        <article class="service-card"><h3>24/7 Storingsdienst</h3><p>Direct ter plaatse bij stroomuitval of kortsluiting in regio Utrecht.</p><a href="spoed-elektricien-utrecht.html">Bekijk spoedservice →</a></article>
         <article class="service-card"><h3>Laadpalen</h3><p>Monteren, verplaatsen of vervangen van laadpalen met dynamic load balancing.</p><a href="laadpaal-installeren.html">Bekijk laadpalen →</a></article>
         <article class="service-card"><h3>Krachtstroom 400V</h3><p>3-fase aansluitingen voor warmtepompen, sauna's, jacuzzi's en machines.</p><a href="krachtstroom-aanleggen.html">Bekijk krachtstroom →</a></article>
-        <article class="service-card"><h3>Perilex & Kookgroep</h3><p>Perilex stekker aansluiten of leiding vanaf de meterkast trekken.</p><a href="perilex.html">Bekijk perilex →</a></article>
-        <article class="service-card"><h3>Frezen & Stopcontacten</h3><p>Stofarm sleuven frezen met diamantfrees en stopcontacten verleggen.</p><a href="frezen-stopcontacten-verleggen.html">Bekijk tarieven frezen →</a></article>
+        <article class="service-card"><h3>Frezen &amp; Stopcontacten</h3><p>Stofarm sleuven frezen met diamantfrees en stopcontacten verleggen.</p><a href="frezen-stopcontacten-verleggen.html">Bekijk tarieven frezen →</a></article>
         <article class="service-card"><h3>Tuinverlichting</h3><p>Grondkabels, waterdichte buitenpunten en tuinspots inclusief herbestrating.</p><a href="tuinverlichting-buitenelektra.html">Bekijk buitenelektra →</a></article>
-        <article class="service-card"><h3>24/7 Storingsdienst</h3><p>Direct ter plaatse bij stroomuitval of kortsluiting in regio Utrecht.</p><a href="spoed-elektricien-utrecht.html">Bekijk spoedservice →</a></article>
-        <article class="service-card"><h3>Montage & Extra Groepen</h3><p>Nieuwe groepen bijplaatsen (vanaf € 60,-) en schakelmateriaal monteren.</p><a href="offerte.html">Aanvragen →</a></article>
+        <article class="service-card"><h3>Montage &amp; Extra Groepen</h3><p>Nieuwe groepen bijplaatsen (vanaf € 60,-) en schakelmateriaal monteren.</p><a href="offerte.html">Aanvragen →</a></article>
       </div>
     </div>
   </section>
@@ -191,17 +322,17 @@ PAGES["diensten.html"] = """<!doctype html>
     <div class="container split-grid">
       <a class="split-card" href="groepenkast.html" style="display:block">
         <div style="margin-bottom:14px;border-radius:12px;overflow:hidden;max-height:160px;">
-          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Groepenkast montage Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" referrerPolicy="no-referrer">
+          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Groepenkast montage en vervangen Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" decoding="async" referrerPolicy="no-referrer">
         </div>
-        <h3>Groepenkast vervangen</h3>
+        <h3>Groepenkast vervangen Utrecht</h3>
         <p>1-fase (1–8 groepen) vanaf € 620, 3-fase (1–8 groepen) vanaf € 720. A-merk componenten, all-in en vaste prijs vooraf.</p>
         <span class="mini-link">Bekijk groepenkast-pakketten →</span>
       </a>
       <a class="split-card" href="laadpaal-installeren.html" style="display:block">
         <div style="margin-bottom:14px;border-radius:12px;overflow:hidden;max-height:160px;">
-          <img src="Gemini_Generated_Image_mxhzxsmxhzxsmxhz.jpg" onerror="this.onerror=null; this.src='laadpaal-installatie.jpg';" alt="Laadpaal installatie Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" referrerPolicy="no-referrer">
+          <img src="Gemini_Generated_Image_mxhzxsmxhzxsmxhz.jpg" onerror="this.onerror=null; this.src='laadpaal-installatie.jpg';" alt="Laadpaal installatie en aansluiten Utrecht" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy" decoding="async" referrerPolicy="no-referrer">
         </div>
-        <h3>Laadpaal installeren</h3>
+        <h3>Laadpaal installeren Utrecht</h3>
         <p>Vakkundige montage en aansluiting van je EV wallbox inclusief Dynamic Load Balancing en kabelroute volgens NEN 1010.</p>
         <span class="mini-link">Bekijk laadpalen →</span>
       </a>
@@ -241,9 +372,52 @@ PAGES["groepenkast.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Groepenkast vervangen | INO Techniek en Installatie</title>
-  <meta name="description" content="Nieuwe groepenkast plaatsen in Utrecht en omstreken. All-in pakketten vanaf € 620, vaste prijs vooraf. NEN 1010, 12 maanden garantie.">
+  <title>Groepenkast Vervangen Utrecht | NEN 1010 Vaste Prijs | INO Techniek</title>
+  <meta name="description" content="Groepenkast vervangen in Utrecht en omstreken. 1-fase en 3-fase ABB &amp; Hager kasten vanaf € 620 all-in. NEN 1010 gekeurd met 12 maanden garantie.">
+  <link rel="canonical" href="https://ino-elektra.nl/groepenkast">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Groepenkast Vervangen Utrecht | NEN 1010 Vaste Prijs | INO Techniek">
+  <meta property="og:description" content="Groepenkast vervangen in Utrecht en omstreken. 1-fase en 3-fase ABB &amp; Hager kasten vanaf € 620 all-in. NEN 1010 gekeurd met 12 maanden garantie.">
+  <meta property="og:url" content="https://ino-elektra.nl/groepenkast">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Groepenkast vervangen en uitbreiden Utrecht door erkend elektricien">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Groepenkast Vervangen Utrecht | INO Techniek">
+  <meta name="twitter:description" content="Groepenkast vervangen in Utrecht en omstreken. 1-fase en 3-fase kasten vanaf € 620 all-in. NEN 1010 gekeurd met garantie.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Groepenkast Vervangen Utrecht",
+    "provider": {
+      "@type": "Electrician",
+      "name": "INO Techniek en Installatie",
+      "telephone": "+31628763775",
+      "url": "https://ino-elektra.nl/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Utrecht",
+        "addressRegion": "Utrecht",
+        "addressCountry": "NL"
+      }
+    },
+    "description": "Vervangen en uitbreiden van groepenkasten in Utrecht en omstreken. 1-fase en 3-fase installatie volgens NEN 1010 normen met A-merk componenten.",
+    "areaServed": ["Utrecht", "Nieuwegein", "Maarssen", "Houten", "IJsselstein", "De Meern", "Vleuten", "Zeist"],
+    "offers": {
+      "@type": "Offer",
+      "price": "620",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -259,14 +433,14 @@ PAGES["groepenkast.html"] = """<!doctype html>
   <section class="section" id="groepenkast">
     <div class="container">
       <div class="section-heading">
-        <span class="eyebrow">GROEPENKAST VERVANGEN</span>
-        <h2>Nieuwe groepenkast, vaste prijs vooraf.</h2>
-        <p>Oude stoppenkast, te weinig groepen of een kast die niet meer overzichtelijk is? INO vervangt 'm door een moderne, veilige groepenkast — met een vaste prijs die je al kent voordat we beginnen.</p>
+        <span class="eyebrow">GROEPENKAST VERVANGEN UTRECHT</span>
+        <h1>Groepenkast Vervangen &amp; Uitbreiden in Utrecht</h1>
+        <p>Oude stoppenkast, te weinig groepen of een kast die niet meer overzichtelijk is? INO vervangt 'm door een moderne, veilige groepenkast volgens NEN 1010 — met een vaste all-in prijs die je al kent voordat we beginnen.</p>
       </div>
 
       <div class="showcase-block" style="margin-bottom: 34px;">
         <div class="hero-image-wrapper">
-          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Vakkundige groepenkast montage Utrecht ABB Hager" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+          <img src="Gemini_Generated_Image_fuc7skfuc7skfuc7.jpg" onerror="this.onerror=null; this.src='groepenkast-montage.jpg';" alt="Vakkundige groepenkast vervanging en montage in Utrecht met ABB en Hager componenten" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
           <div class="hero-badge-floating">Vakkundige montage · A-merk kasten (ABB / Hager) · NEN 1010 keuring</div>
         </div>
       </div>
@@ -379,9 +553,52 @@ PAGES["perilex.html"] = """<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Perilex & kookgroep aansluiten | INO Techniek en Installatie</title>
-  <meta name="description" content="Perilex stopcontact of kookgroep aansluiten in Utrecht en omstreken. Vaste prijs vanaf € 120 all-in, geschikt voor inductie en fornuis.">
+  <title>Perilex Aansluiten Utrecht | Kookgroep &amp; Inductie | INO Techniek</title>
+  <meta name="description" content="Perilex stopcontact of kookgroep aansluiten in Utrecht &amp; omstreken voor inductiekookplaat of fornuis. Vaste prijs vanaf € 120 all-in. NEN 1010 gecertificeerd.">
+  <link rel="canonical" href="https://ino-elektra.nl/perilex">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Perilex Aansluiten Utrecht | Kookgroep &amp; Inductie | INO Techniek">
+  <meta property="og:description" content="Perilex stopcontact of kookgroep aansluiten in Utrecht &amp; omstreken voor inductiekookplaat of fornuis. Vaste prijs vanaf € 120 all-in. NEN 1010 gecertificeerd.">
+  <meta property="og:url" content="https://ino-elektra.nl/perilex">
+  <meta property="og:site_name" content="INO Techniek en Installatie">
+  <meta property="og:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Perilex stopcontact en kookgroep aansluiten Utrecht">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Perilex Aansluiten Utrecht | INO Techniek">
+  <meta name="twitter:description" content="Perilex stopcontact of kookgroep aansluiten in Utrecht voor inductiekookplaat. Vaste all-in prijs vanaf € 120.">
+  <meta name="twitter:image" content="https://ino-elektra.nl/hero-elektricien.jpg">
   <link rel="stylesheet" href="style.css?v=6">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Perilex Aansluiten Utrecht",
+    "provider": {
+      "@type": "Electrician",
+      "name": "INO Techniek en Installatie",
+      "telephone": "+31628763775",
+      "url": "https://ino-elektra.nl/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Utrecht",
+        "addressRegion": "Utrecht",
+        "addressCountry": "NL"
+      }
+    },
+    "description": "Perilex stopcontact en kookgroep aansluiten voor inductiekookplaten en elektrische fornuizen in Utrecht en omstreken.",
+    "areaServed": ["Utrecht", "Nieuwegein", "Maarssen", "Houten", "IJsselstein", "De Meern", "Vleuten", "Zeist"],
+    "offers": {
+      "@type": "Offer",
+      "price": "120",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -398,13 +615,13 @@ PAGES["perilex.html"] = """<!doctype html>
     <div class="container">
       <div class="perilex-intro">
         <div class="section-heading no-margin">
-          <span class="eyebrow">PERILEX / KOOKGROEP</span>
+          <span class="eyebrow">PERILEX / KOOKGROEP UTRECHT</span>
           <span class="price-pill">€ 120 all-in, vaste prijs vooraf</span>
-          <h2>Perilex of kookgroep aansluiten, vaste prijs vooraf.</h2>
-          <p>Overstappen op inductie of een nieuw fornuis? INO sluit je perilex stopcontact of kookgroep veilig aan — met een vaste prijs die je al kent voordat we beginnen.</p>
+          <h1>Perilex Aansluiten &amp; Kookgroep Aanleggen in Utrecht</h1>
+          <p>Overstappen op inductie of een nieuw fornuis? INO sluit je perilex stopcontact of kookgroep veilig aan volgens NEN 1010 — met een vaste prijs die je al kent voordat we beginnen.</p>
         </div>
         <div class="perilex-visual hero-image-wrapper" style="padding:0">
-          <img src="perilex-inductie.jpg" alt="Perilex inductie kookplaat aansluiting Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
+          <img src="perilex-inductie.jpg" alt="Vakkundige Perilex aansluiting voor inductie kookplaat door elektricien in Utrecht" class="showcase-img" loading="eager" referrerPolicy="no-referrer">
           <div class="hero-badge-floating">Vaste all-in prijs: € 120 · NEN 1010</div>
         </div>
       </div>
