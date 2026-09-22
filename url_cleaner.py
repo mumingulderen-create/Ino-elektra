@@ -1,7 +1,7 @@
 import re
 
 PAGES_LIST = [
-    "index", "diensten", "groepenkast", "perilex",
+    "diensten", "groepenkast", "perilex",
     "laadpaal-installeren", "krachtstroom-aanleggen", "frezen-stopcontacten-verleggen",
     "tuinverlichting-buitenelektra", "spoed-elektricien-utrecht", "tarieven",
     "werkwijze", "werkgebied", "wijken", "vakmanschap",
@@ -9,23 +9,32 @@ PAGES_LIST = [
 ]
 
 def clean_urls_in_html(html_str):
-    # Replace canonical and og:url
-    html_str = re.sub(r'(https://ino-elektra\.nl/)index\.html', r'\1', html_str)
-    for p in PAGES_LIST:
-        if p == "index":
-            continue
-        html_str = re.sub(rf'(https://ino-elektra\.nl/){p}\.html', rf'\1{p}', html_str)
-        
-    # Replace href="index.html" with href="/"
-    html_str = re.sub(r'href=["\']index\.html(["\'#?])', r'href="/\1', html_str)
-    html_str = html_str.replace('href="//"', 'href="/"').replace('href="/#', 'href="/#').replace('href="/?', 'href="/?')
+    # 1. Canonical and og:url for homepage
+    html_str = re.sub(r'https://ino-elektra\.nl/index(?:\.html|/)?', 'https://ino-elektra.nl/', html_str)
     
-    # Replace href="page.html" with href="page"
+    # 2. Canonical and og:url for subpages: ensure https://ino-elektra.nl/{p}/ with trailing slash
     for p in PAGES_LIST:
-        if p == "index":
-            continue
-        # href="p.html"
-        html_str = re.sub(rf'href=["\']{p}\.html(["\'#?])', rf'href="{p}\1', html_str)
-        
-    # Fix any accidental href="page" "
+        # Replace https://ino-elektra.nl/p.html or https://ino-elektra.nl/p (no slash) with https://ino-elektra.nl/p/
+        html_str = re.sub(rf'https://ino-elektra\.nl/{p}(?:\.html|/?)(?=[\"\'\s#?]|$)', f'https://ino-elektra.nl/{p}/', html_str)
+
+    # 3. Replace href="index.html" or href="/index.html" with href="/"
+    html_str = re.sub(r'href=[\"\'](?:/)?index\.html([\"\'#?])', r'href="/\1', html_str)
+    html_str = html_str.replace('href="//"', 'href="/"').replace('href="/#', 'href="/#').replace('href="/?', 'href="/?')
+
+    # 4. Replace href to subpages: href="p.html", href="/p.html", href="p", href="/p" -> href="/p/"
+    for p in PAGES_LIST:
+        # Match href="p.html", href="/p.html", href="p", href="/p", href="p/", href="/p/" followed by quote, hash or query
+        html_str = re.sub(rf'href=[\"\'](?:/)?{p}(?:\.html|/?)([\"\'#?])', rf'href="/{p}/\1', html_str)
+        # Clean double slash in href="/p//#..." or href="/p//"
+        html_str = html_str.replace(f'href="/{p}//', f'href="/{p}/')
+        html_str = html_str.replace(f'href="/{p}/"', f'href="/{p}/"')
+        html_str = html_str.replace(f'href="/{p}/\'', f'href="/{p}/\'')
+
+    # 5. Root-relative assets and images so they load cleanly on any subpage level
+    html_str = re.sub(r'href=[\"\'](?:/)?style\.css(\?[^\"\']*)?[\"\']', r'href="/style.css\1"', html_str)
+    html_str = re.sub(r'src=[\"\'](?:/)?script\.js(\?[^\"\']*)?[\"\']', r'src="/script.js\1"', html_str)
+    html_str = re.sub(r'(?<!this\.)src=[\"\'](?!https?://|/|data:)([^\"\']+\.(?:jpg|jpeg|png|svg|webp|ico))[\"\']', r'src="/\1"', html_str)
+    html_str = re.sub(r'this\.src=[\"\'](?!https?://|/)([^\"\']+\.(?:jpg|jpeg|png|svg|webp|ico))[\"\']', r"this.src='/\1'", html_str)
+
     return html_str
+

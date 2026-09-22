@@ -39,17 +39,17 @@ for filename, content in ALL_PAGES.items():
         for em in set(emojis_found):
             cleaned_content = cleaned_content.replace(em, "")
     
-    # Clean all URLs (remove .html, link index to /)
+    # Clean all URLs (trailing slashes, link index to /)
     cleaned_content = clean_urls_in_html(cleaned_content)
             
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(cleaned_content)
-    with open(os.path.join("public", filename), "w", encoding="utf-8") as f:
-        f.write(cleaned_content)
-
-    # Also create directory index.html (e.g. diensten/index.html) for maximum static host compatibility
-    if filename.endswith(".html") and filename != "index.html":
-        slug = filename[:-5]
+    if filename == "index.html":
+        with open("index.html", "w", encoding="utf-8") as f:
+            f.write(cleaned_content)
+        with open(os.path.join("public", "index.html"), "w", encoding="utf-8") as f:
+            f.write(cleaned_content)
+    else:
+        # Save exclusively as directory index.html (e.g. diensten/index.html)
+        slug = filename[:-5] if filename.endswith(".html") else filename
         os.makedirs(slug, exist_ok=True)
         os.makedirs(os.path.join("public", slug), exist_ok=True)
         with open(os.path.join(slug, "index.html"), "w", encoding="utf-8") as f:
@@ -57,122 +57,131 @@ for filename, content in ALL_PAGES.items():
         with open(os.path.join("public", slug, "index.html"), "w", encoding="utf-8") as f:
             f.write(cleaned_content)
 
+        # Actively remove loose duplicate .html file in root and public
+        for base in ["", "public"]:
+            loose_file = os.path.join(base, f"{slug}.html") if base else f"{slug}.html"
+            if os.path.exists(loose_file):
+                try:
+                    os.remove(loose_file)
+                except OSError:
+                    pass
+
     print(f"Generated {filename}")
 
-# Sitemap.xml (Clean URLs without .html)
+# Sitemap.xml (Clean directory URLs with trailing slash)
 sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ino-elektra.nl/</loc>
-    <lastmod>2026-09-19</lastmod>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/diensten</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/diensten/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/groepenkast</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/groepenkast/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/perilex</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/perilex/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/laadpaal-installeren</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/laadpaal-installeren/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/krachtstroom-aanleggen</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/krachtstroom-aanleggen/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/frezen-stopcontacten-verleggen</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/frezen-stopcontacten-verleggen/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/tuinverlichting-buitenelektra</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/tuinverlichting-buitenelektra/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/spoed-elektricien-utrecht</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/spoed-elektricien-utrecht/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/tarieven</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/tarieven/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/werkwijze</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/werkwijze/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/werkgebied</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/werkgebied/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/wijken</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/wijken/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/vakmanschap</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/vakmanschap/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/reviews</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/reviews/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/offerte</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/offerte/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/afspraak</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/afspraak/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/faq</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/faq/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ino-elektra.nl/contact</loc>
-    <lastmod>2026-09-19</lastmod>
+    <loc>https://ino-elektra.nl/contact/</loc>
+    <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -448,5 +457,14 @@ for f in favicon_files:
         shutil.copy2(f, os.path.join("public", f))
         if os.path.exists("dist"):
             shutil.copy2(f, os.path.join("dist", f))
+
+# Remove .htaccess if present (not supported on GitHub Pages)
+for ht in [".htaccess", "public/.htaccess"]:
+    if os.path.exists(ht):
+        try:
+            os.remove(ht)
+            print(f"Removed {ht}")
+        except OSError:
+            pass
 
 print("Site generation complete!")

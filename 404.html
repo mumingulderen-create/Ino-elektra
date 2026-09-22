@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina wordt doorgestuurd... | INO Elektra</title>
+  <meta name="robots" content="noindex, follow">
+  <script>
+    // Automatische redirect voor verouderde .html links naar de directory met slash
+    var path = window.location.pathname;
+    if (path.endsWith('.html')) {
+      var cleanPath = path.replace(/\.html$/, '/');
+      window.location.replace(cleanPath + window.location.search + window.location.hash);
+    } else if (!path.endsWith('/') && !path.split('/').pop().includes('.')) {
+      window.location.replace(path + '/' + window.location.search + window.location.hash);
+    }
+  </script>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .error-container {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .error-code {
+      font-size: 5rem;
+      font-weight: 800;
+      color: #f59e0b;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="error-code">404</div>
+    <h1 style="font-size:1.875rem;font-weight:700;margin-bottom:0.75rem;color:#0f172a;">Pagina niet gevonden</h1>
+    <p style="color:#64748b;max-width:480px;margin-bottom:1.5rem;line-height:1.6;">
+      De pagina die je zoekt bestaat niet meer of is verplaatst. Word je niet automatisch doorgestuurd?
+    </p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <a href="/" class="btn btn-primary" style="padding:0.75rem 1.5rem;background:#f59e0b;color:#0f172a;border-radius:0.5rem;font-weight:600;text-decoration:none;">Naar Homepage</a>
+      <a href="/diensten/" class="btn" style="padding:0.75rem 1.5rem;border:1px solid #cbd5e1;color:#0f172a;border-radius:0.5rem;font-weight:600;text-decoration:none;">Bekijk Diensten</a>
+    </div>
+  </div>
+</body>
+</html>

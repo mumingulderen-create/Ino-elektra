@@ -159,11 +159,14 @@
   box-shadow: 0 16px 40px rgba(0,0,0,0.12);
   border: 1px solid var(--line);
   background: #f8faf9;
+  aspect-ratio: 16 / 10;
+  min-height: 280px;
 }
 .showcase-img {
   width: 100%;
-  height: auto;
+  height: 100%;
   max-height: 420px;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
   display: block;
 }
