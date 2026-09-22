@@ -102,6 +102,7 @@ BLOKKEN = {
     "WIJKEN_HUB": lambda: paginas.blok_wijken_hub(WIJKEN, OVERIGE_UTRECHT, OVERIGE_REGIO),
     "TARIEF_KAARTEN": lambda: paginas.tarief_kaarten(),
     "CTA": lambda: paginas.cta_band(),
+    "CALCULATOR": lambda: paginas.groepenkast_calculator(),
 }
 
 def lees_content():
@@ -141,10 +142,11 @@ def minify_css(css):
     return css.replace(";}", "}").strip()
 
 def schrijf(rel, content):
-    p = os.path.join(ROOT, rel)
-    os.makedirs(os.path.dirname(p), exist_ok=True)
-    with open(p, "w", encoding="utf-8") as f:
-        f.write(content)
+    for base in [ROOT, os.path.join(ROOT, "public")]:
+        p = os.path.join(base, rel)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, "w", encoding="utf-8") as f:
+            f.write(content)
 
 def main():
     print("1/6 Afbeeldingen optimaliseren…")

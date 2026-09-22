@@ -1,163 +1,313 @@
-// Clean URLs: automatically strip .html and /index.html from the browser address bar
-(function cleanUrlBar() {
-  if (typeof window !== "undefined" && window.location) {
-    const p = window.location.pathname;
-    if (p.endsWith(".html") || p.endsWith("/index.html") || p === "/index.html") {
-      let clean = p.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
-      if (!clean) clean = "/";
-      window.history.replaceState(null, "", clean + window.location.search + window.location.hash);
-    }
+/* INO Elektra – script.js (v2)
+   Klein, zonder frameworks. Wordt met `defer` geladen, blokkeert de pagina dus niet. */
+(function () {
+  "use strict";
+
+  // Oude .html-URL's netjes maken in de adresbalk
+  var p = location.pathname;
+  if (/(\/index)?\.html$/.test(p)) {
+    var clean = p.replace(/\/index\.html$/, "/").replace(/\.html$/, "") || "/";
+    history.replaceState(null, "", clean + location.search + location.hash);
   }
-})();
 
-const CONFIG = {
-  phone: "+31628763775",
-  whatsapp: "31628763775",
-  email: "info@ino-elektra.nl"
-};
+  // Mobiel menu
+  var btn = document.getElementById("menuBtn"), nav = document.getElementById("nav");
+  if (btn && nav) {
+    btn.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Menu sluiten" : "Menu openen");
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) { nav.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); btn.focus(); }
+    });
+  }
 
-document.getElementById("menuBtn")?.addEventListener("click", () => {
-  document.getElementById("nav")?.classList.toggle("open");
-});
-document.querySelectorAll("#nav a").forEach(a => a.addEventListener("click", () => document.getElementById("nav")?.classList.remove("open")));
-
-const photoInput = document.getElementById("photos");
-const photoList = document.getElementById("photoList");
-if (photoInput && photoList) {
-  photoInput.addEventListener("change", () => {
-    const files = [...photoInput.files];
-    photoList.textContent = files.length ? `${files.length} bestand(en) geselecteerd: ${files.map(f => f.name).join(", ")}` : "";
+  // FAQ-accordeon (toegankelijk). Het +/− teken staat altijd in het LAATSTE <span>.
+  document.querySelectorAll(".faq-q").forEach(function (q, i) {
+    var a = q.nextElementSibling;
+    if (!a) return;
+    var id = a.id || "faq-a-" + i;
+    a.id = id;
+    q.setAttribute("aria-controls", id);
+    q.setAttribute("aria-expanded", "false");
+    if (!q.getAttribute("type")) q.setAttribute("type", "button");
+    q.addEventListener("click", function () {
+      var open = a.classList.toggle("open");
+      q.setAttribute("aria-expanded", open ? "true" : "false");
+      var spans = q.querySelectorAll("span");
+      var icon = spans[spans.length - 1];
+      if (icon && spans.length) icon.textContent = open ? "−" : "+";
+    });
   });
-}
 
-document.querySelectorAll(".faq-q").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const answer = btn.nextElementSibling;
-    answer?.classList.toggle("open");
-    const span = btn.querySelector("span");
-    if (span && answer) {
-      span.textContent = answer.classList.contains("open") ? "−" : "+";
-    }
+  // Kaart vergroten (werkgebied)
+  var mb = document.getElementById("mapEnlargeBtn"), mm = document.getElementById("mapModal"), mc = document.getElementById("mapModalClose");
+  if (mb && mm) {
+    var close = function () { mm.classList.remove("open"); mb.focus(); };
+    mb.addEventListener("click", function () { mm.classList.add("open"); if (mc) mc.focus(); });
+    if (mc) mc.addEventListener("click", close);
+    mm.addEventListener("click", function (e) { if (e.target === mm) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && mm.classList.contains("open")) close(); });
+  }
+
+  // Foto-upload: toon gekozen bestanden
+  var photos = document.getElementById("photos"), list = document.getElementById("photoList");
+  if (photos && list) photos.addEventListener("change", function () {
+    var f = Array.prototype.slice.call(photos.files);
+    list.textContent = f.length ? f.length + " bestand(en): " + f.map(function (x) { return x.name; }).join(", ") : "";
   });
-});
 
-const mapEnlargeBtn = document.getElementById("mapEnlargeBtn");
-const mapModal = document.getElementById("mapModal");
-const mapModalClose = document.getElementById("mapModalClose");
-if (mapEnlargeBtn && mapModal) {
-  mapEnlargeBtn.addEventListener("click", () => mapModal.classList.add("open"));
-  mapModalClose?.addEventListener("click", () => mapModal.classList.remove("open"));
-  mapModal.addEventListener("click", (e) => { if (e.target === mapModal) mapModal.classList.remove("open"); });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") mapModal.classList.remove("open"); });
-}
+  var d = document.getElementById("date");
+  if (d) d.min = new Date().toISOString().split("T")[0];
 
-const dateInput = document.getElementById("date");
-if (dateInput) dateInput.min = new Date().toISOString().split("T")[0];
+  function esc(v) { return String(v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
 
-function wireAjaxForm(form, { successMsg = "Je aanvraag is verzonden naar INO. We nemen zo snel mogelijk contact met je op.", resetPhotoList = false } = {}) {
-  if (!form) return;
-  const submitBtn = form.querySelector("button[type='submit']");
-  const originalLabel = submitBtn ? submitBtn.textContent : "Versturen";
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const name = data.get("name") || "";
-    const result = form.querySelector("#formResult") || document.getElementById("formResult");
-
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Versturen...";
+  // Formulieren via FormSubmit (AJAX) met honeypot tegen spam
+  function wire(form, okMsg) {
+    if (!form) return;
+    if (!form.querySelector('[name="_honey"]')) {
+      var hp = document.createElement("input");
+      hp.type = "text"; hp.name = "_honey"; hp.tabIndex = -1; hp.autocomplete = "off"; hp.className = "hp"; hp.setAttribute("aria-hidden", "true");
+      form.appendChild(hp);
     }
-    if (result) result.hidden = true;
+    var submit = form.querySelector("button[type='submit']");
+    var label = submit ? submit.textContent : "Versturen";
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      if (data.get("_honey")) return;
+      var result = form.querySelector(".form-result") || document.getElementById("formResult");
+      if (submit) { submit.disabled = true; submit.textContent = "Versturen…"; }
+      fetch("https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6", { method: "POST", body: data, headers: { Accept: "application/json" } })
+        .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+        .then(function () {
+          track("formulier_verstuurd", { formulier: form.id || "form" });
+          if (result) {
+            result.hidden = false; result.className = "form-result";
+            result.innerHTML = "<strong>Aanvraag verstuurd.</strong><br>Bedankt " + esc(data.get("name") || "") + ", " + okMsg;
+            result.scrollIntoView({ behavior: "smooth", block: "center" });
+          } else { alert("Verstuurd. " + okMsg); }
+          form.reset();
+          if (list) list.textContent = "";
+        })
+        .catch(function () {
+          var msg = "<strong>Versturen lukte niet.</strong><br>Bel ons direct op <a href=\"tel:+31628763775\">06 28 76 37 75</a> of probeer het opnieuw.";
+          if (result) { result.hidden = false; result.className = "form-result form-result-error"; result.innerHTML = msg; }
+          else alert("Versturen lukte niet. Bel ons op 06 28 76 37 75.");
+        })
+        .finally(function () { if (submit) { submit.disabled = false; submit.textContent = label; } });
+    });
+  }
+  wire(document.getElementById("quoteForm"), "we nemen zo snel mogelijk contact met je op.");
+  wire(document.getElementById("spoedForm"), "we bellen je zo snel mogelijk terug.");
+  wire(document.getElementById("appointmentForm"), "we bevestigen de afspraak persoonlijk.");
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6", {
-        method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
+  // ?wijk=... voorinvullen op offerte
+  var wijk = new URLSearchParams(location.search).get("wijk");
+  if (wijk) {
+    var ta = document.querySelector("#quoteForm textarea[name='message']");
+    var naam = wijk.replace(/-/g, " ").replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+    if (ta && !ta.value) ta.value = "Klus in " + naam + ":\n\n";
+    var hid = document.createElement("input");
+    hid.type = "hidden"; hid.name = "wijk"; hid.value = naam;
+    var qf = document.getElementById("quoteForm"); if (qf) qf.appendChild(hid);
+  }
+
+  // Interactieve Groepenkast & Inductie Calculator
+  function initCalculator() {
+    var deviceInputs = document.querySelectorAll("input[name='calc_device']");
+    var huidigInputs = document.querySelectorAll("input[name='calc_huidig']");
+    var aansluitingInputs = document.querySelectorAll("input[name='calc_aansluiting']");
+    var elGroepen = document.getElementById("calcGroepen");
+    var elFase = document.getElementById("calcFase");
+    var elTitel = document.getElementById("calcTitel");
+    var elUitleg = document.getElementById("calcUitleg");
+    var elPrijs = document.getElementById("calcPrijs");
+    var elOfferte = document.getElementById("calcOfferteBtn");
+    var elWa = document.getElementById("calcWaBtn");
+    var elBreakdown = document.getElementById("calcBreakdown");
+    var elStedinBox = document.getElementById("calcStedinBox");
+
+    if (!deviceInputs.length || !elGroepen) return;
+
+    function bereken() {
+      var groepen = 0;
+      var hasLaadpaal = false;
+      var hasWarmtepomp = false;
+      var hasInductie = false;
+      var hasPV = false;
+      var hasQuooker = false;
+
+      deviceInputs.forEach(function (inp) {
+        if (inp.checked) {
+          var val = inp.value;
+          var g = parseInt(inp.getAttribute("data-groepen") || "1", 10);
+          groepen += g;
+          if (val === "laadpaal") hasLaadpaal = true;
+          if (val === "warmtepomp") hasWarmtepomp = true;
+          if (val === "inductie") hasInductie = true;
+          if (val === "zonnepanelen") hasPV = true;
+          if (val === "quooker") hasQuooker = true;
+        }
       });
-      if (!response.ok) throw new Error("Verzenden mislukt");
 
-      if (result) {
-        result.hidden = false;
-        result.className = "form-result";
-        result.innerHTML = `<strong>Aanvraag verstuurd.</strong><br>Bedankt ${escapeHtml(name)}, ${successMsg}`;
-        result.scrollIntoView({behavior:"smooth", block:"center"});
+      // Minimum 4 basisgroepen
+      if (groepen < 4) groepen = 4;
+
+      var currentAansluiting = "1fase";
+      aansluitingInputs.forEach(function (r) {
+        if (r.checked) currentAansluiting = r.value;
+      });
+
+      // Fase advies bepalen
+      var advise3Fase = false;
+      if (currentAansluiting === "3fase") {
+        advise3Fase = true;
+      } else if (hasLaadpaal || hasWarmtepomp) {
+        advise3Fase = true;
+      } else if (hasInductie && groepen >= 7) {
+        advise3Fase = true;
+      } else if (groepen > 8) {
+        advise3Fase = true;
       }
-      form.reset();
-      if (resetPhotoList) {
-        const photoList = document.getElementById("photoList");
-        if (photoList) photoList.textContent = "";
+
+      // Prijsberekening en transparante specificatie
+      var breakdownItems = [];
+      var basisPrijs = 640; // 1-fase basiskast met 2 aardlekschakelaars en tot 8 groepen (incl. klein materiaal en kamrails)
+      breakdownItems.push({ naam: "Basiskast 1-fase (tot 8 gr.)", prijs: "€ 640,-" });
+
+      var extraKosten = 0;
+
+      if (advise3Fase) {
+        extraKosten += 120;
+        breakdownItems.push({ naam: "3-fase uitvoering & kamrail voorbereiding", prijs: "+ € 120,-" });
       }
-    } catch (err) {
-      if (result) {
-        result.hidden = false;
-        result.className = "form-result form-result-error";
-        result.innerHTML = `<strong>Er ging iets mis.</strong><br>Je aanvraag kon niet worden verzonden. Bel ons gerust direct op <a href="tel:+31628763775">06 28 76 37 75</a> of probeer het opnieuw.`;
-        result.scrollIntoView({behavior:"smooth", block:"center"});
+
+      if (hasInductie) {
+        extraKosten += 85;
+        breakdownItems.push({ naam: "Inductie kookgroep (incl. kamrail & aansluiting)", prijs: "+ € 85,-" });
+      }
+
+      if (hasLaadpaal) {
+        var laadKosten = advise3Fase ? 185 : 85;
+        extraKosten += laadKosten;
+        breakdownItems.push({ 
+          naam: advise3Fase ? "Laadpaal (4P aardlekautomaat B16 + kracht kamrail)" : "Laadpaal (2P aardlekautomaat)", 
+          prijs: "+ € " + laadKosten + ",-" 
+        });
+      }
+
+      if (hasWarmtepomp) {
+        var wpKosten = advise3Fase ? 185 : 85;
+        extraKosten += wpKosten;
+        breakdownItems.push({ 
+          naam: advise3Fase ? "Warmtepomp (4P aardlekautomaat + kracht kamrail)" : "Warmtepomp (2P aardlekautomaat)", 
+          prijs: "+ € " + wpKosten + ",-" 
+        });
+      }
+
+      if (hasPV) {
+        extraKosten += 95;
+        breakdownItems.push({ naam: "Zonnepanelen (PV-aardlekautomaat & afzekering)", prijs: "+ € 95,-" });
+      }
+
+      if (hasQuooker) {
+        extraKosten += 45;
+        breakdownItems.push({ naam: "Quooker/boiler (aparte groep + kamrail)", prijs: "+ € 45,-" });
+      }
+
+      var extraGroepenBovenAcht = Math.max(0, groepen - 8);
+      if (extraGroepenBovenAcht > 0) {
+        var extraGrKosten = extraGroepenBovenAcht * 45;
+        extraKosten += extraGrKosten;
+        breakdownItems.push({ 
+          naam: extraGroepenBovenAcht + "x Extra groep (" + extraGroepenBovenAcht + "× € 45)", 
+          prijs: "+ € " + extraGrKosten + ",-" 
+        });
+      }
+
+      var totaalPrijs = basisPrijs + extraKosten;
+
+      // Update UI
+      elGroepen.textContent = groepen + " groepen";
+      elFase.textContent = advise3Fase ? "3-fase (400V)" : "1-fase (230V)";
+
+      if (advise3Fase) {
+        elTitel.textContent = "Aanbevolen: 3-fase Hager of ABB Groepenkast";
+        if (hasLaadpaal || hasWarmtepomp) {
+          elUitleg.textContent = "Door zware verbruikers (zoals je laadpaal of warmtepomp) is een 3-fase aansluiting noodzakelijk om veilig en op vol vermogen te draaien.";
+        } else if (hasInductie) {
+          elUitleg.textContent = "Met koken op inductie en meerdere keukenapparaten biedt 3-fase een optimale verdeling over de fasen zonder dat de hoofdzekering overbelast raakt.";
+        } else {
+          elUitleg.textContent = "Bij meer dan 8 groepen adviseren we conform NEN 1010 een 3-fase verdeelkast voor een evenwichtige stroomverdeling over de woning.";
+        }
       } else {
-        alert("Er ging iets mis bij het verzenden. Bel ons gerust direct op 06 28 76 37 75.");
+        elTitel.textContent = "Aanbevolen: 1-fase Hager of ABB Groepenkast";
+        elUitleg.textContent = "Ideaal voor jouw appartement of standaard eengezinswoning met 2 aardlekschakelaars en NEN 1010 opleveringskeuring.";
       }
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalLabel;
+
+      // Stedin toelichting tonen of verbergen
+      if (elStedinBox) {
+        if (advise3Fase && currentAansluiting !== "3fase") {
+          elStedinBox.style.display = "block";
+        } else {
+          elStedinBox.style.display = "none";
+        }
       }
-    }
-  });
-}
 
-wireAjaxForm(document.getElementById("quoteForm"), { resetPhotoList: true });
-wireAjaxForm(document.getElementById("spoedForm"), { successMsg: "we bellen je zo snel mogelijk terug." });
+      // Prijsopbouw bijwerken
+      if (elBreakdown) {
+        var bHtml = "";
+        breakdownItems.forEach(function (it) {
+          bHtml += '<li class="calc-breakdown-item"><span>' + it.naam + '</span><span>' + it.prijs + '</span></li>';
+        });
+        elBreakdown.innerHTML = bHtml;
+      }
 
-const appointmentForm = document.getElementById("appointmentForm");
-if (appointmentForm) {
-  appointmentForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const submitBtn = form.querySelector("button[type='submit']");
+      elPrijs.innerHTML = "€ " + totaalPrijs + ",- <span>all-in</span>";
 
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Versturen...";
-    }
+      // Dynamische links
+      var params = "?groepen=" + groepen + "&fase=" + (advise3Fase ? "3-fase" : "1-fase") + "&prijs=" + totaalPrijs;
+      if (elOfferte) elOfferte.href = "/offerte/" + params;
 
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6", {
-        method: "POST",
-        body: data,
-        headers: { "Accept": "application/json" }
-      });
-      if (!response.ok) throw new Error("Verzenden mislukt");
-      alert("Je voorkeur is verstuurd naar INO. We bevestigen de afspraak persoonlijk.");
-      form.reset();
-    } catch (err) {
-      alert("Je voorkeur kon niet worden verstuurd. Bel ons gerust direct op 06 28 76 37 75.");
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Voorkeur aanvragen";
+      if (elWa) {
+        var msg = "Hallo INO, via de online calculator kom ik uit op een " +
+                  (advise3Fase ? "3-fase" : "1-fase") + " groepenkast met " + groepen +
+                  " groepen (berekende all-in indicatie € " + totaalPrijs + "). " +
+                  (advise3Fase && currentAansluiting !== "3fase" ? "Ik wil graag advies over Stedin verzwaring en het voorbereiden van de kast. " : "") +
+                  "Hierbij stuur ik een foto van mijn huidige meterkast mee voor een bindende offerte.";
+        elWa.href = "https://wa.me/31628763775?text=" + encodeURIComponent(msg);
       }
     }
-  });
-}
 
-// Pre-fill wijkselectie if query param ?wijk= is present
-document.addEventListener("DOMContentLoaded", () => {
-  const params = new URLSearchParams(window.location.search);
-  const wijkParam = params.get("wijk");
-  if (wijkParam) {
-    const wijkName = decodeURIComponent(wijkParam).replace(/-/g, " ");
-    const quoteMessage = document.querySelector("#quoteForm textarea[name='message'], textarea[name='message']");
-    if (quoteMessage) {
-      quoteMessage.value = `Betreft klus in ${wijkName}:\n\n`;
-      quoteMessage.focus();
-    }
+    deviceInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("input", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    huidigInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    aansluitingInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    bereken();
   }
-});
+  initCalculator();
 
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
-}
-
+  // Klik-meting (bellen / WhatsApp). Werkt automatisch zodra je Google Analytics 4
+  // of Google Tag Manager toevoegt; zonder die tools doet dit niets.
+  function track(evt, params) {
+    try {
+      if (window.gtag) window.gtag("event", evt, params || {});
+      (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: evt }, params || {}));
+    } catch (e) {}
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("[data-track]");
+    if (a) track(a.getAttribute("data-track") === "bellen" ? "klik_bellen" : "klik_whatsapp", { pagina: location.pathname });
+  });
+})();

@@ -50,6 +50,325 @@ def tarief_kaarten(voorrij=True):
 <p class="form-note">Alle bedragen inclusief 21% btw en foutdiagnose. Meer werk of een onderdeel nodig? Dan hoor je eerst de prijs en beslis jij.</p>{extra}"""
 
 
+def groepenkast_calculator():
+    wa_default = wa_url("Hallo INO, via jullie online calculator kom ik uit op een 3-fase groepenkast met 8 groepen (indicatie € 720). Hierbij stuur ik een foto van mijn huidige meterkast mee voor een vaste offerte.")
+    return f"""<section class="section soft calc-section" id="keuzehulp">
+  <style>
+    .calc-section {{ padding: 60px 0; }}
+    .calc-card {{ background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }}
+    .calc-grid {{ display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 36px; align-items: start; }}
+    .calc-step-header {{ display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }}
+    .calc-step-num {{ width: 32px; height: 32px; background: #1ed760; color: #0d1f0f; font-weight: 800; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }}
+    .calc-step-header h3 {{ margin: 0; font-size: 18px; font-weight: 700; color: #111827; }}
+    .calc-step-header p {{ margin: 2px 0 0; font-size: 13px; color: #64748b; }}
+    .calc-sub-label {{ font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 8px; }}
+    .calc-device-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }}
+    .calc-item {{ display: block; position: relative; cursor: pointer; margin: 0; user-select: none; }}
+    .calc-item input[type="checkbox"] {{ position: absolute; opacity: 0; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); }}
+    .calc-box {{ display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: #fafbfa; border: 1.5px solid #e2e8f0; border-radius: 12px; transition: border-color 0.15s ease, background 0.15s ease; min-height: 72px; gap: 12px; }}
+    .calc-item:hover .calc-box {{ border-color: #1ed760; background: #ffffff; }}
+    .calc-item input:checked + .calc-box {{ border-color: #1ed760; background: #f2fbf4; }}
+    .calc-item-text {{ display: flex; flex-direction: column; gap: 3px; min-width: 0; flex: 1; }}
+    .calc-item-text strong {{ font-size: 14px; font-weight: 700; color: #0f172a; line-height: 1.3; }}
+    .calc-item-text span {{ font-size: 12px; color: #64748b; line-height: 1.25; }}
+    .calc-check {{ width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid #cbd5e1; background: #ffffff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s ease; }}
+    .calc-item input:checked + .calc-box .calc-check {{ background: #1ed760; border-color: #1ed760; }}
+    .calc-item input:checked + .calc-box .calc-check::after {{ content: ""; display: block; width: 5px; height: 10px; border: solid #0d1f0f; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); margin-bottom: 2px; }}
+    
+    .calc-radio-group {{ display: grid; grid-template-columns: 1fr; gap: 10px; }}
+    .calc-radio-item {{ display: block; position: relative; cursor: pointer; margin: 0; }}
+    .calc-radio-item input[type="radio"] {{ position: absolute; opacity: 0; width: 0; height: 0; }}
+    .calc-radio-box {{ display: flex; align-items: center; gap: 14px; padding: 12px 16px; background: #fafbfa; border: 1.5px solid #e2e8f0; border-radius: 12px; transition: all 0.15s ease; }}
+    .calc-radio-item:hover .calc-radio-box {{ border-color: #1ed760; background: #ffffff; }}
+    .calc-radio-item input:checked + .calc-radio-box {{ border-color: #1ed760; background: #f2fbf4; }}
+    .calc-radio-circle {{ width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #cbd5e1; background: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }}
+    .calc-radio-item input:checked + .calc-radio-box .calc-radio-circle {{ border-color: #1ed760; }}
+    .calc-radio-item input:checked + .calc-radio-box .calc-radio-circle::after {{ content: ""; width: 10px; height: 10px; border-radius: 50%; background: #1ed760; }}
+    .calc-radio-text strong {{ display: block; font-size: 14px; color: #0f172a; }}
+    .calc-radio-text span {{ display: block; font-size: 12px; color: #64748b; }}
+
+    .calc-summary-card {{ background: linear-gradient(145deg, #112314 0%, #0a160c 100%); color: #ffffff; border-radius: 16px; padding: 28px 24px; box-shadow: 0 14px 36px rgba(10,22,12,0.18); position: sticky; top: 90px; }}
+    .calc-badge {{ display: inline-block; background: rgba(30,215,96,0.16); color: #1ed760; font-size: 11px; font-weight: 800; letter-spacing: 0.8px; padding: 4px 10px; border-radius: 999px; margin-bottom: 16px; text-transform: uppercase; }}
+    .calc-kpi-row {{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: 16px; }}
+    .calc-kpi-label {{ display: block; font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 4px; }}
+    .calc-kpi strong {{ display: block; font-size: 17px; font-weight: 800; color: #ffffff; }}
+    .calc-explanation {{ margin-bottom: 18px; }}
+    .calc-explain-title {{ font-size: 15px; font-weight: 700; color: #1ed760; margin-bottom: 6px; }}
+    .calc-explanation p {{ font-size: 13px; color: rgba(255,255,255,0.8); line-height: 1.45; margin: 0; }}
+    
+    .calc-breakdown {{ background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; }}
+    .calc-breakdown-title {{ font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 8px; }}
+    .calc-breakdown-list {{ list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }}
+    .calc-breakdown-item {{ display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.85); }}
+    .calc-breakdown-item span:last-child {{ font-weight: 700; color: #1ed760; }}
+
+    .calc-stedin-notice {{ background: rgba(30,215,96,0.08); border: 1px solid rgba(30,215,96,0.25); border-radius: 12px; padding: 14px; margin-bottom: 18px; }}
+    .calc-stedin-title strong {{ display: block; font-size: 13px; font-weight: 800; color: #1ed760; margin-bottom: 4px; }}
+    .calc-stedin-notice p {{ font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.4; margin: 0 0 8px; }}
+    .calc-stedin-role {{ background: rgba(0,0,0,0.25); border-radius: 8px; padding: 10px; font-size: 11px; color: rgba(255,255,255,0.85); line-height: 1.4; }}
+    .calc-stedin-role strong {{ color: #ffffff; display: block; margin-bottom: 2px; }}
+
+    .calc-price-box {{ background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 16px; margin-bottom: 18px; text-align: center; }}
+    .calc-price-label {{ display: block; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 4px; }}
+    .calc-price-val {{ font-size: 32px; font-weight: 900; color: #ffffff; line-height: 1; }}
+    .calc-price-val span {{ font-size: 14px; font-weight: 400; color: #1ed760; margin-left: 4px; }}
+    .calc-price-sub {{ display: block; font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 6px; line-height: 1.35; }}
+    .calc-actions {{ display: grid; gap: 10px; margin-bottom: 14px; }}
+    .calc-guarantee-note {{ display: grid; gap: 4px; font-size: 11px; color: rgba(255,255,255,0.65); border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }}
+
+    @media (max-width: 960px) {{
+      .calc-grid {{ grid-template-columns: 1fr; }}
+      .calc-summary-card {{ position: static; margin-top: 24px; }}
+    }}
+    @media (max-width: 640px) {{
+      .calc-device-grid {{ grid-template-columns: 1fr; }}
+      .calc-card {{ padding: 20px; }}
+    }}
+  </style>
+
+  <div class="container">
+    <div class="section-heading text-center">
+      <span class="badge">GROEPENKAST ADVIES</span>
+      <h2>Groepenkast &amp; Inductie Berekenen</h2>
+      <p>Selecteer je apparaten voor een direct technisch advies (1-fase of 3-fase) en all-in prijsindicatie.</p>
+    </div>
+
+    <div class="calc-card">
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="calc-step-header">
+            <span class="calc-step-num">1</span>
+            <div>
+              <h3>Welke apparaten wil je aansluiten?</h3>
+              <p>Selecteer de apparaten die in de woning draaien of bijkomen.</p>
+            </div>
+          </div>
+
+          <div class="calc-device-grid">
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="inductie" data-groepen="1" checked>
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Inductiekookplaat</strong>
+                  <span>2x230V kookgroep of 3-fase</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="laadpaal" data-groepen="1">
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Laadpaal (Wallbox)</strong>
+                  <span>Krachtstroom 3-fase / 11 kW</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="zonnepanelen" data-groepen="1">
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Zonnepanelen (PV)</strong>
+                  <span>Aparte PV-aardlekautomaat</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="warmtepomp" data-groepen="1">
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Warmtepomp of Airco</strong>
+                  <span>Zware groep / 3-fase kracht</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="quooker" data-groepen="1">
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Quooker / Keukenboiler</strong>
+                  <span>Aparte 230V groep (2200W)</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="wasmachine" data-groepen="2" checked>
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Wasmachine &amp; Droger</strong>
+                  <span>Twee aparte zware groepen</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="keuken" data-groepen="2" checked>
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Oven &amp; Vaatwasser</strong>
+                  <span>Twee aparte keukengroepen</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+
+            <label class="calc-item">
+              <input type="checkbox" name="calc_device" value="basis" data-groepen="3" checked>
+              <div class="calc-box">
+                <div class="calc-item-text">
+                  <strong>Woonkamer, slaapkamers &amp; licht</strong>
+                  <span>Drie basis licht-/wandgroepen</span>
+                </div>
+                <div class="calc-check"></div>
+              </div>
+            </label>
+          </div>
+
+          <div class="calc-step-header" style="margin-top:28px">
+            <span class="calc-step-num">2</span>
+            <div>
+              <h3>Wat voor meterkast en aansluiting heb je nu?</h3>
+              <p>Kies je huidige situatie voor een passend advies en plan van aanpak.</p>
+            </div>
+          </div>
+
+          <div class="calc-sub-label">Huidige netaansluiting (hoofdschakelaar/meter):</div>
+          <div class="calc-radio-group" style="margin-bottom:18px">
+            <label class="calc-radio-item">
+              <input type="radio" name="calc_aansluiting" value="1fase" checked>
+              <div class="calc-radio-box">
+                <div class="calc-radio-circle"></div>
+                <div class="calc-radio-text">
+                  <strong>1-fase aansluiting (230V)</strong>
+                  <span>Standaard aansluiting (1x25A of 1x35A op de meter)</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="calc-radio-item">
+              <input type="radio" name="calc_aansluiting" value="3fase">
+              <div class="calc-radio-box">
+                <div class="calc-radio-circle"></div>
+                <div class="calc-radio-text">
+                  <strong>3-fase aansluiting (400V)</strong>
+                  <span>Krachtstroom al aanwezig (3x25A op de meter)</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="calc-radio-item">
+              <input type="radio" name="calc_aansluiting" value="onbekend">
+              <div class="calc-radio-box">
+                <div class="calc-radio-circle"></div>
+                <div class="calc-radio-text">
+                  <strong>Weet ik niet zeker</strong>
+                  <span>Ik stuur een foto mee van de hoofdmeter</span>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="calc-sub-label">Type groepenkast:</div>
+          <div class="calc-radio-group">
+            <label class="calc-radio-item">
+              <input type="radio" name="calc_huidig" value="stoppen" checked>
+              <div class="calc-radio-box">
+                <div class="calc-radio-circle"></div>
+                <div class="calc-radio-text">
+                  <strong>Oude stoppenkast</strong>
+                  <span>Draaizekeringen met smeltpatronen (volledige vervanging)</span>
+                </div>
+              </div>
+            </label>
+
+            <label class="calc-radio-item">
+              <input type="radio" name="calc_huidig" value="automaat">
+              <div class="calc-radio-box">
+                <div class="calc-radio-circle"></div>
+                <div class="calc-radio-text">
+                  <strong>Bestaande automatenkast</strong>
+                  <span>Schakelaars met hendeltjes (vervangen of uitbreiden)</span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="calc-summary">
+          <div class="calc-summary-card">
+            <div class="calc-badge">BEREKEND ADVIES</div>
+            
+            <div class="calc-kpi-row">
+              <div class="calc-kpi">
+                <span class="calc-kpi-label">Benodigde groepen</span>
+                <strong id="calcGroepen">8 groepen</strong>
+              </div>
+              <div class="calc-kpi">
+                <span class="calc-kpi-label">Geadviseerde fase</span>
+                <strong id="calcFase">3-fase (400V)</strong>
+              </div>
+            </div>
+
+            <div class="calc-explanation">
+              <div class="calc-explain-title" id="calcTitel">Aanbevolen: 3-fase Hager of ABB Groepenkast</div>
+              <p id="calcUitleg">Door de combinatie van apparaten adviseren we een 3-fase groepenkast voor een optimale belastingverdeling conform NEN 1010.</p>
+            </div>
+
+            <div class="calc-stedin-notice" id="calcStedinBox">
+              <div class="calc-stedin-title">
+                <strong>Verzwaring via Stedin naar 3-fase</strong>
+              </div>
+              <p>Je woning heeft nu 1-fase, maar je apparaten vragen om 3-fase (kracht). Vraag de netaansluiting-verzwaring aan bij Stedin via mijnaansluiting.nl.</p>
+              <div class="calc-stedin-role">
+                <strong>Hoe INO Techniek dit oplost:</strong>
+                Wij monteren en bedraden je nieuwe groepenkast alvast 100% 3-fase voorbereid (met 4-polige hoofdschakelaar). Zodra de Stedin-monteur langskomt, kan deze de fasen direct aansluiten zonder extra ombouwwerk!
+              </div>
+            </div>
+
+            <div class="calc-breakdown">
+              <div class="calc-breakdown-title">Transparante Prijsopbouw</div>
+              <ul class="calc-breakdown-list" id="calcBreakdown">
+                <li class="calc-breakdown-item"><span>1-fase basiskast (tot 8 gr.)</span><span>€ 640,-</span></li>
+                <li class="calc-breakdown-item"><span>3-fase uitvoering &amp; kamrail voorbereiding</span><span>+ € 120,-</span></li>
+                <li class="calc-breakdown-item"><span>Inductie kookgroep (incl. kamrail &amp; aansluiting)</span><span>+ € 85,-</span></li>
+              </ul>
+            </div>
+
+            <div class="calc-price-box">
+              <span class="calc-price-label">Indicatieve all-in investering</span>
+              <div class="calc-price-val" id="calcPrijs">€ 845,- <span>all-in</span></div>
+              <span class="calc-price-sub">Inclusief A-merk kast, kamrails, klein montagemateriaal, montage, 21% btw en 12 mnd garantie</span>
+            </div>
+
+            <div class="calc-actions">
+              <a href="/offerte/" id="calcOfferteBtn" class="btn btn-primary full">Offerte aanvragen met deze berekening</a>
+              <a href="{wa_default}" id="calcWaBtn" target="_blank" rel="noopener" class="btn btn-whatsapp full">
+                {ICON_WA} WhatsApp deze berekening + foto
+              </a>
+            </div>
+
+            <div class="calc-guarantee-note">
+              <span>Bindende vaste all-in prijs vooraf</span>
+              <span>Geen voorrijkosten binnen de gemeente Utrecht</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
 KLUS_LINKS = [
     (("groepenkast", "kast"), "/groepenkast/"),
     (("perilex", "kookgroep", "inductie", "koken"), "/perilex/"),

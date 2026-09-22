@@ -114,6 +114,190 @@
     var qf = document.getElementById("quoteForm"); if (qf) qf.appendChild(hid);
   }
 
+  // Interactieve Groepenkast & Inductie Calculator
+  function initCalculator() {
+    var deviceInputs = document.querySelectorAll("input[name='calc_device']");
+    var huidigInputs = document.querySelectorAll("input[name='calc_huidig']");
+    var aansluitingInputs = document.querySelectorAll("input[name='calc_aansluiting']");
+    var elGroepen = document.getElementById("calcGroepen");
+    var elFase = document.getElementById("calcFase");
+    var elTitel = document.getElementById("calcTitel");
+    var elUitleg = document.getElementById("calcUitleg");
+    var elPrijs = document.getElementById("calcPrijs");
+    var elOfferte = document.getElementById("calcOfferteBtn");
+    var elWa = document.getElementById("calcWaBtn");
+    var elBreakdown = document.getElementById("calcBreakdown");
+    var elStedinBox = document.getElementById("calcStedinBox");
+
+    if (!deviceInputs.length || !elGroepen) return;
+
+    function bereken() {
+      var groepen = 0;
+      var hasLaadpaal = false;
+      var hasWarmtepomp = false;
+      var hasInductie = false;
+      var hasPV = false;
+      var hasQuooker = false;
+
+      deviceInputs.forEach(function (inp) {
+        if (inp.checked) {
+          var val = inp.value;
+          var g = parseInt(inp.getAttribute("data-groepen") || "1", 10);
+          groepen += g;
+          if (val === "laadpaal") hasLaadpaal = true;
+          if (val === "warmtepomp") hasWarmtepomp = true;
+          if (val === "inductie") hasInductie = true;
+          if (val === "zonnepanelen") hasPV = true;
+          if (val === "quooker") hasQuooker = true;
+        }
+      });
+
+      // Minimum 4 basisgroepen
+      if (groepen < 4) groepen = 4;
+
+      var currentAansluiting = "1fase";
+      aansluitingInputs.forEach(function (r) {
+        if (r.checked) currentAansluiting = r.value;
+      });
+
+      // Fase advies bepalen
+      var advise3Fase = false;
+      if (currentAansluiting === "3fase") {
+        advise3Fase = true;
+      } else if (hasLaadpaal || hasWarmtepomp) {
+        advise3Fase = true;
+      } else if (hasInductie && groepen >= 7) {
+        advise3Fase = true;
+      } else if (groepen > 8) {
+        advise3Fase = true;
+      }
+
+      // Prijsberekening en transparante specificatie
+      var breakdownItems = [];
+      var basisPrijs = 640; // 1-fase basiskast met 2 aardlekschakelaars en tot 8 groepen (incl. klein materiaal en kamrails)
+      breakdownItems.push({ naam: "Basiskast 1-fase (tot 8 gr.)", prijs: "€ 640,-" });
+
+      var extraKosten = 0;
+
+      if (advise3Fase) {
+        extraKosten += 120;
+        breakdownItems.push({ naam: "3-fase uitvoering & kamrail voorbereiding", prijs: "+ € 120,-" });
+      }
+
+      if (hasInductie) {
+        extraKosten += 85;
+        breakdownItems.push({ naam: "Inductie kookgroep (incl. kamrail & aansluiting)", prijs: "+ € 85,-" });
+      }
+
+      if (hasLaadpaal) {
+        var laadKosten = advise3Fase ? 185 : 85;
+        extraKosten += laadKosten;
+        breakdownItems.push({ 
+          naam: advise3Fase ? "Laadpaal (4P aardlekautomaat B16 + kracht kamrail)" : "Laadpaal (2P aardlekautomaat)", 
+          prijs: "+ € " + laadKosten + ",-" 
+        });
+      }
+
+      if (hasWarmtepomp) {
+        var wpKosten = advise3Fase ? 185 : 85;
+        extraKosten += wpKosten;
+        breakdownItems.push({ 
+          naam: advise3Fase ? "Warmtepomp (4P aardlekautomaat + kracht kamrail)" : "Warmtepomp (2P aardlekautomaat)", 
+          prijs: "+ € " + wpKosten + ",-" 
+        });
+      }
+
+      if (hasPV) {
+        extraKosten += 95;
+        breakdownItems.push({ naam: "Zonnepanelen (PV-aardlekautomaat & afzekering)", prijs: "+ € 95,-" });
+      }
+
+      if (hasQuooker) {
+        extraKosten += 45;
+        breakdownItems.push({ naam: "Quooker/boiler (aparte groep + kamrail)", prijs: "+ € 45,-" });
+      }
+
+      var extraGroepenBovenAcht = Math.max(0, groepen - 8);
+      if (extraGroepenBovenAcht > 0) {
+        var extraGrKosten = extraGroepenBovenAcht * 45;
+        extraKosten += extraGrKosten;
+        breakdownItems.push({ 
+          naam: extraGroepenBovenAcht + "x Extra groep (" + extraGroepenBovenAcht + "× € 45)", 
+          prijs: "+ € " + extraGrKosten + ",-" 
+        });
+      }
+
+      var totaalPrijs = basisPrijs + extraKosten;
+
+      // Update UI
+      elGroepen.textContent = groepen + " groepen";
+      elFase.textContent = advise3Fase ? "3-fase (400V)" : "1-fase (230V)";
+
+      if (advise3Fase) {
+        elTitel.textContent = "Aanbevolen: 3-fase Hager of ABB Groepenkast";
+        if (hasLaadpaal || hasWarmtepomp) {
+          elUitleg.textContent = "Door zware verbruikers (zoals je laadpaal of warmtepomp) is een 3-fase aansluiting noodzakelijk om veilig en op vol vermogen te draaien.";
+        } else if (hasInductie) {
+          elUitleg.textContent = "Met koken op inductie en meerdere keukenapparaten biedt 3-fase een optimale verdeling over de fasen zonder dat de hoofdzekering overbelast raakt.";
+        } else {
+          elUitleg.textContent = "Bij meer dan 8 groepen adviseren we conform NEN 1010 een 3-fase verdeelkast voor een evenwichtige stroomverdeling over de woning.";
+        }
+      } else {
+        elTitel.textContent = "Aanbevolen: 1-fase Hager of ABB Groepenkast";
+        elUitleg.textContent = "Ideaal voor jouw appartement of standaard eengezinswoning met 2 aardlekschakelaars en NEN 1010 opleveringskeuring.";
+      }
+
+      // Stedin toelichting tonen of verbergen
+      if (elStedinBox) {
+        if (advise3Fase && currentAansluiting !== "3fase") {
+          elStedinBox.style.display = "block";
+        } else {
+          elStedinBox.style.display = "none";
+        }
+      }
+
+      // Prijsopbouw bijwerken
+      if (elBreakdown) {
+        var bHtml = "";
+        breakdownItems.forEach(function (it) {
+          bHtml += '<li class="calc-breakdown-item"><span>' + it.naam + '</span><span>' + it.prijs + '</span></li>';
+        });
+        elBreakdown.innerHTML = bHtml;
+      }
+
+      elPrijs.innerHTML = "€ " + totaalPrijs + ",- <span>all-in</span>";
+
+      // Dynamische links
+      var params = "?groepen=" + groepen + "&fase=" + (advise3Fase ? "3-fase" : "1-fase") + "&prijs=" + totaalPrijs;
+      if (elOfferte) elOfferte.href = "/offerte/" + params;
+
+      if (elWa) {
+        var msg = "Hallo INO, via de online calculator kom ik uit op een " +
+                  (advise3Fase ? "3-fase" : "1-fase") + " groepenkast met " + groepen +
+                  " groepen (berekende all-in indicatie € " + totaalPrijs + "). " +
+                  (advise3Fase && currentAansluiting !== "3fase" ? "Ik wil graag advies over Stedin verzwaring en het voorbereiden van de kast. " : "") +
+                  "Hierbij stuur ik een foto van mijn huidige meterkast mee voor een bindende offerte.";
+        elWa.href = "https://wa.me/31628763775?text=" + encodeURIComponent(msg);
+      }
+    }
+
+    deviceInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("input", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    huidigInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    aansluitingInputs.forEach(function (inp) { 
+      inp.addEventListener("change", bereken); 
+      inp.addEventListener("click", bereken); 
+    });
+    bereken();
+  }
+  initCalculator();
+
   // Klik-meting (bellen / WhatsApp). Werkt automatisch zodra je Google Analytics 4
   // of Google Tag Manager toevoegt; zonder die tools doet dit niets.
   function track(evt, params) {
