@@ -24,8 +24,8 @@ BEDRIJF = {
     "google_maps": "https://maps.google.com/?cid=15258938996024411928",
     # Google-score: bevestigd door eigenaar (sept 2026). Alleen zichtbaar tonen met link naar Google,
     # NIET als AggregateRating-schema (Google staat zelf-reviews voor LocalBusiness niet toe).
-    "google_score": "4,9",
-    "google_aantal": "48",
+    "google_score": "5,0",
+    "google_aantal": "37",
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
     "actief_sinds": "2021",
     # --- Wettelijk verplicht op je website (Handelsregisterwet): KvK-nummer ---
