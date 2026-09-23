@@ -64,9 +64,17 @@ def business_node(wijken):
         "knowsAbout": ["NEN 1010", "NEN 3140", "groepenkast vervangen", "Perilex", "laadpaal installatie",
                        "krachtstroom", "storingsdienst"],
         "sameAs": same,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "48",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
     }
     if B["kvk"]:
         node["identifier"] = {"@type": "PropertyValue", "propertyID": "KvK", "value": B["kvk"]}
+        node["taxID"] = B["kvk"]
     if B["btw"]:
         node["vatID"] = B["btw"]
     return node

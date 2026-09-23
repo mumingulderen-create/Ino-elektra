@@ -45,7 +45,7 @@ def blok_stedin_checker(toon_kop=True):
       <span class="eyebrow">STORING OF STROOMUITVAL?</span>
       <h2>Stedin bellen, of INO bellen?</h2>
       <p style="margin-left:auto;margin-right:auto;max-width:640px">Twijfel je wie je moet inschakelen bij stroomuitval? Bekijk hieronder direct het verschil tussen een netstoring en een storing in jouw eigen installatie.</p>
-    </div>""" if toon_kop else ""
+    </div>""" if toon_kop else """<div class="hp"><h2>Stedin of INO bellen bij stroomuitval</h2></div>"""
     return f"""<section class="section soft" id="stedin-check">
   <div class="container">
     {kop_html}

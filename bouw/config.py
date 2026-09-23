@@ -25,7 +25,7 @@ BEDRIJF = {
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
     "actief_sinds": "2021",
     # --- Wettelijk verplicht op je website (Handelsregisterwet): KvK-nummer ---
-    "kvk": "",                                 # VUL_IN: bijv. "12345678"
+    "kvk": "86669346",
     "btw": "",                                 # VUL_IN (optioneel)
     # Adres: alleen invullen als je dit ook in Google Bedrijfsprofiel toont.
     # Werk je vanuit huis als servicegebied-bedrijf? Laat straat/postcode leeg.
