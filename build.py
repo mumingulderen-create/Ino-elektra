@@ -51,6 +51,7 @@ BREADCRUMB_NAMEN = {
     "laadpaal-installeren": [("Diensten", "/diensten/"), ("Laadpaal", None)],
     "krachtstroom-aanleggen": [("Diensten", "/diensten/"), ("Krachtstroom", None)],
     "frezen-stopcontacten-verleggen": [("Diensten", "/diensten/"), ("Frezen & stopcontacten", None)],
+    "extra-groep-aanleggen": [("Diensten", "/diensten/"), ("Extra groep aanleggen", None)],
     "tuinverlichting-buitenelektra": [("Diensten", "/diensten/"), ("Tuinverlichting", None)],
     "tarieven": [("Tarieven", None)],
     "werkgebied": [("Werkgebied", None)],

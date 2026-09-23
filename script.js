@@ -360,7 +360,9 @@
   function initSmartWhatsApp() {
     var p = (location.pathname || "").toLowerCase();
     var msg = "Hallo INO Techniek, ik heb een vraag over een elektra klus in Utrecht. Kan ik een foto sturen voor advies?";
-    if (p.indexOf("groepenkast") !== -1) {
+    if (p.indexOf("extra-groep") !== -1) {
+      msg = "Hallo INO, ik wil graag een extra groep laten plaatsen in mijn meterkast in Utrecht. Hierbij stuur ik een foto van mijn huidige kast mee.";
+    } else if (p.indexOf("groepenkast") !== -1) {
       msg = "Hallo INO, ik wil graag advies of een offerte voor het vervangen/uitbreiden van mijn groepenkast. Hierbij stuur ik een foto van mijn huidige meterkast mee.";
     } else if (p.indexOf("perilex") !== -1) {
       msg = "Hallo INO, ik wil een inductiekookplaat of Perilex aansluiting laten aanleggen. Hierbij een foto van mijn situatie.";

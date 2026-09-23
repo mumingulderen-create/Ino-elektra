@@ -97,6 +97,7 @@ NAV = [
         {"label": "Laadpaal installeren", "href": "/laadpaal-installeren/"},
         {"label": "Krachtstroom 400V", "href": "/krachtstroom-aanleggen/"},
         {"label": "Frezen & stopcontacten", "href": "/frezen-stopcontacten-verleggen/"},
+        {"label": "Extra groep aanleggen", "href": "/extra-groep-aanleggen/"},
         {"label": "Tuinverlichting", "href": "/tuinverlichting-buitenelektra/"},
     ]},
     {"label": "Tarieven", "href": "/tarieven/", "key": "tarieven"},
@@ -110,7 +111,7 @@ NAV = [
 NAV_GROEP = {
     "groepenkast": "diensten", "perilex": "diensten", "laadpaal-installeren": "diensten",
     "krachtstroom-aanleggen": "diensten", "frezen-stopcontacten-verleggen": "diensten",
-    "tuinverlichting-buitenelektra": "diensten", "diensten": "diensten",
+    "extra-groep-aanleggen": "diensten", "tuinverlichting-buitenelektra": "diensten", "diensten": "diensten",
     "spoed-elektricien-utrecht": "spoed", "stroomstoring-utrecht": "spoed",
     "aardlekschakelaar-springt-eruit": "spoed", "kortsluiting-utrecht": "spoed",
     "stopcontact-werkt-niet": "spoed",

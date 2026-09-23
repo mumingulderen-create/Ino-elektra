@@ -17,7 +17,7 @@
  },
  "diensten": {
   "date": "2026-09-23",
-  "hash": "861a721f4db467b1fc11cbb36c096861"
+  "hash": "5aef4fa83503f883dbba980a94a93b8f"
  },
  "elektricien-breukelen": {
   "date": "2026-09-23",
@@ -90,6 +90,10 @@
  "elektricien-zuilen": {
   "date": "2026-09-23",
   "hash": "202a0733326f48563a86e3466a2100ef"
+ },
+ "extra-groep-aanleggen": {
+  "date": "2026-09-23",
+  "hash": "1b43c88e75382a56adad8b474de82ee9"
  },
  "faq": {
   "date": "2026-09-23",
