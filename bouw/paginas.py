@@ -35,7 +35,7 @@ def cta_band(titel="Direct hulp of een vaste prijs?", tekst="Bel, app een foto v
     <div class="hero-actions">
       <a class="btn btn-light" href="tel:{B['telefoon_e164']}" data-track="bellen">Bel {B['telefoon_tonen']}</a>
       <a class="btn btn-outline-light" href="{wa_url('Hallo INO, ik heb een vraag.')}" target="_blank" rel="noopener" data-track="whatsapp">WhatsApp</a>
-      <a class="btn btn-outline-light" href="/offerte{q}">Offerte aanvragen</a>
+      <a class="btn btn-outline-light" href="/offerte/{q}">Offerte aanvragen</a>
     </div>
   </div>
 </section>"""

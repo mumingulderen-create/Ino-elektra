@@ -266,6 +266,12 @@ def main():
                 html = html.replace("</body>", f'<script src="/{x}.js?v={extra_v[x + ".js"]}" defer></script>\n</body>', 1)
             if f"{x}.css" not in extra_v and f"{x}.js" not in extra_v:
                 warn(f"{slug}: extra '{x}' bestaat niet in assets/extra/")
+
+        # Automatische linknormalisatie: garandeer altijd trailing slashes bij interne pagina's
+        bekende_slugs = {s["slug"] for s in pages if s.get("slug")}
+        html = re.sub(r'(href=["\'])/([a-z0-9-]+)((?:[\?#][^"\'\s]*)?)(["\'])',
+                      lambda m: f'{m.group(1)}/{m.group(2)}/{m.group(3)}{m.group(4)}' if m.group(2) in bekende_slugs else m.group(0),
+                      html)
         rendered[slug] = (p, html)
 
     print("4/6 Bestanden schrijven…")
