@@ -41,6 +41,7 @@ PLACEHOLDERS = {
     "jaar": str(datetime.date.today().year),
     "icon_wa": layout.ICON_WA,
     "icon_tel": layout.ICON_TEL,
+    "icon_mail": layout.ICON_MAIL,
     **{k: str(v) for k, v in T.items()},
 }
 
