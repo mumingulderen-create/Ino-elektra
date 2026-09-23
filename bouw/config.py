@@ -47,8 +47,8 @@ FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
 # ---------------------------------------------------------------------------
 TARIEVEN = {
     "uur_dag": 90,            # ma-vr 08:00-18:00
-    "uur_avond": 120,         # ma-vr 18:00-22:00 en zaterdag
-    "uur_nacht": 145,         # 22:00-08:00, zondag en feestdagen
+    "uur_avond": 120,         # ma-vr 18:00-22:00
+    "uur_nacht": 145,         # 22:00-08:00, zaterdag, zondag en feestdagen
     "kwartier_dag": "22,50",
     "kwartier_avond": "30,00",
     "kwartier_nacht": "36,25",
@@ -68,8 +68,8 @@ TARIEVEN = {
 # Tekstblokjes die op meerdere plekken terugkomen (automatisch consistent)
 T = TARIEVEN
 TARIEF_ZIN = (
-    f"Ma–vr 08:00–18:00 € {T['uur_dag']}, ma–vr 18:00–22:00 en zaterdag € {T['uur_avond']}, "
-    f"22:00–08:00, zondag en feestdagen € {T['uur_nacht']} (eerste uur, incl. btw)"
+    f"Ma–vr 08:00–18:00 € {T['uur_dag']}, ma–vr 18:00–22:00 € {T['uur_avond']}, "
+    f"22:00–08:00 en zaterdag & zondag € {T['uur_nacht']} (eerste uur incl. diagnose en btw)"
 )
 VOORRIJ_ZIN = (
     f"Binnen de gemeente Utrecht rekenen we € {T['voorrijkosten_utrecht']},- voorrijkosten. "

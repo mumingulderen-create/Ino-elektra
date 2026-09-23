@@ -154,19 +154,6 @@ def header(nav_key, wijken, variant="standaard"):
         f'<a href="tel:{B["telefoon_e164"]}" data-track="bellen">{ICON_TEL} {B["telefoon_tonen"]}</a>'
         f'</div></div>'
     )
-    if variant == "spoed":
-        return f"""<a class="skip-link" href="#inhoud">Naar de inhoud</a>
-<header class="lp-header">
-  <div class="container nav-wrap">
-    <a class="brand" href="/" aria-label="{B['naam']} – naar de homepage">
-      <img src="/logo.png" alt="{B['naam']}" width="130" height="54">
-    </a>
-    <div class="lp-header-right">
-      <div class="lp-status-pill"><span class="lp-status-dot"></span> 24/7 storingsdienst</div>
-      <a class="lp-call-btn" href="tel:{B['telefoon_e164']}" data-track="bellen" aria-label="Bel direct {B['telefoon_tonen']}">{ICON_TEL} {B['telefoon_tonen']}</a>
-    </div>
-  </div>
-</header>"""
     items = []
     for it in NAV:
         active = ' aria-current="page"' if groep == it["key"] else ""

@@ -526,6 +526,9 @@ a.alert-banner:hover{border-color:#e0334f}
 .stedin-action-box .btn.full { width: 100%; text-align: center; justify-content: center; padding: 13px 18px; }
 .stedin-action-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
 .stedin-fast-note { font-size: 12px; font-weight: 700; color: var(--green-dark); text-align: center; margin-top: 2px; }
+.stedin-price-sub { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.35; margin-top: 2px; }
+.hero-price-hint { font-size: 12px; color: #4b6354; margin-top: 8px; line-height: 1.4; background: rgba(39,138,29,.06); border: 1px solid rgba(39,138,29,.15); padding: 7px 12px; border-radius: 8px; }
+.hero-price-hint strong { color: var(--ink); font-weight: 700; }
 .stedin-official-link { display: inline-block; font-size: 12.5px; font-weight: 700; color: #b75500; text-decoration: underline; text-align: center; margin-top: 4px; }
 .stedin-official-link:hover { color: #873800; }
 

@@ -40,14 +40,15 @@ def cta_band(titel="Direct hulp of een vaste prijs?", tekst="Bel, app een foto v
 </section>"""
 
 
-def blok_stedin_checker():
-    return f"""<section class="section soft" id="stedin-check">
-  <div class="container">
-    <div class="section-heading" style="text-align:center;margin-left:auto;margin-right:auto">
+def blok_stedin_checker(toon_kop=True):
+    kop_html = """<div class="section-heading" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="eyebrow">STORING OF STROOMUITVAL?</span>
       <h2>Stedin bellen, of INO bellen?</h2>
       <p style="margin-left:auto;margin-right:auto;max-width:640px">Twijfel je wie je moet inschakelen bij stroomuitval? Bekijk hieronder direct het verschil tussen een netstoring en een storing in jouw eigen installatie.</p>
-    </div>
+    </div>""" if toon_kop else ""
+    return f"""<section class="section soft" id="stedin-check">
+  <div class="container">
+    {kop_html}
 
     <!-- 2 Kolommen Naast Elkaar: Stedin vs INO -->
     <div class="stedin-compare-grid">
@@ -83,7 +84,9 @@ def blok_stedin_checker():
         <div class="stedin-col-header">
           <span class="stedin-col-badge badge-ino">⚡ INO Elektrotechniek (24/7 Spoed)</span>
           <h3>Wanneer bel je INO?</h3>
-          <p class="stedin-col-sub">Bij storingen, kortsluiting of overbelasting in jouw eigen groepenkast of apparaten.</p>
+          <p class="stedin-col-sub" style="font-weight:600;color:var(--ink);line-height:1.45">
+            Vast all-in tarief: <strong>€ {T['uur_dag']}</strong> (08–18u) · <strong>€ {T['uur_avond']}</strong> (18–22u) · <strong>€ {T['uur_nacht']}</strong> (nacht &amp; weekend)
+          </p>
         </div>
 
         <div class="stedin-col-body">
@@ -126,8 +129,8 @@ def tarief_kaarten(voorrij=True):
     extra = f'<p class="price-note form-note">{VOORRIJ_ZIN} Een schouw op locatie kost € {T["schouw"]} en verrekenen we volledig als je de klus laat uitvoeren.</p>' if voorrij else ""
     return f"""<div class="price-grid">
   <div class="price-card"><h3>Overdag</h3><div class="price-amount">€ {T['uur_dag']}<span> 1e uur</span></div><p>Ma–vr 08:00–18:00. Daarna € {T['kwartier_dag']} per kwartier.</p></div>
-  <div class="price-card"><h3>Avond &amp; zaterdag</h3><div class="price-amount">€ {T['uur_avond']}<span> 1e uur</span></div><p>Ma–vr 18:00–22:00 en zaterdag. Daarna € {T['kwartier_avond']} per kwartier.</p></div>
-  <div class="price-card highlight"><h3>Nacht, zondag &amp; feestdag</h3><div class="price-amount">€ {T['uur_nacht']}<span> 1e uur</span></div><p>22:00–08:00, zondag en feestdagen. Daarna € {T['kwartier_nacht']} per kwartier.</p></div>
+  <div class="price-card"><h3>Avond</h3><div class="price-amount">€ {T['uur_avond']}<span> 1e uur</span></div><p>Ma–vr 18:00–22:00. Daarna € {T['kwartier_avond']} per kwartier.</p></div>
+  <div class="price-card highlight"><h3>Nacht &amp; weekend</h3><div class="price-amount">€ {T['uur_nacht']}<span> 1e uur</span></div><p>22:00–08:00, complete zaterdagen, zondagen en feestdagen. Daarna € {T['kwartier_nacht']} per kwartier.</p></div>
 </div>
 <p class="form-note">Alle bedragen inclusief 21% btw en foutdiagnose. Meer werk of een onderdeel nodig? Dan hoor je eerst de prijs en beslis jij.</p>{extra}"""
 
@@ -514,9 +517,9 @@ def wijk_pagina(w, alle):
     <aside class="area-card">
       <h3>Wat kost een elektricien in {escape(naam)}?</h3>
       <ul class="include-items compact">
-        <li>Overdag: € {T['uur_dag']} (1e uur, incl. btw)</li>
-        <li>Avond &amp; zaterdag: € {T['uur_avond']}</li>
-        <li>Nacht, zondag &amp; feestdag: € {T['uur_nacht']}</li>
+        <li>Overdag (08:00–18:00): € {T['uur_dag']} (1e uur, incl. btw)</li>
+        <li>Avond (18:00–22:00): € {T['uur_avond']}</li>
+        <li>Nacht &amp; weekend (za/zo): € {T['uur_nacht']}</li>
         <li>Groepenkast 1-fase: vanaf € {T['groepenkast_1f']} all-in</li>
         <li>Perilex aansluiten: € {T['perilex_aansluiten']}</li>
       </ul>
@@ -594,17 +597,31 @@ def storing_pagina(s, alle):
     gerel = {x["slug"]: x for x in alle}
     rel = "".join(f'<a href="/{r}/">{gerel[r]["kort"]}</a>' for r in s["gerelateerd"] if r in gerel)
     wa = wa_url(f"Hallo INO, ik heb een probleem: {s['kort'].lower()}. Hierbij een foto van mijn meterkast.")
-    stedin_blok = blok_stedin_checker() if s['slug'] == 'stroomstoring-utrecht' else ""
-    body = f"""<section class="lp-hero storing-hero">
-  <div class="container">
-    <div class="badge">24/7 hulp bij storingen in Utrecht e.o.</div>
-    <h1>{escape(s['h1'])}</h1>
-    <p>{escape(fmt(s['intro']))}</p>
-    <div class="hero-actions">
+    is_stroomstoring = s['slug'] == 'stroomstoring-utrecht'
+    if is_stroomstoring:
+        h1_display = "Geen stroom in huis? Check eerst: Stedin of INO bellen?"
+        intro_display = "Alles is ineens donker. Voordat je iemand belt: vergelijk direct hieronder of het om een wijkstoring van Stedin gaat of om een storing in jouw eigen installatie waarvoor INO direct kan uitrukken."
+        hero_actions_html = ""
+        hero_meta_html = ""
+        stedin_blok = blok_stedin_checker(toon_kop=False)
+    else:
+        h1_display = escape(s['h1'])
+        intro_display = escape(fmt(s['intro']))
+        hero_actions_html = f"""<div class="hero-actions">
       <a class="btn btn-primary btn-lg" href="tel:{B['telefoon_e164']}" data-track="bellen">{ICON_TEL} Direct een elektricien: {B['telefoon_tonen']}</a>
       <a class="btn btn-whatsapp" href="{wa}" target="_blank" rel="noopener" data-track="whatsapp">{ICON_WA} Stuur foto via WhatsApp</a>
-    </div>
-    <div class="meta-row"><span>Direct de monteur aan de lijn</span><span>Vaste prijs vóór we beginnen</span><span>Geen voorrijkosten in Utrecht</span></div>
+    </div>"""
+        hero_meta_html = """<div class="meta-row"><span>Direct de monteur aan de lijn</span><span>Vaste prijs vóór we beginnen</span><span>Geen voorrijkosten in Utrecht</span></div>"""
+        stedin_blok = ""
+
+    hero_pad = ' style="padding-bottom:12px"' if is_stroomstoring else ""
+    body = f"""<section class="lp-hero storing-hero"{hero_pad}>
+  <div class="container">
+    <div class="badge">24/7 hulp bij storingen in Utrecht e.o.</div>
+    <h1>{h1_display}</h1>
+    <p>{intro_display}</p>
+    {hero_actions_html}
+    {hero_meta_html}
   </div>
 </section>
 

@@ -35,7 +35,7 @@ STORINGEN = [
         ],
         "faq": [
             ["Wie moet ik bellen als de hele straat geen stroom heeft?", "Bel het gratis Nationaal Storingsnummer 0800-9009. Zij geven de melding door aan de netbeheerder, in Utrecht is dat Stedin. Een elektricien kan storingen in het openbare net niet oplossen."],
-            ["Wat kost het als jullie komen voor een stroomstoring?", "Overdag betaal je € {uur_dag} voor het eerste uur, inclusief btw en diagnose. 's Avonds en op zaterdag € {uur_avond}, 's nachts, op zondag en feestdagen € {uur_nacht}. Binnen de gemeente Utrecht zijn er geen voorrijkosten."],
+            ["Wat kost het als jullie komen voor een stroomstoring?", "Overdag (08:00–18:00) betaal je € {uur_dag} voor het eerste uur, inclusief btw en diagnose. In de avond (18:00–22:00) € {uur_avond}. 's Nachts (22:00–08:00) en op complete zaterdagen, zondagen en feestdagen € {uur_nacht}. Binnen de gemeente Utrecht zijn er geen voorrijkosten."],
             ["Mag ik zelf een zekering vervangen?", "Een automaat of aardlekschakelaar weer omhoog zetten mag je zelf. Iets openschroeven of vervangen niet: laat dat aan een elektricien over. De hoofdzekering vóór de meter is van de netbeheerder en mag alleen door hen worden vervangen."],
             ["Hoe snel zijn jullie er?", "In de stad Utrecht meestal binnen 20 tot 45 minuten, in de randgemeenten binnen 30 tot 50 minuten. Bel, dan hoor je direct een tijd."],
         ],
