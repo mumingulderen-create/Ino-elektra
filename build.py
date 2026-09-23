@@ -103,6 +103,7 @@ BLOKKEN = {
     "TARIEF_KAARTEN": lambda: paginas.tarief_kaarten(),
     "CTA": lambda: paginas.cta_band(),
     "CALCULATOR": lambda: paginas.groepenkast_calculator(),
+    "STEDIN_CHECKER": lambda: paginas.blok_stedin_checker(),
 }
 
 def lees_content():

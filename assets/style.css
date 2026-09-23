@@ -502,3 +502,46 @@ a.alert-banner:hover{border-color:#e0334f}
 .calc-guarantee-note{display:grid;gap:4px;font-size:11px;color:rgba(255,255,255,.65);border-top:1px solid rgba(255,255,255,.08);padding-top:12px}
 @media(max-width:960px){.calc-grid{grid-template-columns:1fr}.calc-summary-card{position:static;margin-top:20px}}
 @media(max-width:600px){.calc-device-grid{grid-template-columns:1fr}.calc-card{padding:20px}}
+
+/* Stedin vs INO 2-Koloms Vergelijkend Overzicht */
+.stedin-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 980px; margin: 0 auto; }
+.stedin-col-card { background: #fff; border: 1.5px solid var(--line); border-radius: 20px; padding: 28px 26px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,.03); transition: transform .2s ease, box-shadow .2s ease; }
+.stedin-col-card:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(0,0,0,.06); }
+.stedin-col-net { border-top: 5px solid #fd7e14; }
+.stedin-col-ino { border-top: 5px solid var(--green); }
+.stedin-col-header { margin-bottom: 16px; }
+.stedin-col-badge { display: inline-block; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.badge-stedin { background: #fff4e6; color: #d9480f; border: 1px solid #ffd8a8; }
+.badge-ino { background: #eef7ee; color: #1e6b18; border: 1px solid #bce2b6; }
+.stedin-col-header h3 { font-size: 21px; font-weight: 800; margin: 0 0 6px; color: var(--ink); line-height: 1.3; }
+.stedin-col-sub { font-size: 13.5px; color: var(--muted); line-height: 1.45; margin: 0; }
+.stedin-col-body { flex: 1; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 18px; }
+.stedin-list-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--ink); margin: 0 0 12px; }
+.stedin-check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.stedin-check-list li { font-size: 13.5px; color: var(--ink); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+.stedin-check-list li span { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 800; flex-shrink: 0; margin-top: 1px; background: #fff0e6; color: #d9480f; }
+.list-ino li span { background: #eef7ee; color: #1e6b18; }
+.stedin-col-footer { display: flex; flex-direction: column; }
+.stedin-action-box { display: flex; flex-direction: column; gap: 9px; }
+.stedin-action-box .btn.full { width: 100%; text-align: center; justify-content: center; padding: 13px 18px; }
+.stedin-action-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+.stedin-fast-note { font-size: 12px; font-weight: 700; color: var(--green-dark); text-align: center; margin-top: 2px; }
+.stedin-official-link { display: inline-block; font-size: 12.5px; font-weight: 700; color: #b75500; text-decoration: underline; text-align: center; margin-top: 4px; }
+.stedin-official-link:hover { color: #873800; }
+
+/* Brede Hulpbalk */
+.stedin-helper-banner { max-width: 980px; margin: 26px auto 0; background: linear-gradient(135deg, #f4faf2 0%, #f0f7fb 100%); border: 1.5px solid #d4ebd2; border-radius: 18px; padding: 22px 28px; display: flex; align-items: center; gap: 20px; box-shadow: 0 6px 20px rgba(0,0,0,.02); }
+.stedin-helper-icon { font-size: 34px; line-height: 1; flex-shrink: 0; }
+.stedin-helper-text { flex: 1; }
+.stedin-helper-text h4 { margin: 0 0 4px; font-size: 17px; font-weight: 800; color: var(--ink); }
+.stedin-helper-text p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.45; }
+.stedin-helper-action { flex-shrink: 0; }
+
+@media(max-width:840px){
+  .stedin-compare-grid { grid-template-columns: 1fr; gap: 18px; }
+  .stedin-helper-banner { flex-direction: column; text-align: center; padding: 22px 20px; }
+  .stedin-helper-action { width: 100%; }
+  .stedin-helper-action .btn { width: 100%; justify-content: center; }
+}
+
+

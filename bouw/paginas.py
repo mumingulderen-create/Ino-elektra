@@ -40,6 +40,88 @@ def cta_band(titel="Direct hulp of een vaste prijs?", tekst="Bel, app een foto v
 </section>"""
 
 
+def blok_stedin_checker():
+    return f"""<section class="section soft" id="stedin-check">
+  <div class="container">
+    <div class="section-heading" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">STORING OF STROOMUITVAL?</span>
+      <h2>Stedin bellen, of INO bellen?</h2>
+      <p style="margin-left:auto;margin-right:auto;max-width:640px">Twijfel je wie je moet inschakelen bij stroomuitval? Bekijk hieronder direct het verschil tussen een netstoring en een storing in jouw eigen installatie.</p>
+    </div>
+
+    <!-- 2 Kolommen Naast Elkaar: Stedin vs INO -->
+    <div class="stedin-compare-grid">
+      <!-- Kolom 1: Stedin -->
+      <div class="stedin-col-card stedin-col-net">
+        <div class="stedin-col-header">
+          <span class="stedin-col-badge badge-stedin">🏛️ Netbeheerder Stedin</span>
+          <h3>Wanneer bel je Stedin?</h3>
+          <p class="stedin-col-sub">Bij storingen in het energienetwerk van de wijk of aan de verzegelde hoofdaansluiting.</p>
+        </div>
+        
+        <div class="stedin-col-body">
+          <h4 class="stedin-list-title">Herkenbare kenmerken:</h4>
+          <ul class="stedin-check-list">
+            <li><span>✕</span> <strong>Hele straat of buren</strong> hebben ook geen stroom</li>
+            <li><span>✕</span> <strong>Straatverlichting buiten</strong> is uit of knippert</li>
+            <li><span>✕</span> <strong>Display van kWh-meter</strong> is compleet zwart/uit</li>
+            <li><span>✕</span> <strong>Verzegelde hoofdzekering</strong> onder de meter is uitgevallen</li>
+          </ul>
+        </div>
+
+        <div class="stedin-col-footer">
+          <div class="stedin-action-box">
+            <span class="stedin-action-label">Actie: Neem contact op met netbeheerder</span>
+            <a class="btn btn-secondary full" href="tel:08009009">📞 Bel Stedin: 0800 9009</a>
+            <a class="stedin-official-link" href="https://www.stedin.net/storing-en-onderhoud" target="_blank" rel="noopener">Officiële storingsprocedure op Stedin.net ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kolom 2: INO -->
+      <div class="stedin-col-card stedin-col-ino">
+        <div class="stedin-col-header">
+          <span class="stedin-col-badge badge-ino">⚡ INO Elektrotechniek (24/7 Spoed)</span>
+          <h3>Wanneer bel je INO?</h3>
+          <p class="stedin-col-sub">Bij storingen, kortsluiting of overbelasting in jouw eigen groepenkast of apparaten.</p>
+        </div>
+
+        <div class="stedin-col-body">
+          <h4 class="stedin-list-title">Herkenbare kenmerken:</h4>
+          <ul class="stedin-check-list list-ino">
+            <li><span>✓</span> <strong>Alleen bij jou thuis</strong> is het donker (buren hebben licht)</li>
+            <li><span>✓</span> <strong>Aardlekschakelaar (knop 'T')</strong> klapt steeds omlaag</li>
+            <li><span>✓</span> <strong>Groepenschakelaar</strong> springt direct terug bij aanzetten</li>
+            <li><span>✓</span> <strong>Knetterend geluid of brandlucht</strong> bij een stopcontact of kast</li>
+          </ul>
+        </div>
+
+        <div class="stedin-col-footer">
+          <div class="stedin-action-box">
+            <span class="stedin-action-label">Actie: Direct storingsdienst inschakelen</span>
+            <a class="btn btn-primary full" href="tel:{B['telefoon_e164']}" data-track="bellen">📞 Bel direct INO: {B['telefoon_tonen']}</a>
+            <span class="stedin-fast-note">⚡ Binnen 30-45 minuten ter plekke in Utrecht &amp; regio</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brede Hulpbalk: Twijfel / WhatsApp Meekijkservice -->
+    <div class="stedin-helper-banner">
+      <div class="stedin-helper-icon">📸</div>
+      <div class="stedin-helper-text">
+        <h4>Twijfel je wat je ziet in je meterkast?</h4>
+        <p>Je hoeft geen verstand te hebben van groepenkasten. Maak met je mobiel een foto van je meterkast en stuur deze via WhatsApp. Wij kijken binnen 5 minuten gratis mee en vertellen je direct wie je moet bellen!</p>
+      </div>
+      <div class="stedin-helper-action">
+        <a class="btn btn-whatsapp" href="{wa_url('Hallo INO, ik heb een storing en stuur hierbij een foto van mijn meterkast. Kunnen jullie even gratis meekijken?')}" target="_blank" rel="noopener" data-track="whatsapp">💬 Stuur foto via WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>"""
+
+
 def tarief_kaarten(voorrij=True):
     extra = f'<p class="price-note form-note">{VOORRIJ_ZIN} Een schouw op locatie kost € {T["schouw"]} en verrekenen we volledig als je de klus laat uitvoeren.</p>' if voorrij else ""
     return f"""<div class="price-grid">

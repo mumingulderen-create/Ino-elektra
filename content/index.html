@@ -62,6 +62,8 @@
   </div>
 </section>
 
+{{STEDIN_CHECKER}}
+
 <section class="section soft" id="diensten">
   <div class="container">
     <div class="section-heading">
@@ -127,14 +129,40 @@
 <section class="section soft" id="reviews">
   <div class="container">
     <div class="section-heading">
-      <h2>Wat klanten zeggen</h2>
-      <p>Echte reviews van klanten op Google.</p>
+      <span class="eyebrow">GOOGLE REVIEWS</span>
+      <h2>Wat klanten op Google zeggen</h2>
+      <p>Bekijk het volledige, geverifieerde overzicht van onze Google-reviews.</p>
     </div>
-    <div class="review-mini">
-      <blockquote><div class="review-stars" aria-label="5 van 5 sterren">★★★★★</div><p>"Zeer tevreden over de service. Professioneel, netjes gewerkt en duidelijke communicatie. Zeker een aanrader!"</p><cite>Ali · Google-review</cite></blockquote>
-      <blockquote><div class="review-stars" aria-label="5 van 5 sterren">★★★★★</div><p>"Geweldige klusbedrijf, zeker aan te raden! Heel netjes en snel afgehandeld."</p><cite>Hasan Demir · Google-review</cite></blockquote>
+    <a class="google-featured" href="{{google_maps}}" target="_blank" rel="noopener">
+      <div>
+        <div class="card-icon" style="font-size:32px;margin-bottom:6px">⭐</div>
+        <h3 style="margin:4px 0">INO Techniek en Installatie op Google</h3>
+        <p style="margin:0;color:var(--muted);font-size:14px">Klik door naar ons Google-bedrijfsprofiel voor actuele beoordelingen en foto's van ons werk.</p>
+      </div>
+      <span class="btn btn-primary">Bekijk alle Google-reviews →</span>
+    </a>
+    <div class="review-grid google-quotes" style="margin-top:20px">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Zeer tevreden over de service. Professioneel, netjes gewerkt en duidelijke communicatie. Zeker een aanrader!"</p>
+        <div class="review-source">Ali · Google-review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"Geweldige klusbedrijf, zeker aan te raden! Heel netjes en snel afgehandeld."</p>
+        <div class="review-source">Hasan Demir · Google-review</div>
+      </div>
+      <a class="review-card placeholder-review" href="{{google_maps}}" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <p>Bekijk alle Google-reviews →</p>
+        <div class="review-source">Meer klantervaringen op Google</div>
+      </a>
     </div>
-    <p style="margin-top:20px"><a class="btn btn-secondary" href="{{google_maps}}" target="_blank" rel="noopener">Alle reviews op Google</a></p>
+    <div class="werkspot-corner" style="margin-top:14px">
+      <span class="review-stars small">★★★★★</span>
+      <span>5.0 op <strong>Werkspot</strong></span>
+      <a href="{{werkspot}}" target="_blank" rel="noopener" class="mini-link">bekijken →</a>
+    </div>
   </div>
 </section>
 
