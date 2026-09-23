@@ -272,7 +272,7 @@ def footer(wijken, storingen, variant="standaard"):
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
     <div><h2 class="footer-h">Werkgebied</h2>{wijk_links}<a href="/wijken/">Alle wijken &amp; plaatsen</a></div>
   </div>
-  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · Partner: <a href="{PARTNER_VOLTFIX['url']}" target="_blank" rel="noopener">{PARTNER_VOLTFIX['naam']} ({PARTNER_VOLTFIX['regio']})</a> · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 {bar}
 {floating_wa}

@@ -3,20 +3,26 @@
   "slug": "reviews",
   "title": "Reviews elektricien Utrecht | INO Techniek en Installatie",
   "description": "Lees wat klanten over INO Techniek en Installatie zeggen op Google en Werkspot. Elektricien in Utrecht met vaste prijs vooraf en 24/7 storingsdienst.",
-  "nav": "reviews"
+  "nav": "reviews",
+  "extra": ["reviews"]
 }
 -->
 <section class="lp-hero">
     <div class="container">
-      <div class="badge">Google Reviews 4.9★</div>
-      <h1>Wat klanten over INO Techniek zeggen</h1>
-      <p>100% echte en geverifieerde beoordelingen op Google en Werkspot. Lees de ervaringen van bewoners uit Utrecht en omliggende gemeenten.</p>
+      <div class="badge">Reviews</div>
+      <h1>Reviews van INO, je elektricien in Utrecht</h1>
+      <p>INO scoort een {{google_score}} uit {{google_aantal}} reviews op Google. Lees hieronder een paar ervaringen of bekijk alle reviews op ons Google-bedrijfsprofiel.</p>
+      <div class="page-purpose"><strong>Waarvoor deze pagina?</strong><span>Hier lees je wat andere klanten van het werk vinden, voordat je zelf een keuze maakt.</span></div>
     </div>
   </section>
 
-  {{TRUST_BAR}}
-
   {{REVIEWS_CAROUSEL}}
+
+  <!--ALS werkspot--><div class="container" style="margin:-40px auto 60px"><div class="werkspot-corner">
+    <span class="review-stars small">★★★★★</span>
+    <span>5.0 op <strong>Werkspot</strong></span>
+    <a href="{{werkspot}}" target="_blank" rel="noopener" class="mini-link">bekijken →</a>
+  </div></div><!--/ALS-->
 
   <section class="contact-cta">
     <div class="container">

@@ -22,6 +22,10 @@ BEDRIJF = {
     "instagram": "https://www.instagram.com/ino_techniek_en_installatie",
     # Google Bedrijfsprofiel (cid uit je bestaande reviews-link)
     "google_maps": "https://maps.google.com/?cid=15258938996024411928",
+    # Google-score: bevestigd door eigenaar (sept 2026). Alleen zichtbaar tonen met link naar Google,
+    # NIET als AggregateRating-schema (Google staat zelf-reviews voor LocalBusiness niet toe).
+    "google_score": "4,9",
+    "google_aantal": "48",
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
     "actief_sinds": "2021",
     # --- Wettelijk verplicht op je website (Handelsregisterwet): KvK-nummer ---
@@ -37,10 +41,12 @@ BEDRIJF = {
     "lng": 5.1214,
 }
 
-GOOGLE_SITE_VERIFICATION = "xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw"
-
-# Google Analytics 4 (GA4) Meet-ID (bijv. "G-XXXXXXXXXX" of leeg laten)
-GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
+# Echte Google-reviews (letterlijk overnemen van je Google-profiel, nooit zelf verzinnen).
+# Voeg nieuwe reviews toe als {"naam": ..., "tekst": ...}; de carrousel op /reviews/ groeit vanzelf mee.
+REVIEWS = [
+    {"naam": "Ali", "tekst": "Zeer tevreden over de service. Professioneel, netjes gewerkt en duidelijke communicatie. Zeker een aanrader!"},
+    {"naam": "Hasan Demir", "tekst": "Geweldige klusbedrijf, zeker aan te raden! Heel netjes en snel afgehandeld."},
+]
 
 # Collega-partners (SEO-kruisbestuiving & netwerk)
 PARTNER_VOLTFIX = {
@@ -48,6 +54,11 @@ PARTNER_VOLTFIX = {
     "url": "https://www.voltfix.nl/",
     "regio": "Amsterdam",
 }
+
+GOOGLE_SITE_VERIFICATION = "xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw"
+
+# Google Analytics 4 (GA4) Meet-ID (bijv. "G-XXXXXXXXXX" of leeg laten)
+GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
 
 # FormSubmit endpoint (formulieren -> je mailbox)
 FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
@@ -80,8 +91,8 @@ TARIEVEN = {
     "perilex_kookgroep": 150,
     "stopcontact_verleggen": 120,
     "frezen_per_meter": 10,
-    "garantie_maanden": 18,
-    # Extra groep (pagina /extra-groep-aanleggen/)
+    "garantie_maanden": 12,
+    # Extra groep (pagina /extra-groep-aanleggen)
     "extra_groep_leiding": 165,        # aparte groep + leiding trekken (richtprijs vanaf)
     "extra_groep_leiding_max": 220,    # meestal tussen .._leiding en dit bedrag
     "extra_krachtgroep_3fase": 185,    # 3-fase krachtgroep 400V
@@ -99,9 +110,8 @@ TARIEVEN = {
     "optie_beltrafo": 49,
     "optie_spd": 169,
     # Groepenkast-calculator (zelfde bedragen als op de live site)
-    "calc_basis_1f": 640,              # basiskast 1-fase tot 8 groepen
-    "calc_meer_3f": 120,               # meerprijs 3-fase uitvoering
 }
+# Calculator rekent met dezelfde bedragen als de rest van de site
 TARIEVEN["calc_basis_1f"] = TARIEVEN["groepenkast_1f"]
 TARIEVEN["calc_meer_3f"] = TARIEVEN["groepenkast_3f"] - TARIEVEN["groepenkast_1f"]
 
