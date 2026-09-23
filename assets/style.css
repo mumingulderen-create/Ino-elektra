@@ -1329,5 +1329,82 @@ a.alert-banner:hover{border-color:#e0334f}
   }
 }
 
+/* ==========================================================================
+   Privacy & Cookiebar (AVG / GDPR Compliant, Elegant Glassmorphic)
+   ========================================================================== */
+.cookiebar {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 99;
+  max-width: 520px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid #d8e5da;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(16, 34, 13, 0.12);
+  padding: 18px 20px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  animation: slideUpCookie 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideUpCookie {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.cookiebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--green-dark);
+}
+.cookiebar-header strong {
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.cookiebar p {
+  margin: 0 0 14px;
+  color: #3b473d;
+  font-size: 13px;
+}
+.cookiebar a {
+  color: var(--green-dark);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.cookiebar-knoppen {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.cookiebar .btn-sm {
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+@media (max-width: 800px) {
+  .cookiebar {
+    left: 12px;
+    right: 12px;
+    bottom: 84px; /* Vrij van de mobiele belbalk */
+    padding: 14px 16px;
+  }
+  .cookiebar-knoppen {
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .cookiebar-knoppen .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
 
 

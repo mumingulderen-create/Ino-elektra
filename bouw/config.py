@@ -46,6 +46,14 @@ GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
 FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
 
 # ---------------------------------------------------------------------------
+# AANRIJTIJDEN bij spoed (vertrek vanuit Overvecht). Gebruik {{aanrijtijd_utrecht}} / {{aanrijtijd_regio}}.
+# ---------------------------------------------------------------------------
+AANRIJTIJD = {
+    "aanrijtijd_utrecht": "5–30",   # gemeente Utrecht
+    "aanrijtijd_regio": "15–40",    # plaatsen buiten de gemeente Utrecht
+}
+
+# ---------------------------------------------------------------------------
 # TARIEVEN — alle bedragen incl. 21% btw. Eén bron voor de hele site.
 # ---------------------------------------------------------------------------
 TARIEVEN = {
@@ -65,7 +73,27 @@ TARIEVEN = {
     "perilex_kookgroep": 150,
     "stopcontact_verleggen": 120,
     "frezen_per_meter": 10,
-    "garantie_maanden": 12,
+    "garantie_maanden": 18,
+    # Extra groep (pagina /extra-groep-aanleggen/)
+    "extra_groep_leiding": 165,        # aparte groep + leiding trekken (richtprijs vanaf)
+    "extra_groep_leiding_max": 220,    # meestal tussen .._leiding en dit bedrag
+    "extra_krachtgroep_3fase": 185,    # 3-fase krachtgroep 400V
+    # Frezen & stopcontacten
+    "frezen_steen_per_meter": 15,      # baksteen / kalkzandsteen
+    "frezen_beton_per_meter": 30,      # (gewapend) beton
+    "stopcontact_complex_min": 130,    # lastige locatie / grotere afstand
+    "stopcontact_complex_max": 250,
+    # Groepenkast: opties bij vervangen (ook gebruikt door de calculator)
+    "optie_kookgroep": 85,
+    "optie_pv": 95,
+    "optie_kracht_4p": 185,
+    "optie_automaat": 45,
+    "optie_din_stopcontact": 39,
+    "optie_beltrafo": 49,
+    "optie_spd": 169,
+    # Groepenkast-calculator (zelfde bedragen als op de live site)
+    "calc_basis_1f": 640,              # basiskast 1-fase tot 8 groepen
+    "calc_meer_3f": 120,               # meerprijs 3-fase uitvoering
 }
 
 # Tekstblokjes die op meerdere plekken terugkomen (automatisch consistent)

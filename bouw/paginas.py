@@ -3,13 +3,13 @@ Sjablonen voor pagina's die uit data worden gemaakt (wijken, storingen) en
 voor blokken die in content-bestanden kunnen worden gezet met {{BLOK_NAAM}}.
 """
 from html import escape
-from config import SITE_URL, BEDRIJF as B, TARIEVEN as T, TARIEF_ZIN, VOORRIJ_ZIN
+from config import SITE_URL, BEDRIJF as B, TARIEVEN as T, TARIEF_ZIN, VOORRIJ_ZIN, AANRIJTIJD
 from layout import wa_url, ICON_TEL, ICON_WA
 
 
 def fmt(s):
-    """Vul {uur_dag}, {km_tarief} enz. in vanuit TARIEVEN."""
-    return s.format(**T) if "{" in s else s
+    """Vul {uur_dag}, {km_tarief}, {aanrijtijd_utrecht} enz. in vanuit TARIEVEN en AANRIJTIJD."""
+    return s.format(**T, **AANRIJTIJD) if "{" in s else s
 
 
 def faq_html(faq, titel="Veelgestelde vragen", intro=""):

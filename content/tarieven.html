@@ -2,7 +2,7 @@
 {
   "slug": "tarieven",
   "title": "Tarieven elektricien Utrecht | Vaste prijzen incl. btw | INO",
-  "description": "Transparante tarieven van INO Techniek: eerlijke uurtarieven, gratis voorrijkosten binnen Utrecht en vaste pakketprijzen voor groepenkast en perilex. Incl. 21% btw.",
+  "description": "Tarieven van INO Techniek: eerlijke uurtarieven, geen voorrijkosten in Utrecht en vaste prijzen voor groepenkast en perilex. Alle bedragen incl. 21% btw.",
   "nav": "tarieven"
 }
 -->
@@ -23,7 +23,7 @@
     </div>
     <div class="price-grid">
       <div class="price-card">
-        <span class="price-card-badge">Gemeente Utrecht € 0</span>
+        <span class="price-card-badge">Gemeente Utrecht € {{voorrijkosten_utrecht}}</span>
         <h3>Voorrijkosten</h3>
         <div class="price-amount">Kosteloos<span> in Utrecht</span></div>
         <p>{{voorrij_zin}}</p>
@@ -31,38 +31,38 @@
       <div class="price-card">
         <span class="price-card-badge">Werkdagen overdag</span>
         <h3>Regulier uurtarief</h3>
-        <div class="price-amount">€ 90<span>/u incl. btw</span></div>
+        <div class="price-amount">€ {{uur_dag}}<span>/u incl. btw</span></div>
         <p>Geldt voor situatieschouwen, reparaties, aansluitwerk en onderhoud tijdens kantooruren (ma t/m vr 08:00–18:00).</p>
       </div>
       <div class="price-card highlight">
         <span class="price-card-badge" style="background:rgba(255,255,255,.15);color:#fff">24/7 Bereikbaar</span>
         <h3>Spoed- &amp; Storingshulp</h3>
-        <div class="price-amount">vanaf € 90<span>/u</span></div>
+        <div class="price-amount">vanaf € {{uur_dag}}<span>/u</span></div>
         <p>{{tarief_zin}}.</p>
       </div>
       <div class="price-card">
         <h3>1-fase groepenkast</h3>
-        <div class="price-amount">vanaf € 620</div>
+        <div class="price-amount">vanaf € {{groepenkast_1f}}</div>
         <p>1 t/m 8 groepen met betrouwbare A-merk materialen, hoofdschakelaar, aardlekschakelaars en complete montage. <a href="/groepenkast/" class="mini-link">Bekijk groepenkasten →</a></p>
       </div>
       <div class="price-card">
         <h3>3-fase groepenkast</h3>
-        <div class="price-amount">vanaf € 720</div>
+        <div class="price-amount">vanaf € {{groepenkast_3f}}</div>
         <p>1 t/m 8 groepen uitgerust met 3-fase hoofdschakelaar en aardlekbeveiliging. Ideaal voor zonnepanelen, laadpalen of inductie.</p>
       </div>
       <div class="price-card">
         <h3>Extra groep plaatsen</h3>
-        <div class="price-amount">vanaf € 60</div>
+        <div class="price-amount">vanaf € {{extra_groep}}</div>
         <p>Afhankelijk van de beschikbare railruimte en aardlekschakelaar. Stuur vooraf even een foto mee van je kast voor direct uitsluitsel.</p>
       </div>
       <div class="price-card">
         <h3>Perilex aansluiten</h3>
-        <div class="price-amount">€ 120</div>
+        <div class="price-amount">€ {{perilex_aansluiten}}</div>
         <p>Vakkundig aansluiten en veilig doormeten van de perilex kookplaatstekker bij een al aanwezige wandcontactdoos.</p>
       </div>
       <div class="price-card">
         <h3>Kookgroep aanleggen</h3>
-        <div class="price-amount">vanaf € 150</div>
+        <div class="price-amount">vanaf € {{perilex_kookgroep}}</div>
         <p>Aanleg van bekabeling en kookgroep vanuit de meterkast naar de kookzone (voor inductiekookplaten of ovencombinaties).</p>
       </div>
       <div class="price-card">
@@ -109,10 +109,10 @@
       <div class="addon-list">
         <h3>Kosten per onderdeel</h3>
         <ul class="addon-items">
-          <li><a href="/groepenkast/">Groepenkast vervangen</a><strong>vanaf € 620</strong></li>
-          <li><a href="/perilex/">Perilex aansluiting</a><strong>€ 120</strong></li>
-          <li><a href="/frezen-stopcontacten-verleggen/">Leidingsleuven frezen</a><strong>vanaf € 10/meter</strong></li>
-          <li><a href="/frezen-stopcontacten-verleggen/">Stopcontactpunt verplaatsen</a><strong>vanaf € 120/punt</strong></li>
+          <li><a href="/groepenkast/">Groepenkast vervangen</a><strong>vanaf € {{groepenkast_1f}}</strong></li>
+          <li><a href="/perilex/">Perilex aansluiting</a><strong>€ {{perilex_aansluiten}}</strong></li>
+          <li><a href="/frezen-stopcontacten-verleggen/">Leidingsleuven frezen</a><strong>vanaf € {{frezen_per_meter}}/meter</strong></li>
+          <li><a href="/frezen-stopcontacten-verleggen/">Stopcontactpunt verplaatsen</a><strong>vanaf € {{stopcontact_verleggen}}/punt</strong></li>
           <li><a href="/laadpaal-installeren/">Laadpaal montage &amp; aansluiting</a><strong>op maat</strong></li>
           <li><a href="/krachtstroom-aanleggen/">Krachtstroomvoorziening 400V</a><strong>op maat</strong></li>
           <li><a href="/tuinverlichting-buitenelektra/">Buitenelektra &amp; tuinverlichting</a><strong>op maat</strong></li>
@@ -120,7 +120,7 @@
       </div>
       <div class="addon-includes">
         <h3>Eerst een controle op locatie?</h3>
-        <p>Wil je dat we vooraf langskomen om de situatie op te nemen? Een schouw kost € 90 incl. btw en wordt volledig gecrediteerd zodra je de opdracht aan ons verstrekt.</p>
+        <p>Wil je dat we vooraf langskomen om de situatie op te nemen? Een schouw kost € {{schouw}} incl. btw en wordt volledig gecrediteerd zodra je de opdracht aan ons verstrekt.</p>
         <p class="schouw-note">Een duidelijke foto doorsturen via WhatsApp of het offerteformulier is uiteraard geheel gratis.</p>
         <div class="hero-actions" style="margin-bottom:0">
           <a class="btn btn-primary" href="/afspraak/">Schouw inplannen</a>

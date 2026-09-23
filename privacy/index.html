@@ -3,15 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-HR6L1S8V7P', { anonymize_ip: true });
+  window.inoGA4 = function () {
+    if (window.inoGA4geladen) return; window.inoGA4geladen = true;
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', 'G-HR6L1S8V7P', { anonymize_ip: true });
+  };
+  try { if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); } catch (e) {}
 </script>
-<title>Privacyverklaring | INO Techniek en Installatie</title>
-<meta name="description" content="Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.">
+<title>Privacy- en Cookieverklaring | INO Techniek en Installatie</title>
+<meta name="description" content="Helder overzicht van hoe INO Techniek omgaat met je persoonsgegevens, privacy en cookies conform de AVG. Eerlijk, transparant en veilig.">
 <link rel="canonical" href="https://ino-elektra.nl/privacy/">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#278a1d">
@@ -19,8 +25,8 @@
 <meta property="og:locale" content="nl_NL">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="INO Techniek en Installatie">
-<meta property="og:title" content="Privacyverklaring | INO Techniek en Installatie">
-<meta property="og:description" content="Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.">
+<meta property="og:title" content="Privacy- en Cookieverklaring | INO Techniek en Installatie">
+<meta property="og:description" content="Helder overzicht van hoe INO Techniek omgaat met je persoonsgegevens, privacy en cookies conform de AVG. Eerlijk, transparant en veilig.">
 <meta property="og:url" content="https://ino-elektra.nl/privacy/">
 <meta property="og:image" content="https://ino-elektra.nl/img/og-hero-elektricien.jpg">
 <meta property="og:image:width" content="1200">
@@ -32,10 +38,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/style.css?v=112582fc">
+<link rel="stylesheet" href="/style.css?v=e1fe0069">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap"></noscript>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Electrician","EmergencyService"],"@id":"https://ino-elektra.nl/#business","name":"INO Techniek en Installatie","alternateName":"INO Elektra Utrecht","url":"https://ino-elektra.nl/","logo":"https://ino-elektra.nl/logo.png","image":"https://ino-elektra.nl/img/og-hero-elektricien.jpg","telephone":"+31628763775","email":"info@ino-elektra.nl","priceRange":"€90-€145 per uur","currenciesAccepted":"EUR","paymentAccepted":"iDEAL, betaalverzoek, bankoverschrijving, contant","foundingDate":"2021","address":{"@type":"PostalAddress","addressLocality":"Utrecht","addressRegion":"Utrecht","addressCountry":"NL"},"geo":{"@type":"GeoCoordinates","latitude":52.0907,"longitude":5.1214},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],"areaServed":[{"@type":"City","name":"Utrecht"},{"@type":"Place","name":"Utrecht Binnenstad & Centrum, Utrecht"},{"@type":"Place","name":"Utrecht Oost, Utrecht"},{"@type":"Place","name":"Leidsche Rijn, Utrecht"},{"@type":"Place","name":"Vleuten-De Meern, Utrecht"},{"@type":"Place","name":"Utrecht West & Lombok, Utrecht"},{"@type":"Place","name":"Zuilen & Ondiep (Noordwest), Utrecht"},{"@type":"Place","name":"Overvecht, Utrecht"},{"@type":"Place","name":"Hoograven, Lunetten & Tolsteeg, Utrecht"},{"@type":"Place","name":"Kanaleneiland, Utrecht"},{"@type":"Place","name":"Transwijk & Dichterswijk, Utrecht"},{"@type":"Place","name":"Utrecht Noordoost & Wittevrouwen, Utrecht"},{"@type":"City","name":"Nieuwegein"},{"@type":"City","name":"Maarssen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"Vianen"},{"@type":"City","name":"Breukelen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"De Bilt"},{"@type":"City","name":"Woerden"}],"knowsAbout":["NEN 1010","NEN 3140","groepenkast vervangen","Perilex","laadpaal installatie","krachtstroom","storingsdienst"],"sameAs":["https://www.instagram.com/ino_techniek_en_installatie","https://maps.google.com/?cid=15258938996024411928"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"48","bestRating":"5","worstRating":"1"},"identifier":{"@type":"PropertyValue","propertyID":"KvK","value":"86669346"},"taxID":"86669346"},{"@type":"WebSite","@id":"https://ino-elektra.nl/#website","url":"https://ino-elektra.nl/","name":"INO Techniek en Installatie","inLanguage":"nl-NL","publisher":{"@id":"https://ino-elektra.nl/#business"}},{"@type":"BreadcrumbList","@id":"https://ino-elektra.nl/privacy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ino-elektra.nl/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://ino-elektra.nl/privacy/"}]},{"@type":"WebPage","@id":"https://ino-elektra.nl/privacy/#webpage","url":"https://ino-elektra.nl/privacy/","name":"Privacyverklaring | INO Techniek en Installatie","description":"Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.","inLanguage":"nl-NL","isPartOf":{"@id":"https://ino-elektra.nl/#website"},"about":{"@id":"https://ino-elektra.nl/#business"},"dateModified":"2026-09-22","primaryImageOfPage":{"@type":"ImageObject","url":"https://ino-elektra.nl/img/og-hero-elektricien.jpg"},"breadcrumb":{"@id":"https://ino-elektra.nl/privacy/#breadcrumb"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Electrician","EmergencyService"],"@id":"https://ino-elektra.nl/#business","name":"INO Techniek en Installatie","alternateName":"INO Elektra Utrecht","url":"https://ino-elektra.nl/","logo":"https://ino-elektra.nl/logo.png","image":"https://ino-elektra.nl/img/og-hero-elektricien.jpg","telephone":"+31628763775","email":"info@ino-elektra.nl","priceRange":"€90-€145 per uur","currenciesAccepted":"EUR","paymentAccepted":"iDEAL, betaalverzoek, bankoverschrijving, contant","foundingDate":"2021","address":{"@type":"PostalAddress","addressLocality":"Utrecht","addressRegion":"Utrecht","addressCountry":"NL"},"geo":{"@type":"GeoCoordinates","latitude":52.0907,"longitude":5.1214},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],"areaServed":[{"@type":"City","name":"Utrecht"},{"@type":"Place","name":"Utrecht Binnenstad & Centrum, Utrecht"},{"@type":"Place","name":"Utrecht Oost, Utrecht"},{"@type":"Place","name":"Leidsche Rijn, Utrecht"},{"@type":"Place","name":"Vleuten-De Meern, Utrecht"},{"@type":"Place","name":"Utrecht West & Lombok, Utrecht"},{"@type":"Place","name":"Zuilen & Ondiep (Noordwest), Utrecht"},{"@type":"Place","name":"Overvecht, Utrecht"},{"@type":"Place","name":"Hoograven, Lunetten & Tolsteeg, Utrecht"},{"@type":"Place","name":"Kanaleneiland, Utrecht"},{"@type":"Place","name":"Transwijk, Utrecht"},{"@type":"Place","name":"Utrecht Noordoost & Wittevrouwen, Utrecht"},{"@type":"City","name":"Nieuwegein"},{"@type":"City","name":"Maarssen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"Vianen"},{"@type":"City","name":"Breukelen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"De Bilt"},{"@type":"City","name":"Woerden"}],"knowsAbout":["NEN 1010","NEN 3140","groepenkast vervangen","Perilex","laadpaal installatie","krachtstroom","storingsdienst"],"sameAs":["https://www.instagram.com/ino_techniek_en_installatie","https://maps.google.com/?cid=15258938996024411928"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"48","bestRating":"5","worstRating":"1"},"identifier":{"@type":"PropertyValue","propertyID":"KvK","value":"86669346"},"taxID":"86669346"},{"@type":"WebSite","@id":"https://ino-elektra.nl/#website","url":"https://ino-elektra.nl/","name":"INO Techniek en Installatie","inLanguage":"nl-NL","publisher":{"@id":"https://ino-elektra.nl/#business"}},{"@type":"BreadcrumbList","@id":"https://ino-elektra.nl/privacy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ino-elektra.nl/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://ino-elektra.nl/privacy/"}]},{"@type":"WebPage","@id":"https://ino-elektra.nl/privacy/#webpage","url":"https://ino-elektra.nl/privacy/","name":"Privacy- en Cookieverklaring | INO Techniek en Installatie","description":"Helder overzicht van hoe INO Techniek omgaat met je persoonsgegevens, privacy en cookies conform de AVG. Eerlijk, transparant en veilig.","inLanguage":"nl-NL","isPartOf":{"@id":"https://ino-elektra.nl/#website"},"about":{"@id":"https://ino-elektra.nl/#business"},"dateModified":"2026-09-23","primaryImageOfPage":{"@type":"ImageObject","url":"https://ino-elektra.nl/img/og-hero-elektricien.jpg"},"breadcrumb":{"@id":"https://ino-elektra.nl/privacy/#breadcrumb"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#inhoud">Naar de inhoud</a>
@@ -50,7 +56,7 @@
       <div class="nav-dd"><a href="/spoed-elektricien-utrecht/" class="nav-dd-toggle">Spoed 24/7 <span class="caret" aria-hidden="true">▾</span></a><div class="nav-dd-menu"><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a><a href="/stroomstoring-utrecht/">Geen stroom in huis</a><a href="/aardlekschakelaar-springt-eruit/">Aardlekschakelaar springt eruit</a><a href="/kortsluiting-utrecht/">Kortsluiting / groep valt uit</a><a href="/stopcontact-werkt-niet/">Stopcontact werkt niet of wordt warm</a></div></div>
       <div class="nav-dd"><a href="/diensten/" class="nav-dd-toggle">Diensten <span class="caret" aria-hidden="true">▾</span></a><div class="nav-dd-menu"><a href="/diensten/">Alle diensten</a><a href="/groepenkast/">Groepenkast vervangen</a><a href="/perilex/">Perilex & kookgroep</a><a href="/laadpaal-installeren/">Laadpaal installeren</a><a href="/krachtstroom-aanleggen/">Krachtstroom 400V</a><a href="/frezen-stopcontacten-verleggen/">Frezen & stopcontacten</a><a href="/extra-groep-aanleggen/">Extra groep aanleggen</a><a href="/tuinverlichting-buitenelektra/">Tuinverlichting</a></div></div>
       <a href="/tarieven/">Tarieven</a>
-      <div class="nav-dd"><a href="/werkgebied/" class="nav-dd-toggle">Werkgebied <span class="caret" aria-hidden="true">▾</span></a><div class="nav-dd-menu"><a href="/werkgebied/">Werkgebied & kaart</a><a href="/wijken/">Alle wijken & plaatsen</a><a href="/elektricien-utrecht-binnenstad/">Elektricien Utrecht Binnenstad & Centrum</a><a href="/elektricien-utrecht-oost/">Elektricien Utrecht Oost</a><a href="/elektricien-leidsche-rijn/">Elektricien Leidsche Rijn</a><a href="/elektricien-vleuten-de-meern/">Elektricien Vleuten-De Meern</a><a href="/elektricien-utrecht-west/">Elektricien Utrecht West & Lombok</a><a href="/elektricien-zuilen/">Elektricien Zuilen & Ondiep (Noordwest)</a><a href="/elektricien-overvecht/">Elektricien Overvecht</a><a href="/elektricien-hoograven/">Elektricien Hoograven, Lunetten & Tolsteeg</a><a href="/elektricien-kanaleneiland/">Elektricien Kanaleneiland</a><a href="/elektricien-transwijk/">Elektricien Transwijk & Dichterswijk</a><a href="/elektricien-utrecht-noordoost/">Elektricien Utrecht Noordoost & Wittevrouwen</a><a href="/elektricien-nieuwegein/">Elektricien Nieuwegein</a><a href="/elektricien-maarssen/">Elektricien Maarssen</a><a href="/elektricien-houten/">Elektricien Houten</a><a href="/elektricien-zeist/">Elektricien Zeist</a><a href="/elektricien-ijsselstein/">Elektricien IJsselstein</a><a href="/elektricien-vianen/">Elektricien Vianen</a><a href="/elektricien-breukelen/">Elektricien Breukelen</a></div></div>
+      <div class="nav-dd"><a href="/werkgebied/" class="nav-dd-toggle">Werkgebied <span class="caret" aria-hidden="true">▾</span></a><div class="nav-dd-menu"><a href="/werkgebied/">Werkgebied & kaart</a><a href="/wijken/">Alle wijken & plaatsen</a><a href="/elektricien-utrecht-binnenstad/">Elektricien Utrecht Binnenstad & Centrum</a><a href="/elektricien-utrecht-oost/">Elektricien Utrecht Oost</a><a href="/elektricien-leidsche-rijn/">Elektricien Leidsche Rijn</a><a href="/elektricien-vleuten-de-meern/">Elektricien Vleuten-De Meern</a><a href="/elektricien-utrecht-west/">Elektricien Utrecht West & Lombok</a><a href="/elektricien-zuilen/">Elektricien Zuilen & Ondiep (Noordwest)</a><a href="/elektricien-overvecht/">Elektricien Overvecht</a><a href="/elektricien-hoograven/">Elektricien Hoograven, Lunetten & Tolsteeg</a><a href="/elektricien-kanaleneiland/">Elektricien Kanaleneiland</a><a href="/elektricien-transwijk/">Elektricien Transwijk</a><a href="/elektricien-utrecht-noordoost/">Elektricien Utrecht Noordoost & Wittevrouwen</a><a href="/elektricien-nieuwegein/">Elektricien Nieuwegein</a><a href="/elektricien-maarssen/">Elektricien Maarssen</a><a href="/elektricien-houten/">Elektricien Houten</a><a href="/elektricien-zeist/">Elektricien Zeist</a><a href="/elektricien-ijsselstein/">Elektricien IJsselstein</a><a href="/elektricien-vianen/">Elektricien Vianen</a><a href="/elektricien-breukelen/">Elektricien Breukelen</a></div></div>
       <a href="/werkwijze/">Werkwijze</a>
       <a href="/reviews/">Reviews</a>
       <a href="/contact/">Contact</a>
@@ -62,29 +68,103 @@
 <nav class="crumbs container" aria-label="Kruimelpad"><a href="/">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">Privacy</span></nav>
 <section class="lp-hero">
   <div class="container">
-    <h1>Privacyverklaring</h1>
-    <p>Kort en duidelijk: welke gegevens we gebruiken, waarvoor en hoe lang.</p>
+    <div class="badge">AVG &amp; Privacy</div>
+    <h1>Privacy- en Cookieverklaring</h1>
+    <p>Kort, eerlijk en transparant: hoe wij omgaan met je persoonsgegevens, aanvragen en websitecookies.</p>
   </div>
 </section>
+
 <section class="section">
   <div class="container narrow">
-    <h2>Wie zijn wij?</h2>
-    <p>INO Techniek en Installatie, gevestigd in Utrecht. Vragen over privacy? Mail naar <a href="mailto:info@ino-elektra.nl">info@ino-elektra.nl</a> of bel 06 28 76 37 75.</p>
+    <div class="info-box" style="margin-bottom:30px">
+      <strong>Samenvatting in 1 minuut:</strong>
+      <p style="margin:6px 0 0">Wij verkopen nooit gegevens, spammen je niet en plaatsen géén marketing- of trackingcookies. We gebruiken je gegevens enkel om je klus vakkundig uit te voeren en te factureren. Analytische cookies (Google Analytics) laden we pas nadat je daar zelf toestemming voor geeft.</p>
+    </div>
 
-    <h2>Welke gegevens gebruiken we?</h2>
-    <p>Alleen wat je zelf aan ons geeft: naam, telefoonnummer, e-mailadres, adres van de klus, je omschrijving en eventuele foto's. We gebruiken deze gegevens uitsluitend om je aanvraag te beantwoorden, de klus uit te voeren en te factureren.</p>
+    <h2>1. Wie zijn wij?</h2>
+    <p>INO Techniek en Installatie is een erkend elektrotechnisch installatiebedrijf gevestigd in Utrecht. Ingeschreven bij de Kamer van Koophandel onder KvK-nummer <strong>86669346</strong>.</p>
+    <p>Voor vragen over privacy of gegevensbescherming kun je rechtstreeks contact opnemen:</p>
+    <ul>
+      <li>E-mail: <a href="mailto:info@ino-elektra.nl">info@ino-elektra.nl</a></li>
+      <li>Telefoon: <a href="tel:+31628763775">06 28 76 37 75</a></li>
+      <li>Plaats: Utrecht (werkzaam in gemeente Utrecht en omstreken)</li>
+    </ul>
 
-    <h2>Formulieren</h2>
-    <p>De formulieren op deze site worden verstuurd via FormSubmit, een dienst die het bericht doorstuurt naar onze mailbox. WhatsApp-berichten verlopen via WhatsApp (Meta). We verkopen of delen je gegevens nooit met andere partijen voor marketing.</p>
+    <h2>2. Welke persoonsgegevens verwerken wij en waarom?</h2>
+    <p>Wij verwerken uitsluitend gegevens die je zelf actief aan ons verstrekt wanneer je:</p>
+    <ul>
+      <li><strong>Telefonisch of via WhatsApp contact opneemt:</strong> je telefoonnummer, eventuele foto's van je groepenkast/situatie en adresgegevens voor een spoedinterventie of opname.</li>
+      <li><strong>Onze interactieve Klus-Wizard of contactformulier invult:</strong> je naam, e-mailadres, telefoonnummer, postcode/woonplaats, omschrijving van de werkzaamheden en optioneel geüploade foto's.</li>
+      <li><strong>Een opdracht laat uitvoeren:</strong> je volledige adres en factuurgegevens voor het correct opstellen van de factuur, NEN 1010 oplevering en het verlenen van onze schriftelijke garantie.</li>
+    </ul>
 
-    <h2>Hoe lang bewaren we je gegevens?</h2>
-    <p>Aanvragen die niet tot een opdracht leiden verwijderen we binnen 12 maanden. Facturen en bijbehorende gegevens bewaren we 7 jaar, omdat de wet (fiscale bewaarplicht) dat verplicht.</p>
+    <h2>3. Doeleinden &amp; Rechtsgronden (AVG)</h2>
+    <p>Wij verwerken je persoonsgegevens op basis van de volgende wettelijke grondslagen:</p>
+    <ul>
+      <li><strong>Uitvoering van de overeenkomst:</strong> om contact op te nemen over je offerteaanvraag, ter plaatse te komen voor storingsdienst of installatie en de afgesproken werkzaamheden te leveren.</li>
+      <li><strong>Wettelijke verplichting:</strong> voor onze administratieve en fiscale bewaarplicht (Belastingdienst).</li>
+      <li><strong>Toestemming:</strong> voor het eventueel laden van geanonimiseerde statistieken via Google Analytics.</li>
+    </ul>
 
-    <h2>Cookies</h2>
-    <p>Deze website plaatst zelf geen tracking- of advertentiecookies. Het lettertype wordt geladen via Google Fonts.</p>
+    <h2>4. Bewaartermijnen</h2>
+    <ul>
+      <li><strong>Vrijblijvende aanvragen:</strong> leidt een offerteaanvraag of WhatsApp-bericht niet tot een opdracht? Dan worden jouw gegevens uiterlijk binnen 12 maanden verwijderd.</li>
+      <li><strong>Factuur- en projectadministratie:</strong> facturen, storingsrapporten en opleveringsdocumenten bewaren we conform de wettelijke fiscale bewaartermijn gedurende <strong>7 jaar</strong>.</li>
+    </ul>
 
-    <h2>Jouw rechten</h2>
-    <p>Je mag altijd vragen welke gegevens we van je hebben, en die laten aanpassen of verwijderen. Stuur een mail, dan regelen we het binnen 30 dagen. Ben je het ergens niet mee eens, dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
+    <h2>5. Delen met derden (Verwerkers)</h2>
+    <p>Wij verkopen je gegevens <em>nooit</em> aan derden. Wij schakelen uitsluitend betrouwbare technische partners in die noodzakelijk zijn voor onze bedrijfsvoering:</p>
+    <ul>
+      <li><strong>FormSubmit:</strong> beveiligde doorzending van offerte- en storingsaanvragen naar onze e-mailbox via versleutelde verbindingen.</li>
+      <li><strong>WhatsApp (Meta Platforms):</strong> indien je ervoor kiest rechtstreeks foto's of berichten via WhatsApp te sturen.</li>
+      <li><strong>Google Ireland Limited:</strong> voor het meten van algemene, geanonimiseerde websitestatistieken (uitsluitend na jouw toestemming).</li>
+    </ul>
+
+    <h2>6. Cookiebeleid</h2>
+    <p>Een cookie is een klein tekstbestand dat bij het eerste bezoek aan onze website wordt opgeslagen in de browser van je computer, tablet of smartphone.</p>
+
+    <h3>A. Noodzakelijke / Functionele cookies</h3>
+    <p>Deze cookies zijn technisch noodzakelijk voor het correct functioneren van de website (zoals het onthouden van je cookievoorkeur of stapvoortgang in de klus-wizard). Hiervoor is volgens de Telecommunicatiewet geen voorafgaande toestemming vereist.</p>
+    <table class="tarieven-tabel" style="margin:16px 0;width:100%">
+      <thead>
+        <tr><th>Cookie</th><th>Doel</th><th>Bewaartermijn</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ino_cookies</code></td><td>Onthoudt of je toestemming hebt gegeven voor analytische cookies.</td><td>12 maanden</td></tr>
+      </tbody>
+    </table>
+
+    <h3>B. Analytische cookies (Google Analytics 4)</h3>
+    <p>Wij gebruiken Google Analytics om geaggregeerde statistieken bij te houden (bijvoorbeeld welke pagina's het meest bezocht worden). Wij hebben Google Analytics privacyvriendelijk ingesteld:</p>
+    <ul>
+      <li>IP-adressen worden geanonimiseerd.</li>
+      <li>'Gegevens delen met Google' voor advertenties en remarketing staat uitgeschakeld.</li>
+      <li>Google Analytics wordt <strong>pas ingeladen nadat je in onze cookiemelding op "Akkoord" hebt geklikt</strong>. Klik je op "Weigeren"? Dan wordt er géén enkel verzoek naar Google verzonden en worden er geen cookies geplaatst.</li>
+    </ul>
+    <table class="tarieven-tabel" style="margin:16px 0;width:100%">
+      <thead>
+        <tr><th>Cookie</th><th>Doel</th><th>Bewaartermijn</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>_ga</code> / <code>_ga_*</code></td><td>Onderscheiden van unieke bezoekerssessies voor anonieme bezoekersaantallen.</td><td>Max. 14 maanden</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:#f4faf2;border:1px solid #d1ded3;border-radius:14px;padding:20px;margin:24px 0">
+      <h3 style="margin-top:0">Jouw huidige cookievoorkeur aanpassen</h3>
+      <p style="margin:0 0 14px;font-size:14px">Wil je je keuze voor analytische cookies direct herzien of intrekken? Klik op de onderstaande knop om de instellingen opnieuw te openen.</p>
+      <button type="button" class="btn btn-secondary" data-cookie-instellingen>Cookie-instellingen wijzigen</button>
+    </div>
+
+    <h2>7. Jouw rechten onder de AVG</h2>
+    <p>Je hebt wettelijk het recht op:</p>
+    <ul>
+      <li><strong>Inzage:</strong> opvragen welke gegevens wij van jou bewaren.</li>
+      <li><strong>Rectificatie:</strong> onjuiste of gewijzigde gegevens laten corrigeren.</li>
+      <li><strong>Gegevenswissing:</strong> verzoeken om verwijdering van je gegevens (voor zover dit niet strijdig is met onze fiscale bewaarplicht).</li>
+      <li><strong>Beperking of bezwaar:</strong> bezwaar maken tegen specifieke vormen van gegevensverwerking.</li>
+    </ul>
+    <p>Een verzoek kun je richten aan <a href="mailto:info@ino-elektra.nl">info@ino-elektra.nl</a>. We reageren altijd binnen 4 weken. Mocht je niet tevreden zijn met de afhandeling, dan heb je tevens het recht om een klacht in te dienen bij de toezichthouder: de <strong>Autoriteit Persoonsgegevens</strong>.</p>
   </div>
 </section>
 
@@ -99,9 +179,9 @@
     </div>
     <div><h2 class="footer-h">Diensten</h2><a href="/diensten/">Alle diensten</a><a href="/groepenkast/">Groepenkast vervangen</a><a href="/perilex/">Perilex &amp; kookgroep</a><a href="/laadpaal-installeren/">Laadpaal installeren</a><a href="/krachtstroom-aanleggen/">Krachtstroom 400V</a><a href="/frezen-stopcontacten-verleggen/">Frezen &amp; stopcontacten</a><a href="/tuinverlichting-buitenelektra/">Tuinverlichting</a></div>
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a><a href="/stroomstoring-utrecht/">Geen stroom in huis</a><a href="/aardlekschakelaar-springt-eruit/">Aardlekschakelaar springt eruit</a><a href="/kortsluiting-utrecht/">Kortsluiting / groep valt uit</a><a href="/stopcontact-werkt-niet/">Stopcontact werkt niet of wordt warm</a><a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
-    <div><h2 class="footer-h">Werkgebied</h2><a href="/elektricien-utrecht-binnenstad/">Elektricien Utrecht Binnenstad & Centrum</a><a href="/elektricien-utrecht-oost/">Elektricien Utrecht Oost</a><a href="/elektricien-leidsche-rijn/">Elektricien Leidsche Rijn</a><a href="/elektricien-vleuten-de-meern/">Elektricien Vleuten-De Meern</a><a href="/elektricien-utrecht-west/">Elektricien Utrecht West & Lombok</a><a href="/elektricien-zuilen/">Elektricien Zuilen & Ondiep (Noordwest)</a><a href="/elektricien-overvecht/">Elektricien Overvecht</a><a href="/elektricien-hoograven/">Elektricien Hoograven, Lunetten & Tolsteeg</a><a href="/elektricien-kanaleneiland/">Elektricien Kanaleneiland</a><a href="/elektricien-transwijk/">Elektricien Transwijk & Dichterswijk</a><a href="/elektricien-utrecht-noordoost/">Elektricien Utrecht Noordoost & Wittevrouwen</a><a href="/elektricien-nieuwegein/">Elektricien Nieuwegein</a><a href="/elektricien-maarssen/">Elektricien Maarssen</a><a href="/elektricien-houten/">Elektricien Houten</a><a href="/elektricien-zeist/">Elektricien Zeist</a><a href="/elektricien-ijsselstein/">Elektricien IJsselstein</a><a href="/elektricien-vianen/">Elektricien Vianen</a><a href="/elektricien-breukelen/">Elektricien Breukelen</a><a href="/wijken/">Alle wijken &amp; plaatsen</a></div>
+    <div><h2 class="footer-h">Werkgebied</h2><a href="/elektricien-utrecht-binnenstad/">Elektricien Utrecht Binnenstad & Centrum</a><a href="/elektricien-utrecht-oost/">Elektricien Utrecht Oost</a><a href="/elektricien-leidsche-rijn/">Elektricien Leidsche Rijn</a><a href="/elektricien-vleuten-de-meern/">Elektricien Vleuten-De Meern</a><a href="/elektricien-utrecht-west/">Elektricien Utrecht West & Lombok</a><a href="/elektricien-zuilen/">Elektricien Zuilen & Ondiep (Noordwest)</a><a href="/elektricien-overvecht/">Elektricien Overvecht</a><a href="/elektricien-hoograven/">Elektricien Hoograven, Lunetten & Tolsteeg</a><a href="/elektricien-kanaleneiland/">Elektricien Kanaleneiland</a><a href="/elektricien-transwijk/">Elektricien Transwijk</a><a href="/elektricien-utrecht-noordoost/">Elektricien Utrecht Noordoost & Wittevrouwen</a><a href="/elektricien-nieuwegein/">Elektricien Nieuwegein</a><a href="/elektricien-maarssen/">Elektricien Maarssen</a><a href="/elektricien-houten/">Elektricien Houten</a><a href="/elektricien-zeist/">Elektricien Zeist</a><a href="/elektricien-ijsselstein/">Elektricien IJsselstein</a><a href="/elektricien-vianen/">Elektricien Vianen</a><a href="/elektricien-breukelen/">Elektricien Breukelen</a><a href="/wijken/">Alle wijken &amp; plaatsen</a></div>
   </div>
-  <div class="copyright">© 2026 INO Techniek en Installatie · KvK 86669346 · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy</a> · <a href="https://www.instagram.com/ino_techniek_en_installatie" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="copyright">© 2026 INO Techniek en Installatie · KvK 86669346 · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a> · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a> · <a href="https://www.instagram.com/ino_techniek_en_installatie" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 <div class="mobile-bar-optimized" role="navigation" aria-label="Snel contact">
   <a href="tel:+31628763775" class="mobile-btn-call" data-track="bellen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Direct bellen</span></a>
@@ -117,6 +197,6 @@
     </span>
   </span>
 </a>
-<script src="/script.js?v=ddcc1117" defer></script>
+<script src="/script.js?v=f940a704" defer></script>
 </body>
 </html>

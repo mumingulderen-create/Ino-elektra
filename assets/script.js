@@ -351,6 +351,7 @@
   // Werkt automatisch en naadloos met Google Analytics 4 (GA4) en Google Ads.
   function track(evt, params) {
     try {
+      if (!window.inoGA4geladen) return; // geen toestemming = niets meten (AVG)
       if (window.gtag) window.gtag("event", evt, params || {});
       (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: evt }, params || {}));
     } catch (e) {}
@@ -669,4 +670,56 @@
     }
   }
   initKlusWizard();
+
+  // Cookiemelding: Google Analytics alleen na akkoord (AVG / Telecommunicatiewet / AP).
+  function initCookies() {
+    if (typeof window.inoGA4 !== "function") return;
+    var KEY = "ino_cookies";
+    function lees() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function bewaar(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+    var bar;
+    function toon() {
+      if (bar) { bar.hidden = false; return; }
+      bar = document.createElement("div");
+      bar.className = "cookiebar";
+      bar.setAttribute("role", "region");
+      bar.setAttribute("aria-label", "Cookiemelding en privacy");
+      bar.innerHTML = '<div class="cookiebar-content">' +
+        '<div class="cookiebar-header">' +
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>' +
+          '<strong>Privacy &amp; Cookies</strong>' +
+        '</div>' +
+        '<p>Wij gebruiken uitsluitend functionele cookies en geanonimiseerde websitestatistieken via Google Analytics om onze dienstverlening te verbeteren. Pas na jouw akkoord laden wij analytische cookies. <a href="/privacy/">Meer informatie in onze privacyverklaring</a>.</p>' +
+        '</div>' +
+        '<div class="cookiebar-knoppen">' +
+          '<button type="button" class="btn btn-secondary btn-sm" data-cookie="nee">Alleen noodzakelijk</button>' +
+          '<button type="button" class="btn btn-primary btn-sm" data-cookie="ja">Akkoord</button>' +
+        '</div>';
+      bar.addEventListener("click", function (e) {
+        var b = e.target.closest && e.target.closest("[data-cookie]");
+        if (!b) return;
+        var v = b.getAttribute("data-cookie");
+        var oud = lees();
+        bewaar(v);
+        bar.hidden = true;
+        if (v === "ja") {
+          window.inoGA4();
+        } else if (oud === "ja") {
+          location.reload(); // intrekken: pagina zonder GA opnieuw laden
+        }
+      });
+      document.body.appendChild(bar);
+    }
+    if (!lees()) {
+      toon();
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("[data-cookie-instellingen]");
+      if (a) {
+        e.preventDefault();
+        toon();
+      }
+    });
+  }
+  initCookies();
 })();

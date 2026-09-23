@@ -16,7 +16,7 @@ import sys, os, re, json, glob, hashlib, datetime, shutil
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT, "bouw"))
 
-from config import SITE_URL, BEDRIJF as B, TARIEVEN as T, TARIEF_ZIN, VOORRIJ_ZIN
+from config import SITE_URL, BEDRIJF as B, TARIEVEN as T, TARIEF_ZIN, VOORRIJ_ZIN, AANRIJTIJD
 from wijken import WIJKEN, OVERIGE_UTRECHT, OVERIGE_REGIO
 from storingen import STORINGEN
 import layout, paginas, beelden
@@ -38,11 +38,14 @@ PLACEHOLDERS = {
     "tarief_zin_klein": TARIEF_ZIN[0].lower() + TARIEF_ZIN[1:],
     "voorrij_zin": VOORRIJ_ZIN,
     "actief_sinds": B["actief_sinds"],
+    "kvk": B["kvk"],
+    "ga4_id": layout.GA4_MEASUREMENT_ID,
     "jaar": str(datetime.date.today().year),
     "icon_wa": layout.ICON_WA,
     "icon_tel": layout.ICON_TEL,
     "icon_mail": layout.ICON_MAIL,
     **{k: str(v) for k, v in T.items()},
+    **AANRIJTIJD,
 }
 
 BREADCRUMB_NAMEN = {
@@ -90,6 +93,9 @@ def url_of(slug):
     return f"{SITE_URL}/{slug}/"
 
 def fill(text):
+    # <!--ALS sleutel-->…<!--/ALS--> wordt alleen getoond als die sleutel in config gevuld is
+    text = re.sub(r"<!--ALS\s+([A-Za-z0-9_]+)\s*-->(.*?)<!--/ALS-->",
+                  lambda m: m.group(2) if (B.get(m.group(1)) if m.group(1) in B else PLACEHOLDERS.get(m.group(1))) else "", text, flags=re.S)
     def r(m):
         k = m.group(1)
         if k in PLACEHOLDERS:
@@ -182,6 +188,8 @@ def main():
     for p in pages:
         slug = p["slug"]
         p["url"] = url_of(slug)
+        p["title"] = fill(p["title"])
+        p["description"] = fill(p["description"])
         body = fill(p["body"])
         # microdata weg (we gebruiken gestructureerde JSON-LD tags)
         body = re.sub(r'\s+item(prop|scope|type)(="[^"]*")?', "", body)

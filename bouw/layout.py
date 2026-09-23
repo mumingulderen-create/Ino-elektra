@@ -120,12 +120,19 @@ def head(page, wijken, css_v, font_url):
     if page.get("lcp"):
         href, srcset, sizes = page["lcp"]
         pre = f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}" imagesizes="{sizes}" fetchpriority="high">'
-    ga4_tag = f"""\n<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
-<script>
+    # GA4 laadt pas NA toestemming (cookiemelding in script.js). Zonder akkoord: geen cookies, geen verzoek naar Google.
+    ga4_tag = f"""\n<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});
+  window.inoGA4 = function () {{
+    if (window.inoGA4geladen) return; window.inoGA4geladen = true;
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}';
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});
+  }};
+  try {{ if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); }} catch (e) {{}}
 </script>""" if GA4_MEASUREMENT_ID else ""
     return f"""<!doctype html>
 <html lang="nl">
@@ -258,7 +265,7 @@ def footer(wijken, storingen, variant="standaard"):
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
     <div><h2 class="footer-h">Werkgebied</h2>{wijk_links}<a href="/wijken/">Alle wijken &amp; plaatsen</a></div>
   </div>
-  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy</a> · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 {bar}
 {floating_wa}

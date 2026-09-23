@@ -1,8 +1,8 @@
 <!--
 {
   "slug": "spoed-elektricien-utrecht",
-  "title": "Spoed elektricien Utrecht 24/7 | Vaak binnen 60 min | INO",
-  "description": "Met spoed een elektricien in Utrecht nodig? 24/7 hulp bij stroomstoring of kortsluiting. Binnen 30-60 min ter plaatse en vaste tarieven vooraf. Bel direct.",
+  "title": "Spoed elektricien Utrecht 24/7 | Binnen {{aanrijtijd_utrecht}} min | INO",
+  "description": "Met spoed een elektricien in Utrecht nodig? 24/7 hulp bij stroomstoring of kortsluiting. In Utrecht binnen {{aanrijtijd_utrecht}} min ter plaatse, vaste tarieven. Bel direct.",
   "og_image": "hero-elektricien.jpg",
   "nav": "spoed-elektricien-utrecht"
 }
@@ -12,7 +12,7 @@
   <div class="container hero-grid-2col">
     <div>
       <div class="spoed-badge">
-        <span class="green-dot"></span> 24/7 BEREIKBAAR IN UTRECHT &amp; REGIO · VAST TARIEF VANAF € 90,-
+        <span class="green-dot"></span> 24/7 BEREIKBAAR IN UTRECHT &amp; REGIO · VAST TARIEF VANAF € {{uur_dag}},-
       </div>
       <h1>Met Spoed een Elektricien in Utrecht Nodig? Direct Deskundige Hulp.</h1>
       <p class="lead">Zit je plots in het donker, schakelt de aardlekautomaat steeds uit of ruik je een schroeilucht bij de meterkast? INO Techniek biedt 24/7 uitkomst. <strong>Geen anoniem callcenter of dure bemiddelaar</strong>, maar direct een vakkundige, NEN 3140 gecertificeerde elektricien aan de telefoon.</p>
@@ -27,14 +27,14 @@
           WhatsApp Meterkastfoto (Directe Beoordeling)
         </a>
         <div class="hero-price-hint">
-          💶 <strong>Vast all-in tarief:</strong> € 90 (08–18u) · € 120 (18–22u) · € 145 (nacht &amp; weekend) · geen voorrijkosten in Utrecht
+          💶 <strong>Vast all-in tarief:</strong> € {{uur_dag}} (08–18u) · € {{uur_avond}} (18–22u) · € {{uur_nacht}} (nacht &amp; weekend) · geen voorrijkosten in Utrecht
         </div>
       </div>
 
       <div class="spoed-trust-row">
         <span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-          Gemiddeld binnen 30 tot 60 minuten op locatie
+          In de gemeente Utrecht binnen {{aanrijtijd_utrecht}} minuten op locatie
         </span>
         <span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
@@ -42,7 +42,7 @@
         </span>
         <span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-          Gecertificeerd volgens NEN 3140 &amp; NEN 1010
+          Werkt volgens NEN 1010 &amp; NEN 3140
         </span>
         <span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
@@ -103,31 +103,31 @@
           <tbody>
             <tr>
               <td><strong>Utrecht Binnenstad, Oost &amp; Science Park</strong></td>
-              <td><span class="time-badge">20 – 35 min</span></td>
+              <td><span class="time-badge">{{aanrijtijd_utrecht}} min</span></td>
               <td>Binnenstad, Oudwijk, Wittevrouwen, Schildersbuurt, De Uithof (3584, 3512, 3581)</td>
               <td><span class="status-ok">● Direct Beschikbaar</span></td>
             </tr>
             <tr>
               <td><strong>Leidsche Rijn &amp; Vleuten-De Meern</strong></td>
-              <td><span class="time-badge">25 – 45 min</span></td>
+              <td><span class="time-badge">{{aanrijtijd_utrecht}} min</span></td>
               <td>Leidsche Rijn Centrum, Terwijde, Parkwijk, Het Zand, Vleuterweide (3544, 3543, 3451)</td>
               <td><span class="status-ok">● Direct Beschikbaar</span></td>
             </tr>
             <tr>
               <td><strong>Overvecht, Zuilen &amp; Noord</strong></td>
-              <td><span class="time-badge">20 – 40 min</span></td>
+              <td><span class="time-badge">{{aanrijtijd_utrecht}} min</span></td>
               <td>Overvecht-Noord/Zuid, Zuilen, Ondiep, Pijlsweerd, Tuindorp (3561, 3562, 3553)</td>
               <td><span class="status-ok">● Direct Beschikbaar</span></td>
             </tr>
             <tr>
               <td><strong>Kanaleneiland, Lombok &amp; Zuid</strong></td>
-              <td><span class="time-badge">20 – 35 min</span></td>
+              <td><span class="time-badge">{{aanrijtijd_utrecht}} min</span></td>
               <td>Lombok, Oog in Al, Kanaleneiland, Rivierenwijk, Hoograven, Lunetten (3531, 3526, 3523)</td>
               <td><span class="status-ok">● Direct Beschikbaar</span></td>
             </tr>
             <tr>
               <td><strong>Randgemeenten: Nieuwegein, Maarssen, IJsselstein &amp; Zeist</strong></td>
-              <td><span class="time-badge">30 – 50 min</span></td>
+              <td><span class="time-badge">{{aanrijtijd_regio}} min</span></td>
               <td>Nieuwegein, Maarssen-Dorp/Broek, IJsselstein, Zeist, Houten, De Bilt</td>
               <td><span class="status-ok">● Direct Beschikbaar</span></td>
             </tr>
@@ -157,42 +157,42 @@
       <div class="spoed-price-card">
         <span class="spoed-price-badge">Overdag · Werkdagen</span>
         <h3>Maandag t/m Vrijdag</h3>
-        <div class="spoed-price-tag">€ 90,- <span>all-in (1e uur)</span></div>
+        <div class="spoed-price-tag">€ {{uur_dag}},- <span>all-in (1e uur)</span></div>
         <p>Tussen 08:00 en 18:00 uur. Inclusief btw, diagnose en actieve hersteltijd.</p>
         <ul class="spoed-price-list">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Geen voorrijkosten binnen gemeente Utrecht</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Inclusief professionele storingsmeting</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € 22,50 per kwartier</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € {{kwartier_dag}} per kwartier</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Betaling per betaalverzoek of factuur</li>
         </ul>
         <a class="btn btn-secondary full" href="tel:{{tel_e164}}">Bel {{tel}}</a>
       </div>
 
-      <!-- Tarief 2: Avond & Zaterdag -->
+      <!-- Tarief 2: Avond (ma–vr) -->
       <div class="spoed-price-card featured">
-        <span class="spoed-price-badge" style="background:#dcfce7;color:#166534">Avond &amp; Zaterdag</span>
-        <h3>18:00 – 22:00 &amp; Zaterdag</h3>
-        <div class="spoed-price-tag">€ 120,- <span>all-in (1e uur)</span></div>
-        <p>Buiten kantooruren. Snelle interventie bij storingen in de avond of het weekend.</p>
+        <span class="spoed-price-badge" style="background:#dcfce7;color:#166534">Avond</span>
+        <h3>Ma–vr 18:00 – 22:00</h3>
+        <div class="spoed-price-tag">€ {{uur_avond}},- <span>all-in (1e uur)</span></div>
+        <p>Buiten kantooruren. Snelle hulp bij storingen op doordeweekse avonden.</p>
         <ul class="spoed-price-list">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Geen voorrijkosten binnen gemeente Utrecht</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Snelle aanrijtijd binnen 30-60 minuten</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € 30,00 per kwartier</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Snelle aanrijtijd: {{aanrijtijd_utrecht}} minuten in Utrecht</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € {{kwartier_avond}} per kwartier</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> NEN 3140 veilige noodoplossing</li>
         </ul>
         <a class="btn btn-primary full" href="tel:{{tel_e164}}">Direct Storingshulp</a>
       </div>
 
-      <!-- Tarief 3: Nacht & Zondag -->
+      <!-- Tarief 3: Nacht & weekend -->
       <div class="spoed-price-card">
-        <span class="spoed-price-badge">Nacht &amp; Zondag</span>
-        <h3>22:00 – 08:00 &amp; Zondagen</h3>
-        <div class="spoed-price-tag">€ 145,- <span>all-in (1e uur)</span></div>
-        <p>Nachtdienst en officiële feestdagen voor acute gevaren en stroomuitval.</p>
+        <span class="spoed-price-badge">Nacht &amp; weekend</span>
+        <h3>22:00 – 08:00 &amp; za/zo</h3>
+        <div class="spoed-price-tag">€ {{uur_nacht}},- <span>all-in (1e uur)</span></div>
+        <p>Nacht, zaterdag, zondag en feestdagen, voor acute gevaren en stroomuitval.</p>
         <ul class="spoed-price-list">
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 24/7 telefonisch bereikbaar en paraat</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Inclusief btw en complete foutdiagnose</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € 36,25 per kwartier</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Vervolgtijd: € {{kwartier_nacht}} per kwartier</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Geen verborgen posten op de factuur</li>
         </ul>
         <a class="btn btn-secondary full" href="tel:{{tel_e164}}">Bel Nachtdienst</a>
