@@ -61,6 +61,21 @@
   var d = document.getElementById("date");
   if (d) d.min = new Date().toISOString().split("T")[0];
 
+  // Google Reviews Carrousel Navigatie (Native 60fps Scroll)
+  var rTrack = document.getElementById("reviewsTrack");
+  var rPrev = document.getElementById("reviewsPrevBtn");
+  var rNext = document.getElementById("reviewsNextBtn");
+  if (rTrack && rPrev && rNext) {
+    rPrev.addEventListener("click", function () {
+      var step = rTrack.firstElementChild ? rTrack.firstElementChild.offsetWidth + 20 : 340;
+      rTrack.scrollBy({ left: -step, behavior: "smooth" });
+    });
+    rNext.addEventListener("click", function () {
+      var step = rTrack.firstElementChild ? rTrack.firstElementChild.offsetWidth + 20 : 340;
+      rTrack.scrollBy({ left: step, behavior: "smooth" });
+    });
+  }
+
   function esc(v) { return String(v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
 
   // Formulieren via FormSubmit (AJAX) met honeypot tegen spam

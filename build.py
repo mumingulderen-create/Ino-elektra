@@ -108,6 +108,8 @@ BLOKKEN = {
     "CTA": lambda: paginas.cta_band(),
     "CALCULATOR": lambda: paginas.groepenkast_calculator(),
     "STEDIN_CHECKER": lambda: paginas.blok_stedin_checker(),
+    "TRUST_BAR": lambda: paginas.blok_trust_bar(),
+    "REVIEWS_CAROUSEL": lambda: paginas.blok_reviews_carousel(),
 }
 
 def lees_content():

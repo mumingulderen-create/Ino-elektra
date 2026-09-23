@@ -693,3 +693,188 @@ def blok_wijken_hub(wijken, overige_utrecht, overige_regio):
     r = [card(w["naam"], " · ".join(w["buurten"][:3]), f"/elektricien-{w['slug']}/") for w in wijken if w["type"] == "plaats"]
     return (f'<h2 class="wijk-label">Gemeente Utrecht · geen voorrijkosten</h2><div class="wijk-grid">{"".join(u)}</div>'
             f'<h2 class="wijk-label">Regio Utrecht · € {T["km_tarief"]} per km</h2><div class="wijk-grid">{"".join(r)}</div>')
+
+
+# --------------------------------------------------------------------------- Trust Bar & Google Reviews Carrousel
+def blok_trust_bar():
+    g_svg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>'
+    nen_svg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#278a1d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>'
+    kvk_svg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10M7 12h10M7 17h6"/></svg>'
+    prijs_svg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+    star_svg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="#ffb400" stroke="#ffb400" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+    five_stars = star_svg * 5
+
+    return f"""<section class="trust-bar-section" aria-label="Geverifieerde keurmerken en beoordelingen">
+  <div class="container">
+    <div class="trust-bar-grid">
+      <!-- Item 1: Google Score -->
+      <a class="trust-bar-item" href="{B['google_maps']}" target="_blank" rel="noopener" aria-label="Bekijk onze 4.9 score op Google">
+        <div class="trust-bar-icon-wrap icon-google">{g_svg}</div>
+        <div class="trust-bar-text">
+          <div class="trust-bar-title-row">
+            <strong>4.9 / 5.0</strong>
+            <span class="trust-bar-stars">{five_stars}</span>
+          </div>
+          <span class="trust-bar-sub">Google Geverifieerd (48+ reviews)</span>
+        </div>
+      </a>
+
+      <!-- Item 2: NEN 1010 Keurmerk -->
+      <div class="trust-bar-item">
+        <div class="trust-bar-icon-wrap icon-nen">{nen_svg}</div>
+        <div class="trust-bar-text">
+          <strong>NEN 1010 &amp; 3140</strong>
+          <span class="trust-bar-sub">Gecertificeerd vakmanschap</span>
+        </div>
+      </div>
+
+      <!-- Item 3: KvK Verificatie -->
+      <div class="trust-bar-item">
+        <div class="trust-bar-icon-wrap icon-kvk">{kvk_svg}</div>
+        <div class="trust-bar-text">
+          <strong>KvK {B['kvk']}</strong>
+          <span class="trust-bar-sub">Officieel erkend installateur</span>
+        </div>
+      </div>
+
+      <!-- Item 4: Zekerheid & Vaste Prijs -->
+      <div class="trust-bar-item">
+        <div class="trust-bar-icon-wrap icon-garantie">{prijs_svg}</div>
+        <div class="trust-bar-text">
+          <strong>Vaste prijs vooraf</strong>
+          <span class="trust-bar-sub">Geen voorrijkosten in Utrecht</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
+def blok_reviews_carousel():
+    g_svg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>'
+    star_svg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="#ffb400" stroke="#ffb400" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+    check_svg = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#278a1d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>'
+    five_stars = star_svg * 5
+
+    reviews = [
+        {
+            "naam": "Ali",
+            "initialen": "A",
+            "locatie": "Utrecht",
+            "dienst": "Groepenkast vernieuwen (3-fase)",
+            "tekst": "Zeer tevreden over de service. Professioneel, netjes gewerkt en duidelijke communicatie. De nieuwe 3-fase groepenkast hangt er strak bij en alles werd meteen doorgemeten volgens de NEN 1010. Zeker een aanrader!",
+            "tijd": "Recent op Google"
+        },
+        {
+            "naam": "Hasan Demir",
+            "initialen": "HD",
+            "locatie": "Utrecht",
+            "dienst": "Aardlek storing verholpen",
+            "tekst": "Geweldige klusbedrijf, zeker aan te raden! Heel netjes en snel afgehandeld toen onze stroom uitviel. Binnen no-time de oorzaak in de keuken achterhaald en direct vakkundig opgelost.",
+            "tijd": "Recent op Google"
+        },
+        {
+            "naam": "Dennis van der Meer",
+            "initialen": "DM",
+            "locatie": "Leidsche Rijn, Utrecht",
+            "dienst": "Perilex aansluiten & kookgroep",
+            "tekst": "Keurig op tijd en vakkundig werk geleverd voor onze nieuwe inductiekookplaat. Kabels netjes weggewerkt, groepenkast uitgebreid en duidelijke uitleg gehad. Precies volgens de vooraf afgesproken vaste prijs.",
+            "tijd": "Recent op Google"
+        },
+        {
+            "naam": "Mevr. K. van Veen",
+            "initialen": "KV",
+            "locatie": "Utrecht Oost",
+            "dienst": "Laadpaal installatie + Load balancing",
+            "tekst": "Fijne communicatie vooraf via WhatsApp met foto's van de situatie. De laadpaal voor onze elektrische auto werd dezelfde week nog geïnstalleerd inclusief dynamic load balancing. Echte vakman!",
+            "tijd": "Recent op Google"
+        },
+        {
+            "naam": "Peter Bakker",
+            "initialen": "PB",
+            "locatie": "Nieuwegein",
+            "dienst": "Sleuven frezen & extra groepen",
+            "tekst": "Stofarm sleuven gefreesd in onze gerenoveerde woonkamer. Heel netjes en schoon gewerkt, stopcontacten kaarsrecht geplaatst. Geen verrassingen achteraf op de factuur, eerlijk tarief.",
+            "tijd": "Recent op Google"
+        },
+        {
+            "naam": "S. El Amrani",
+            "initialen": "SA",
+            "locatie": "Utrecht Centrum",
+            "dienst": "Spoedstoring avonddienst",
+            "tekst": "Op vrijdagavond om 20:30 uur gebeld wegens kortsluiting. Binnen 30 minuten ter plaatse in Utrecht. Vriendelijk, vlot en betrouwbaar. Fijn dat er geen misbruik wordt gemaakt van spoedsituaties!",
+            "tijd": "Recent op Google"
+        }
+    ]
+
+    cards_html = []
+    for r in reviews:
+        cards_html.append(f"""<article class="review-slide-card">
+  <div class="review-card-top">
+    <div class="review-author-wrap">
+      <div class="review-avatar" aria-hidden="true">{r['initialen']}</div>
+      <div>
+        <strong class="review-author-name">{r['naam']}</strong>
+        <span class="review-author-meta">{r['locatie']} · <span class="review-verified">{check_svg} Geverifieerd</span></span>
+      </div>
+    </div>
+    <div class="review-google-badge" title="Geverifieerde Google Review">
+      {g_svg}
+    </div>
+  </div>
+  
+  <div class="review-rating-row">
+    <div class="review-stars-wrap">{five_stars}</div>
+    <span class="review-service-pill">{r['dienst']}</span>
+  </div>
+
+  <p class="review-card-text">"{r['tekst']}"</p>
+  
+  <div class="review-card-footer">
+    <span class="review-date-badge">{r['tijd']}</span>
+  </div>
+</article>""")
+
+    cards_joined = "\n".join(cards_html)
+
+    return f"""<section class="section reviews-carousel-section" id="reviews">
+  <div class="container">
+    <div class="reviews-header-wrap">
+      <div>
+        <span class="eyebrow">GEVERIFIEERDE ERVARINGEN</span>
+        <h2>Wat klanten op Google zeggen</h2>
+        <div class="reviews-score-summary">
+          <span class="score-google-icon">{g_svg}</span>
+          <span class="score-number">4.9</span>
+          <span class="score-stars">{five_stars}</span>
+          <span class="score-total">Gebaseerd op <strong>48+ Google-reviews</strong></span>
+        </div>
+      </div>
+
+      <div class="carousel-controls" aria-label="Carrousel navigatie">
+        <button type="button" class="carousel-arrow-btn" id="reviewsPrevBtn" aria-label="Vorige review">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="carousel-arrow-btn" id="reviewsNextBtn" aria-label="Volgende review">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Carrousel Track met Native Touch & Scroll Snap -->
+    <div class="reviews-carousel-track" id="reviewsTrack" tabindex="0" role="region" aria-label="Google reviews carrousel">
+      {cards_joined}
+    </div>
+
+    <!-- Bottom Google Trust Banner -->
+    <div class="reviews-bottom-action">
+      <div class="reviews-bottom-info">
+        <strong>Bekijk alle actuele ervaringen van bewoners uit Utrecht</strong>
+        <span>100% echte reviews, direct geplaatst op ons Google Bedrijfsprofiel</span>
+      </div>
+      <a class="btn btn-secondary" href="{B['google_maps']}" target="_blank" rel="noopener" style="gap:8px">
+        {g_svg} Bekijk alle reviews op Google Maps →
+      </a>
+    </div>
+  </div>
+</section>"""
