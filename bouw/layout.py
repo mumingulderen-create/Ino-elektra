@@ -235,6 +235,16 @@ def footer(wijken, storingen, variant="standaard"):
   <a href="tel:{B['telefoon_e164']}" class="mobile-btn-call" data-track="bellen">{ICON_TEL}<span>Direct bellen</span></a>
   <a href="{wa_url('Hallo INO, ik wil graag een foto sturen voor een prijsindicatie.')}" target="_blank" rel="noopener" class="mobile-btn-whatsapp" data-track="whatsapp">{ICON_WA}<span>WhatsApp foto</span></a>
 </div>"""
+    floating_wa = f"""<a href="{wa_url('Hallo INO Techniek, ik heb een vraag over een elektra klus. Kan ik een foto sturen voor advies?')}" class="floating-wa" target="_blank" rel="noopener" aria-label="Direct chatten via WhatsApp" data-track="whatsapp" id="floatingWa">
+  <span class="floating-wa-badge"><span class="floating-wa-pulse"></span>Direct contact</span>
+  <span class="floating-wa-inner">
+    <span class="floating-wa-icon">{ICON_WA}</span>
+    <span class="floating-wa-text">
+      <strong>WhatsApp ons</strong>
+      <small>Foto sturen &amp; richtprijs</small>
+    </span>
+  </span>
+</a>"""
     return f"""<footer class="site-footer">
   <div class="container footer-grid">
     <div>
@@ -250,4 +260,5 @@ def footer(wijken, storingen, variant="standaard"):
   <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy</a> · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 {bar}
+{floating_wa}
 <script src="/script.js?v={{JS_V}}" defer></script>"""

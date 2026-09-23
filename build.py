@@ -39,6 +39,8 @@ PLACEHOLDERS = {
     "voorrij_zin": VOORRIJ_ZIN,
     "actief_sinds": B["actief_sinds"],
     "jaar": str(datetime.date.today().year),
+    "icon_wa": layout.ICON_WA,
+    "icon_tel": layout.ICON_TEL,
     **{k: str(v) for k, v in T.items()},
 }
 

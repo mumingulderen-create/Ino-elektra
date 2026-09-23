@@ -355,4 +355,42 @@
       track("contact", { method: "whatsapp", pagina: location.pathname });
     }
   });
+
+  // Slimme, pagina-specifieke WhatsApp links (voor-ingevulde berichten)
+  function initSmartWhatsApp() {
+    var p = (location.pathname || "").toLowerCase();
+    var msg = "Hallo INO Techniek, ik heb een vraag over een elektra klus in Utrecht. Kan ik een foto sturen voor advies?";
+    if (p.indexOf("groepenkast") !== -1) {
+      msg = "Hallo INO, ik wil graag advies of een offerte voor het vervangen/uitbreiden van mijn groepenkast. Hierbij stuur ik een foto van mijn huidige meterkast mee.";
+    } else if (p.indexOf("perilex") !== -1) {
+      msg = "Hallo INO, ik wil een inductiekookplaat of Perilex aansluiting laten aanleggen. Hierbij een foto van mijn situatie.";
+    } else if (p.indexOf("laadpaal") !== -1) {
+      msg = "Hallo INO, ik wil graag een laadpaal laten installeren aan huis. Wat zijn de mogelijkheden en kosten?";
+    } else if (p.indexOf("krachtstroom") !== -1) {
+      msg = "Hallo INO, ik heb krachtstroom (3-fase) nodig in mijn woning of bedrijfspand. Graag ontvang ik advies en een richtprijs.";
+    } else if (p.indexOf("spoed") !== -1 || p.indexOf("storing") !== -1 || p.indexOf("kortsluiting") !== -1 || p.indexOf("aardlek") !== -1) {
+      msg = "Hallo INO, ik heb met spoed een elektricien nodig in Utrecht in verband met een storing. Hierbij een foto van de meterkast.";
+    } else if (p.indexOf("frezen") !== -1 || p.indexOf("stopcontact") !== -1) {
+      msg = "Hallo INO, ik wil graag stopcontacten laten verplaatsen/infrezen. Kan ik foto's sturen voor een richtprijs?";
+    } else if (p.indexOf("tuinverlichting") !== -1) {
+      msg = "Hallo INO, ik wil graag tuinverlichting of buitenelektra laten aanleggen. Wat zijn de mogelijkheden?";
+    } else if (p.indexOf("tarieven") !== -1) {
+      msg = "Hallo INO, ik heb gekeken naar jullie transparante tarieven en wil graag een indicatie voor mijn klus. Hierbij een foto.";
+    } else if (p.indexOf("elektricien-") !== -1) {
+      var h1 = document.querySelector("h1");
+      var title = h1 ? h1.textContent.trim() : "de regio Utrecht";
+      msg = "Hallo INO Techniek, ik zoek een betrouwbare elektricien voor een klus (" + title + "). Hierbij stuur ik foto's van de situatie mee.";
+    }
+
+    var waHref = "https://wa.me/31628763775?text=" + encodeURIComponent(msg);
+
+    // Update floating WhatsApp widget en mobiele WhatsApp-knop
+    var floatingBtn = document.getElementById("floatingWa");
+    if (floatingBtn) floatingBtn.href = waHref;
+
+    document.querySelectorAll(".mobile-btn-whatsapp, .m-btn-whatsapp").forEach(function (btn) {
+      btn.href = waHref;
+    });
+  }
+  initSmartWhatsApp();
 })();
