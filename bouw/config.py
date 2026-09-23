@@ -42,6 +42,13 @@ GOOGLE_SITE_VERIFICATION = "xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw"
 # Google Analytics 4 (GA4) Meet-ID (bijv. "G-XXXXXXXXXX" of leeg laten)
 GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
 
+# Collega-partners (SEO-kruisbestuiving & netwerk)
+PARTNER_VOLTFIX = {
+    "naam": "Voltfix Elektrotechniek",
+    "url": "https://www.voltfix.nl/",
+    "regio": "Amsterdam",
+}
+
 # FormSubmit endpoint (formulieren -> je mailbox)
 FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
 
@@ -66,8 +73,8 @@ TARIEVEN = {
     "voorrijkosten_utrecht": 0,
     "km_tarief": "0,40",      # buiten gemeente Utrecht
     "schouw": 90,             # wordt verrekend bij opdracht
-    "groepenkast_1f": 620,
-    "groepenkast_3f": 720,
+    "groepenkast_1f": 640,        # 1-fase tot 8 groepen, all-in (bevestigd eigenaar)
+    "groepenkast_3f": 760,        # 3-fase tot 8 groepen, all-in (bevestigd eigenaar)
     "extra_groep": 60,
     "perilex_aansluiten": 120,
     "perilex_kookgroep": 150,
@@ -95,6 +102,8 @@ TARIEVEN = {
     "calc_basis_1f": 640,              # basiskast 1-fase tot 8 groepen
     "calc_meer_3f": 120,               # meerprijs 3-fase uitvoering
 }
+TARIEVEN["calc_basis_1f"] = TARIEVEN["groepenkast_1f"]
+TARIEVEN["calc_meer_3f"] = TARIEVEN["groepenkast_3f"] - TARIEVEN["groepenkast_1f"]
 
 # Tekstblokjes die op meerdere plekken terugkomen (automatisch consistent)
 T = TARIEVEN

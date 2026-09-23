@@ -4,7 +4,7 @@ mobiele belbalk en de structured data (JSON-LD) voor Google.
 """
 import json, datetime
 from html import escape
-from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T
+from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T, PARTNER_VOLTFIX
 
 JAAR = datetime.date.today().year
 
@@ -65,13 +65,6 @@ def business_node(wijken):
         "knowsAbout": ["NEN 1010", "NEN 3140", "groepenkast vervangen", "Perilex", "laadpaal installatie",
                        "krachtstroom", "storingsdienst"],
         "sameAs": same,
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "48",
-            "bestRating": "5",
-            "worstRating": "1"
-        },
     }
     if B["kvk"]:
         node["identifier"] = {"@type": "PropertyValue", "propertyID": "KvK", "value": B["kvk"]}
@@ -112,14 +105,16 @@ def schema_graph(page, wijken):
 
 
 # --------------------------------------------------------------------------- head
-def head(page, wijken, css_v, font_url):
+def head(page, wijken, css_v, font_url=None):
     t, d = page["title"], page["description"]
     robots = "noindex, follow" if page.get("noindex") else "index, follow, max-image-preview:large, max-snippet:-1"
     og_img = page.get("og_image_url") or f"{SITE_URL}/img/og-hero-elektricien.jpg"
+    canon = "" if page.get("slug") == "404" else f'<link rel="canonical" href="{page["url"]}">'
     pre = ""
     if page.get("lcp"):
         href, srcset, sizes = page["lcp"]
-        pre = f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}" imagesizes="{sizes}" fetchpriority="high">'
+        pre = (f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}"'
+               f' imagesizes="{sizes}" fetchpriority="high" media="(min-width: 801px)">')
     # GA4 laadt pas NA toestemming (cookiemelding in script.js). Zonder akkoord: geen cookies, geen verzoek naar Google.
     ga4_tag = f"""\n<script>
   window.dataLayer = window.dataLayer || [];
@@ -141,7 +136,7 @@ def head(page, wijken, css_v, font_url):
 <meta name="viewport" content="width=device-width, initial-scale=1">{ga4_tag}
 <title>{t}</title>
 <meta name="description" content="{d}">
-<link rel="canonical" href="{page['url']}">
+{canon}
 <meta name="robots" content="{robots}">
 <meta name="theme-color" content="#278a1d">
 <meta name="format-detection" content="telephone=yes">
@@ -159,11 +154,8 @@ def head(page, wijken, css_v, font_url):
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>{pre}
+<link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>{pre}
 <link rel="stylesheet" href="/style.css?v={css_v}">
-<link rel="stylesheet" href="{font_url}" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="{font_url}"></noscript>
 <script type="application/ld+json">{schema_graph(page, wijken)}</script>
 </head>"""
 
@@ -183,10 +175,25 @@ def header(nav_key, wijken, variant="standaard"):
         cls_active = " active" if groep == it["key"] else ""
         sub = it.get("sub")
         if sub == "WIJKEN":
-            sub = [{"label": "Werkgebied & kaart", "href": "/werkgebied/"},
-                   {"label": "Alle wijken & plaatsen", "href": "/wijken/"}] + \
-                  [{"label": f"Elektricien {w['naam']}", "href": f"/elektricien-{w['slug']}/"} for w in wijken]
-        if sub:
+            top_links = (
+                f'<div class="nav-dd-top">'
+                f'  <a href="/werkgebied/" class="nav-dd-featured">'
+                f'    <strong>Werkgebied &amp; kaart</strong>'
+                f'    <span>Overzicht actieradius &amp; aanrijtijden</span>'
+                f'  </a>'
+                f'  <a href="/wijken/" class="nav-dd-all">'
+                f'    <span>Alle 18 wijken</span> →'
+                f'  </a>'
+                f'</div>'
+                f'<div class="nav-dd-divider"></div>'
+                f'<div class="nav-dd-caption">Direct naar wijk:</div>'
+            )
+            wijk_links = "".join(f'<a href="/elektricien-{w["slug"]}/" class="nav-dd-wijk-link">{w["naam"]}</a>' for w in wijken)
+            menu_html = f'{top_links}<div class="nav-dd-scroll">{wijk_links}</div>'
+            items.append(
+                f'<div class="nav-dd nav-dd-werkgebied"><a href="{it["href"]}" class="nav-dd-toggle{cls_active}"{active}>{it["label"]} '
+                f'<span class="caret" aria-hidden="true">▾</span></a><div class="nav-dd-menu">{menu_html}</div></div>')
+        elif sub:
             links = "".join(f'<a href="{s["href"]}">{s["label"]}</a>' for s in sub)
             items.append(
                 f'<div class="nav-dd"><a href="{it["href"]}" class="nav-dd-toggle{cls_active}"{active}>{it["label"]} '
@@ -199,7 +206,7 @@ def header(nav_key, wijken, variant="standaard"):
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="/" aria-label="{B['naam']} – elektricien Utrecht, naar de homepage">
-      <img src="/logo.png" alt="{B['naam']} – elektricien Utrecht" width="130" height="54">
+      <img src="/img/logo-390.png" alt="{B['naam']} – elektricien Utrecht" width="130" height="54" decoding="async">
     </a>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="nav">{ICON_MENU}</button>
     <nav id="nav" aria-label="Hoofdmenu">
@@ -256,7 +263,7 @@ def footer(wijken, storingen, variant="standaard"):
     return f"""<footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <img src="/logo.png" alt="{B['naam']} logo" class="footer-logo" width="130" height="54" loading="lazy" decoding="async">
+      <img src="/img/logo-390.png" alt="{B['naam']} logo" class="footer-logo" width="130" height="54" loading="lazy" decoding="async">
       <p>Elektricien in Utrecht en omstreken. Vaste prijs vooraf, 24/7 bereikbaar bij storingen, NEN 1010.</p>
       <p><a href="tel:{B['telefoon_e164']}" data-track="bellen"><strong>{B['telefoon_tonen']}</strong></a><br>
       <a href="mailto:{B['email']}">{B['email']}</a></p>
@@ -265,7 +272,7 @@ def footer(wijken, storingen, variant="standaard"):
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
     <div><h2 class="footer-h">Werkgebied</h2>{wijk_links}<a href="/wijken/">Alle wijken &amp; plaatsen</a></div>
   </div>
-  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · Partner: <a href="{PARTNER_VOLTFIX['url']}" target="_blank" rel="noopener">{PARTNER_VOLTFIX['naam']} ({PARTNER_VOLTFIX['regio']})</a> · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 {bar}
 {floating_wa}
