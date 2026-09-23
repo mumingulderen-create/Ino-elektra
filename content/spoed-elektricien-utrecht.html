@@ -74,82 +74,8 @@
   </div>
 </section>
 
-<!-- 2. Interactive 30-Second Emergency Triage (Paniek-reductie) -->
-<section class="triage-section" id="spoed-check">
-  <div class="container">
-    <div class="triage-heading">
-      <span class="eyebrow">EERSTE HULP BIJ ELEKTRISCHE NOOD</span>
-      <h2>30-Seconden Storings-Check: Wat is de situatie?</h2>
-      <p class="lead">Blijf kalm en controleer onderstaande scenario's om acute risico's te vermijden en overbodige kosten te voorkomen.</p>
-    </div>
-
-    <div class="triage-grid">
-      <!-- Situatie 1 -->
-      <article class="triage-card danger" id="situatie-acuut">
-        <span class="triage-badge">Gevaar · Direct Handelen</span>
-        <h3 class="triage-title">Schroeilucht, rookontwikkeling of vonkvorming</h3>
-        <ul class="triage-steps">
-          <li>Schakel onmiddellijk de <strong>hoofdschakelaar</strong> in de meterkast omlaag.</li>
-          <li>Blijf op veilige afstand en open of forceer geen kasten onder spanning.</li>
-          <li>Bel bij daadwerkelijke vlammen of dikke rook meteen <strong>112</strong>.</li>
-          <li>Neem aansluitend contact op met onze spoeddienst voor noodreparatie en veilige inspectie.</li>
-        </ul>
-        <a class="triage-btn" href="tel:{{tel_e164}}">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Direct Spoedmonteur Spreken
-        </a>
-      </article>
-
-      <!-- Situatie 2 -->
-      <article class="triage-card warning" id="situatie-kortsluiting">
-        <span class="triage-badge">Storing · Aardlek / Sluiting</span>
-        <h3 class="triage-title">Aardlekschakelaar of groep springt steeds af</h3>
-        <ul class="triage-steps">
-          <li>Trek de stekkers van alle apparaten op die bewuste groep eruit.</li>
-          <li>Zet de schakelaar éénmalig zonder forceren rustig weer omhoog.</li>
-          <li>Slaat hij meteen weer af? <strong>Nooit met tape vastzetten of vasthouden</strong> (ernstig brandgevaar).</li>
-          <li>Bel ons: wij meten de leidingen en componenten door met professionele meetapparatuur.</li>
-        </ul>
-        <a class="triage-btn" href="https://wa.me/{{whatsapp}}?text=Hallo%20INO%2C%20mijn%20aardlekschakelaar%20valt%20steeds%20uit.%20Hierbij%20een%20foto%20van%20de%20groepenkast." target="_blank" rel="noopener">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          Stuur Foto van Groepenkast
-        </a>
-      </article>
-
-      <!-- Situatie 3 -->
-      <article class="triage-card internal" id="situatie-binnenshuis">
-        <span class="triage-badge">Woningstoring · Lokale Fout</span>
-        <h3 class="triage-title">Alleen in jouw huis geen spanning (buren hebben licht)</h3>
-        <ul class="triage-steps">
-          <li>Check buiten: brandt de openbare verlichting en hebben de buren wel stroom?</li>
-          <li>Controleer of de hoofdschakelaar of aardlekautomaat naar beneden staat.</li>
-          <li>Staat alles omhoog maar heb je toch geen stroom? Mogelijk is een hoofdzekering gesprongen.</li>
-          <li>Het probleem zit in je eigen installatie; bel direct onze storingsdienst voor onderzoek.</li>
-        </ul>
-        <a class="triage-btn" href="tel:{{tel_e164}}">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Bel Storingsdienst
-        </a>
-      </article>
-
-      <!-- Situatie 4 -->
-      <article class="triage-card grid" id="situatie-netbeheerder">
-        <span class="triage-badge">Netstoring · Stedin Domein</span>
-        <h3 class="triage-title">De hele straat of buurt zit zonder elektriciteit</h3>
-        <ul class="triage-steps">
-          <li>Zitten de omliggende woningen en de straatverlichting ook zonder spanning?</li>
-          <li>Dan betreft het een externe netstoring in het openbare energienet van Stedin.</li>
-          <li>Een particuliere elektricien kan en mag niet werken aan het openbare net.</li>
-          <li>Bel het gratis Nationaal Storingsnummer (0800-9009) om onnodige voorrijkosten te voorkomen.</li>
-        </ul>
-        <a class="triage-btn" href="tel:08009009">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Bel Stedin: 0800-9009
-        </a>
-      </article>
-    </div>
-  </div>
-</section>
+<!-- 2. Stedin vs INO Keuzehulp & Storingsvergelijking -->
+{{STEDIN_CHECKER}}
 
 <!-- 3. Local Social Proof & Utrecht Response Times Table -->
 <section class="responstijd-section" id="wijken">

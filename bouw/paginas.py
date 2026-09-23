@@ -594,6 +594,7 @@ def storing_pagina(s, alle):
     gerel = {x["slug"]: x for x in alle}
     rel = "".join(f'<a href="/{r}/">{gerel[r]["kort"]}</a>' for r in s["gerelateerd"] if r in gerel)
     wa = wa_url(f"Hallo INO, ik heb een probleem: {s['kort'].lower()}. Hierbij een foto van mijn meterkast.")
+    stedin_blok = blok_stedin_checker() if s['slug'] == 'stroomstoring-utrecht' else ""
     body = f"""<section class="lp-hero storing-hero">
   <div class="container">
     <div class="badge">24/7 hulp bij storingen in Utrecht e.o.</div>
@@ -606,6 +607,8 @@ def storing_pagina(s, alle):
     <div class="meta-row"><span>Direct de monteur aan de lijn</span><span>Vaste prijs vóór we beginnen</span><span>Geen voorrijkosten in Utrecht</span></div>
   </div>
 </section>
+
+{stedin_blok}
 
 <section class="section">
   <div class="container narrow">
