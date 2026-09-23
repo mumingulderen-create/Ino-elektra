@@ -4,7 +4,7 @@ mobiele belbalk en de structured data (JSON-LD) voor Google.
 """
 import json, datetime
 from html import escape
-from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, TARIEVEN as T
+from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T
 
 JAAR = datetime.date.today().year
 
@@ -119,11 +119,18 @@ def head(page, wijken, css_v, font_url):
     if page.get("lcp"):
         href, srcset, sizes = page["lcp"]
         pre = f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}" imagesizes="{sizes}" fetchpriority="high">'
+    ga4_tag = f"""\n<script async src="https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});
+</script>""" if GA4_MEASUREMENT_ID else ""
     return f"""<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">{ga4_tag}
 <title>{t}</title>
 <meta name="description" content="{d}">
 <link rel="canonical" href="{page['url']}">

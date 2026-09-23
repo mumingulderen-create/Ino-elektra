@@ -39,6 +39,9 @@ BEDRIJF = {
 
 GOOGLE_SITE_VERIFICATION = "xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw"
 
+# Google Analytics 4 (GA4) Meet-ID (bijv. "G-XXXXXXXXXX" of leeg laten)
+GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
+
 # FormSubmit endpoint (formulieren -> je mailbox)
 FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
 

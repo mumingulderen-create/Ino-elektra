@@ -83,6 +83,7 @@
         .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
         .then(function () {
           track("formulier_verstuurd", { formulier: form.id || "form" });
+          track("generate_lead", { formulier: form.id || "form", currency: "EUR" });
           if (result) {
             result.hidden = false; result.className = "form-result";
             result.innerHTML = "<strong>Aanvraag verstuurd.</strong><br>Bedankt " + esc(data.get("name") || "") + ", " + okMsg;
@@ -331,8 +332,8 @@
   }
   initStedinChecker();
 
-  // Klik-meting (bellen / WhatsApp). Werkt automatisch zodra je Google Analytics 4
-  // of Google Tag Manager toevoegt; zonder die tools doet dit niets.
+  // Klik- en conversiemeting (bellen / WhatsApp / formulieren).
+  // Werkt automatisch en naadloos met Google Analytics 4 (GA4) en Google Ads.
   function track(evt, params) {
     try {
       if (window.gtag) window.gtag("event", evt, params || {});
@@ -340,7 +341,18 @@
     } catch (e) {}
   }
   document.addEventListener("click", function (e) {
-    var a = e.target.closest && e.target.closest("[data-track]");
-    if (a) track(a.getAttribute("data-track") === "bellen" ? "klik_bellen" : "klik_whatsapp", { pagina: location.pathname });
+    var a = e.target.closest && e.target.closest("a");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    var isTel = href.indexOf("tel:") === 0 || a.getAttribute("data-track") === "bellen";
+    var isWa = href.indexOf("wa.me") !== -1 || a.getAttribute("data-track") === "whatsapp";
+
+    if (isTel) {
+      track("klik_bellen", { pagina: location.pathname });
+      track("contact", { method: "phone", pagina: location.pathname });
+    } else if (isWa) {
+      track("klik_whatsapp", { pagina: location.pathname });
+      track("contact", { method: "whatsapp", pagina: location.pathname });
+    }
   });
 })();
