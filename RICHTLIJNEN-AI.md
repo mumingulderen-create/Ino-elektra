@@ -12,16 +12,17 @@ Kort en verplicht. Geldt voor v1 (Ino-elektra) en v2 (INOv2). Plak dit in je opd
 - Na elke wijziging `python3 build.py` (of `python3 build.py --test` als playwright er is) en alle aandachtspunten oplossen.
 
 ## Bevestigde feiten (niet van afwijken)
-- Achtergrond eigenaar: 2,5 jaar ervaring bij netbeheerder Stedin als laagspanningsmonteur (Certwell-gecertificeerd).
+- Achtergrond eigenaar: 2,5 jaar monteur bij Stedin. Ervaring als VP'er bij Heijmans en Liander. Tevens in opleiding tot middenspanningsmonteur.
 - Opleiding & Diploma's: MBO 2 Monteur Laagspanningsdistributie (Crebo 25769) en MBO 3 Commercieel medewerker.
 - Netbeheer & Veiligheidscertificaten (Certwell):
   * BEI BLS: VP LS-NETTEN (Vakbekwaam Persoon Laagspanningsnetten, cert: 699d796e7cb94b5168e6b6da).
-  * Aanwijzingen Stedin: VOP LS-meters en VOP G-meters (bevoegd meter wisselen elektra & gas).
+  * Aanwijzingen Stedin: VOP LS-meters en VOP G-meters (meter wisselen elektra & gas).
   * VCA VOL (Veiligheid voor Operationeel Leidinggevenden).
   * Asbestherkenning O&O (inclusief Module 4: Asbest in de meterkast).
   * Netbeheer Nederland: GPI DSO Professioneel & Training gasdetectie.
   * BHV (Safety Holland & Westpoort).
-- Vakmanschap & diensten: allround elektrotechniek voor nieuwbouw en renovatie (meterkast, krachtstroom, groepenkasten, laadpalen, Perilex, sleuven frezen, leidingen leggen, kabels trekken, stopcontacten in-/opbouw, hotelschakelingen, verlichting afmonteren).
+- NEN-normen: **NEN 3140 VP** gecertificeerd via PTC Opleidingen. **Niet** claimen dat er een cursus NEN 1010 is gedaan, wel dat alle installatiewerkzaamheden strikt worden uitgevoerd **conform / volgens NEN 1010**.
+- Vakmanschap & diensten: al 4 jaar allround elektrotechniek voor nieuwbouw en renovatie (meterkast, krachtstroom, groepenkasten, laadpalen, thuisbatterijen, zonnepanelen, Perilex, sleuven frezen, leidingen leggen, kabels trekken, stopcontacten in-/opbouw, hotelschakelingen, verlichting afmonteren).
 - Groepenkast all-in: 1-fase € 640, 3-fase € 760.
 - Perilex aansluiten € 120, nieuwe kookgroep € 150. Er bestaat geen € 275.
 - Aanrijtijd vanuit Overvecht: gemeente Utrecht 5–30 min, daarbuiten 15–40 min. Geen andere tijden noemen.

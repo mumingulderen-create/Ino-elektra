@@ -62,7 +62,7 @@ def business_node(wijken):
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             "opens": "00:00", "closes": "23:59"}],
         "areaServed": areas,
-        "knowsAbout": ["NEN 1010", "NEN 3140", "groepenkast vervangen", "Perilex", "laadpaal installatie",
+        "knowsAbout": ["NEN 1010", "NEN 3140", "BEI BLS", "laagspanningsdistributie", "groepenkast vervangen", "Perilex", "laadpaal installatie",
                        "krachtstroom", "storingsdienst"],
         "sameAs": same,
     }
