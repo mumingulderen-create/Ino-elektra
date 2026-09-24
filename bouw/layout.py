@@ -264,7 +264,7 @@ def footer(wijken, storingen, variant="standaard"):
   <div class="container footer-grid">
     <div>
       <img src="/img/logo-390.png" alt="{B['naam']} logo" class="footer-logo" width="130" height="54" loading="lazy" decoding="async">
-      <p>Elektricien in Utrecht en omstreken. Vaste prijs vooraf, 24/7 bereikbaar bij storingen, NEN 1010.</p>
+      <p>Elektricien in Utrecht en omstreken. Vaste prijs vooraf en 24/7 bereikbaar bij storingen.</p>
       <p><a href="tel:{B['telefoon_e164']}" data-track="bellen"><strong>{B['telefoon_tonen']}</strong></a><br>
       <a href="mailto:{B['email']}">{B['email']}</a></p>
     </div>
