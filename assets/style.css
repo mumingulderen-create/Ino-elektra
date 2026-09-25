@@ -1444,5 +1444,16 @@ a.alert-banner:hover{border-color:#e0334f}
   }
 }
 
+/* Instagram strip */
+.insta-strip{background:#fafbfa;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}
+.insta-strip-inner{display:flex;justify-content:space-between;align-items:center;gap:20px}
+.insta-strip-text strong{display:block;font-size:16px;color:var(--ink);font-weight:800}
+.insta-strip-text span{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
+.insta-strip .btn-instagram{gap:8px;font-size:13.5px;padding:10px 18px}
+@media (max-width:640px){
+  .insta-strip-inner{flex-direction:column;text-align:center}
+  .insta-strip .btn-instagram{width:100%}
+}
+
 
 

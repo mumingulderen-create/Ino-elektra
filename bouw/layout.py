@@ -40,7 +40,7 @@ def business_node(wijken):
         adres["streetAddress"] = B["straat"]
     if B["postcode"]:
         adres["postalCode"] = B["postcode"]
-    same = [u for u in [B["instagram"], B["google_maps"], B["werkspot"]] if u]
+    same = [u for u in [B["instagram"], B.get("linkedin"), B["google_maps"], B["werkspot"]] if u]
     node = {
         "@type": ["Electrician", "EmergencyService"],
         "@id": f"{SITE_URL}/#business",
@@ -290,7 +290,7 @@ def footer(wijken, storingen, variant="standaard"):
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
     <div><h2 class="footer-h">Werkgebied</h2>{wijk_html}</div>
   </div>
-  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
+  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a>{' · <a href="' + B['linkedin'] + '" target="_blank" rel="noopener">LinkedIn</a>' if B.get('linkedin') else ''}</div>
 </footer>
 {bar}
 {floating_wa}
