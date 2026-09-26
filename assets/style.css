@@ -1551,5 +1551,52 @@ a.alert-banner:hover{border-color:#e0334f}
   .beloftes-grid { grid-template-columns: 1fr; }
 }
 
+/* WCAG AA / AAA Contrast Verrijking (100% Toegankelijkheid) */
+.eyebrow {
+  color: #1e6b18 !important; /* Voldoet aan contrast 4.5:1+ op lichte achtergrond */
+}
+.badge-ino {
+  background: #eef7ee;
+  color: #165612 !important;
+  border: 1px solid #bce2b6;
+}
+.stedin-fast-note {
+  color: #1a6314 !important;
+}
+.service-card a, .mini-link {
+  color: #1e6b18 !important;
+  font-weight: 800;
+}
+.service-card a:hover, .mini-link:hover {
+  color: #14490f !important;
+  text-decoration: underline;
+}
+.link-cloud a {
+  color: #1e6b18 !important;
+  border-color: #cbdad0;
+}
+.link-cloud a:hover {
+  border-color: #1e6b18;
+  color: #14490f !important;
+}
+.footer-wijk-toggle, .footer-wijk-all {
+  color: #1e6b18 !important;
+}
+.footer-wijk-toggle:hover, .footer-wijk-all:hover {
+  color: #14490f !important;
+}
+.crumbs a:hover, .crumbs [aria-current] {
+  color: #111827;
+}
+.price-card-badge {
+  background: #e6f5e3;
+  color: #185c13 !important;
+}
+.area-chips span {
+  color: #1b6315 !important;
+  border-color: #c9dacb;
+}
+
+
 
 
