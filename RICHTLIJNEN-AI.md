@@ -33,6 +33,8 @@ Kort en verplicht. Geldt voor v1 (Ino-elektra) en v2 (INOv2). Plak dit in je opd
 
 ## Nooit doen
 - Reviews, namen, cijfers, certificaten of aanrijtijden verzinnen. Bij twijfel: vragen.
+- Nooit persoonlijke certificaatnummers (zoals STIPEL cert-ID's) of specifieke opleidersinstituten (zoals PTC) publiek op de website tonen (fraudegevoelig en onnodig).
+- Nooit interne netbeheerders-aanwijzingen (zoals Stedin VOP meters) publiek op de site claimen (dit is voorbehouden aan werk in opdracht van de netbeheerder en wekt verwarring).
 - `AggregateRating`- of `Review`-schema over het eigen bedrijf (Google verbiedt dit).
 - Uitleg hoe klanten zelf aan de groepenkast of leidingen werken.
 - Wijkpagina's maken door alleen de plaatsnaam te wisselen (doorway pages).

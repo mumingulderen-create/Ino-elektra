@@ -11,11 +11,12 @@ Statische site, gegenereerd door `python3 build.py`. Hosting: GitHub Pages vanui
 - Afbeeldingen: origineel in `assets/foto/`, altijd met beschrijvende `alt`.
 - Structured data wordt centraal gemaakt in `bouw/layout.py`. FAQ-schema wordt automatisch gemaakt uit `.faq-q`/`.faq-a`-blokken. Geen microdata (`itemprop`) toevoegen.
 
-## SEO-principes die niet overtreden mogen worden
+## SEO- en bedrijfsprincipes die niet overtreden mogen worden
 - Wijk-/plaatspagina's moeten **echt unieke** inhoud hebben (Google: doorway pages / scaled content abuse). Nooit een pagina maken door alleen de plaatsnaam te wisselen.
 - Geen `AggregateRating`/`Review`-schema over het eigen bedrijf (niet toegestaan voor LocalBusiness-zelfreviews).
 - Geen verzonnen claims, aantallen of reviews.
 - Veiligheid: nooit instructies geven om zelf aan de groepenkast of leidingen te werken.
+- Privacy & Netbeheer: nooit persoonlijke certificaatnummers (zoals STIPEL cert-ID's) of opleidersnamen publiek op de site zetten. Nooit interne Stedin-aanwijzingen (VOP meters) publiek claimen voor particuliere klussen.
 
 ## Nog open (door eigenaar in te vullen/te bevestigen)
 - Werkgebied: /werkgebied/, spoedpagina en schema noemen ook De Bilt, Woerden, Amersfoort, Veenendaal. Horen die erbij?
