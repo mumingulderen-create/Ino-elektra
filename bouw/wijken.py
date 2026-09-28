@@ -26,7 +26,7 @@ WIJKEN = [
             "Nobelstraat"
         ],
         "aanrijtijd": "{aanrijtijd_utrecht} min",
-        "intro": "Geen stroom in een monumentaal pand, stoppen doorgeslagen of je meterkast moderniseren in de Utrechtse binnenstad? INO Elektra is gevestigd in Utrecht en kent de unieke installaties rondom de Oudegracht, de Neude en het Museumkwartier door en door. Rechtstreeks contact met een gediplomeerd elektricien, heldere prijsafspraken vooraf en binnen de gemeente Utrecht rekenen wij nooit voorrijkosten.",
+        "intro": "Geen stroom in een monumentaal pand, stoppen doorgeslagen of je meterkast moderniseren in de Utrechtse binnenstad? INO Elektra is gevestigd in Utrecht en kent de unieke installaties rondom de Oudegracht, de Neude en het Museumkwartier door en door. Rechtstreeks contact met een gediplomeerde elektricien, heldere prijsafspraken vooraf en binnen de gemeente Utrecht rekenen wij nooit voorrijkosten.",
         "woningen": "In de historische binnenstad van Utrecht tref je veel eeuwenoude panden, grachtenpanden en monumentale herenhuizen aan. De elektra is hier vaak door de decennia heen stapsgewijs uitgebreid. In de praktijk komen we regelmatig nog stoffen bedrading tegen, oude stalen leidingen, ontbrekende aarding in woonvertrekken en overbelaste smeltzekeringen. Wie overstapt op een moderne inductiekookplaat, airconditioning of zwaardere apparatuur, heeft een vakkundige verzwaring en complete modernisering naar aardlekautomaten volgens NEN 1010 nodig.",
         "klussen": [
             [

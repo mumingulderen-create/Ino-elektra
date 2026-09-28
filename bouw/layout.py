@@ -4,7 +4,7 @@ mobiele belbalk en de structured data (JSON-LD) voor Google.
 """
 import json, datetime
 from html import escape
-from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T, PARTNER_VOLTFIX
+from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T
 
 JAAR = datetime.date.today().year
 
@@ -12,11 +12,6 @@ ICON_MENU = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke=
 ICON_TEL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'
 ICON_WA = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z"/></svg>'
 ICON_MAIL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>'
-
-
-def tel_link(cls="", label=None):
-    label = label or f"Bel {B['telefoon_tonen']}"
-    return f'<a class="{cls}" href="tel:{B["telefoon_e164"]}" data-track="bellen">{label}</a>'
 
 
 def wa_url(tekst="Hallo INO, ik heb een vraag."):
@@ -182,7 +177,7 @@ def header(nav_key, wijken, variant="standaard"):
                 f'    <span>Overzicht actieradius &amp; aanrijtijden</span>'
                 f'  </a>'
                 f'  <a href="/wijken/" class="nav-dd-all">'
-                f'    <span>Alle 18 wijken</span> →'
+                f'    <span>Alle {len(wijken)} wijken &amp; plaatsen</span> →'
                 f'  </a>'
                 f'</div>'
                 f'<div class="nav-dd-divider"></div>'
@@ -236,25 +231,21 @@ def breadcrumbs_html(crumbs):
 
 # --------------------------------------------------------------------------- footer
 def footer(wijken, storingen, variant="standaard"):
-    top_wijken = wijken[:5]
-    overige_wijken = wijken[5:]
-    top_links = "".join(f'<a href="/elektricien-{w["slug"]}/">{w["naam"]}</a>' for w in top_wijken)
-    overige_links = "".join(f'<a href="/elektricien-{w["slug"]}/">{w["naam"]}</a>' for w in overige_wijken)
-    
+    top_links = "".join(f'<a href="/elektricien-{w["slug"]}/">{w["naam"]}</a>' for w in wijken[:5])
+    overige_links = "".join(f'<a href="/elektricien-{w["slug"]}/">{w["naam"]}</a>' for w in wijken[5:])
     wijk_html = f"""<div class="footer-wijk-wrap">
       {top_links}
       <details class="footer-wijk-details">
         <summary class="footer-wijk-toggle">
-          <span class="toggle-more">+ Toon alle wijken ({len(overige_wijken)} meer)</span>
+          <span class="toggle-more">+ Toon alle wijken ({len(wijken) - 5} meer)</span>
           <span class="toggle-less">− Minder wijken tonen</span>
         </summary>
         <div class="footer-wijk-more">
           {overige_links}
         </div>
       </details>
-      <a href="/wijken/" class="footer-wijk-all">Alle 18 wijken &amp; kaart →</a>
+      <a href="/wijken/" class="footer-wijk-all">Alle {len(wijken)} wijken &amp; kaart →</a>
     </div>"""
-
     storing_links = "".join(f'<a href="/{s["slug"]}/">{s["kort"]}</a>' for s in storingen)
     kvk = f' · KvK {B["kvk"]}' if B["kvk"] else ""
     btw = f' · btw {B["btw"]}' if B["btw"] else ""
@@ -286,11 +277,11 @@ def footer(wijken, storingen, variant="standaard"):
       <p><a href="tel:{B['telefoon_e164']}" data-track="bellen"><strong>{B['telefoon_tonen']}</strong></a><br>
       <a href="mailto:{B['email']}">{B['email']}</a></p>
     </div>
-    <div><h2 class="footer-h">Diensten</h2><a href="/diensten/">Alle diensten</a><a href="/groepenkast/">Groepenkast vervangen</a><a href="/perilex/">Perilex &amp; kookgroep</a><a href="/laadpaal-installeren/">Laadpaal installeren</a><a href="/krachtstroom-aanleggen/">Krachtstroom 400V</a><a href="/frezen-stopcontacten-verleggen/">Frezen &amp; stopcontacten</a><a href="/tuinverlichting-buitenelektra/">Tuinverlichting</a></div>
+    <div><h2 class="footer-h">Diensten</h2><a href="/diensten/">Alle diensten</a><a href="/groepenkast/">Groepenkast vervangen</a><a href="/perilex/">Perilex &amp; kookgroep</a><a href="/laadpaal-installeren/">Laadpaal installeren</a><a href="/krachtstroom-aanleggen/">Krachtstroom 400V</a><a href="/extra-groep-aanleggen/">Extra groep aanleggen</a><a href="/frezen-stopcontacten-verleggen/">Frezen &amp; stopcontacten</a><a href="/tuinverlichting-buitenelektra/">Tuinverlichting</a><a href="/offerte/">Offerte aanvragen</a><a href="/afspraak/">Afspraak of schouw</a></div>
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>
-    <div><h2 class="footer-h">Werkgebied</h2>{wijk_html}</div>
+    <div><h2 class="footer-h">Werkgebied</h2><a href="/werkgebied/">Werkgebied &amp; voorrijkosten</a>{wijk_html}</div>
   </div>
-  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a>{' · <a href="' + B['linkedin'] + '" target="_blank" rel="noopener">LinkedIn</a>' if B.get('linkedin') else ''}</div>
+  <div class="copyright">© {JAAR} {B['naam']}{kvk}{btw} · <a href="/werkwijze/">Werkwijze</a> · <a href="/vakmanschap/">Vakmanschap</a> · <a href="/reviews/">Reviews</a> · <a href="/contact/">Contact</a> · <a href="/privacy/">Privacy &amp; Cookies</a>{' · <a href="#cookies" data-cookie-instellingen>Cookie-instellingen</a>' if GA4_MEASUREMENT_ID else ''} · <a href="{B['instagram']}" target="_blank" rel="noopener">Instagram</a></div>
 </footer>
 {bar}
 {floating_wa}

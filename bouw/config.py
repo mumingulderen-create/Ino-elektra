@@ -12,9 +12,7 @@ SITE_URL = "https://ino-elektra.nl"
 
 BEDRIJF = {
     "naam": "INO Techniek en Installatie",
-    "korte_naam": "INO",
     "alternatieve_naam": "INO Elektra Utrecht",
-    "slogan": "Techniek · Installatie · Innovatie",
     "telefoon_e164": "+31628763775",          # voor tel:-links en schema
     "telefoon_tonen": "06 28 76 37 75",        # zoals mensen het lezen
     "whatsapp": "31628763775",
@@ -23,8 +21,11 @@ BEDRIJF = {
     "linkedin": "https://www.linkedin.com/in/mumin-gulderen",
     # Google Bedrijfsprofiel (cid uit je bestaande reviews-link)
     "google_maps": "https://maps.google.com/?cid=15258938996024411928",
-    # Google-score: bevestigd door eigenaar (sept 2026). Alleen zichtbaar tonen met link naar Google,
+    # Google-score zoals Google hem toont (gecontroleerd 24 sept 2026). Bijwerken als het aantal groeit. Alleen zichtbaar tonen met link naar Google,
     # NIET als AggregateRating-schema (Google staat zelf-reviews voor LocalBusiness niet toe).
+    # Directe "review schrijven"-link uit je Google Bedrijfsprofiel (knop "Vraag om reviews",
+    # ziet eruit als https://g.page/r/XXXX/review). Leeg = /review/ stuurt naar je Maps-profiel.
+    "google_review_url": "https://g.page/r/CRgHZOsrpMLTEBM/review",
     "google_score": "5,0",
     "google_aantal": "37",
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
@@ -49,20 +50,16 @@ REVIEWS = [
     {"naam": "Hasan Demir", "tekst": "Geweldige klusbedrijf, zeker aan te raden! Heel netjes en snel afgehandeld."},
 ]
 
-# Collega-partners (SEO-kruisbestuiving & netwerk)
-PARTNER_VOLTFIX = {
-    "naam": "Voltfix Elektrotechniek",
-    "url": "https://www.voltfix.nl/",
-    "regio": "Amsterdam",
-}
-
 GOOGLE_SITE_VERIFICATION = "xHeZ_iY8KLYVB6SQZzxa5C9qnocjO7YkzjrELzLSXWw"
 
 # Google Analytics 4 (GA4) Meet-ID (bijv. "G-XXXXXXXXXX" of leeg laten)
 GA4_MEASUREMENT_ID = "G-HR6L1S8V7P"
 
-# FormSubmit endpoint (formulieren -> je mailbox)
-FORM_ENDPOINT = "https://formsubmit.co/ajax/d0d9de6bb2a30083d92c3fe4775b9ce6"
+# Formulieren: website -> eigen Cloudflare Worker (map worker/) -> Brevo -> info@ino-elektra.nl
+# Beide waarden zijn OPENBAAR (ze staan ook in de pagina). Geheimen (Turnstile secret key,
+# Brevo API-key) staan alleen in Cloudflare, nooit hier. Zie worker/README.md.
+FORM_ENDPOINT = "https://api.ino-elektra.nl/api/form"   # Cloudflare Worker ino-form-api (reserve: https://ino-form-api.mumingulderen.workers.dev/api/form)
+TURNSTILE_SITEKEY = "0x4AAAAAAFHipRMEWmvnusQM"    # Cloudflare Turnstile Site Key (openbaar), widget "ino-elektra formulieren"
 
 # ---------------------------------------------------------------------------
 # AANRIJTIJDEN bij spoed (vertrek vanuit Overvecht). Gebruik {{aanrijtijd_utrecht}} / {{aanrijtijd_regio}}.

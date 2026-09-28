@@ -21,6 +21,11 @@ from wijken import WIJKEN, OVERIGE_UTRECHT, OVERIGE_REGIO
 from storingen import STORINGEN
 import layout, paginas, beelden
 
+# Snelheidsbudget: de build meldt een aandachtspunt als iets hierboven komt.
+BUDGET_CSS_KB = 55      # style.css (op elke pagina)
+BUDGET_JS_KB = 30       # script.js (op elke pagina)
+BUDGET_HTML_KB = 80     # één pagina (HTML zelf, zonder foto's)
+
 MAAK_MAPPEN = True   # /pagina/index.html schrijven voor schone SEO URLs
 TODAY = datetime.date.today().isoformat()
 LASTMOD_FILE = os.path.join(ROOT, "bouw", "lastmod.json")
@@ -33,6 +38,7 @@ PLACEHOLDERS = {
     "instagram": B["instagram"],
     "linkedin": B["linkedin"],
     "google_maps": B["google_maps"],
+    "google_review_url": B["google_review_url"] or B["google_maps"],
     "google_score": B["google_score"],
     "google_aantal": B["google_aantal"],
     "werkspot": B["werkspot"] or "https://www.werkspot.nl",
@@ -40,6 +46,7 @@ PLACEHOLDERS = {
     "tarief_zin_klein": TARIEF_ZIN[0].lower() + TARIEF_ZIN[1:],
     "voorrij_zin": VOORRIJ_ZIN,
     "actief_sinds": B["actief_sinds"],
+    "kvk": B["kvk"],
     "jaar": str(datetime.date.today().year),
     "icon_wa": layout.ICON_WA,
     "icon_tel": layout.ICON_TEL,
@@ -115,6 +122,7 @@ BLOKKEN = {
     "CALCULATOR": lambda: paginas.groepenkast_calculator(),
     "STEDIN_CHECKER": lambda: paginas.blok_stedin_checker(),
     "REVIEWS_CAROUSEL": lambda: paginas.blok_reviews_carousel(),
+    "STORING_REKENHULP": lambda: paginas.blok_storing_rekenhulp(),
 }
 
 def lees_content():
@@ -164,6 +172,13 @@ def doorverwijzing(p):
             f'<script>location.replace("{doel}"+location.search+location.hash)</script>'
             f'</head><body><p><a href="{doel}">Ga naar {t}</a></p></body></html>\n')
 
+INTERNE_LINK = re.compile(r'href="/([a-z0-9][a-z0-9-]*)([#?][^"]*)?"')
+
+def normaliseer_links(html):
+    """/offerte -> /offerte/ . Op GitHub Pages laadt /offerte eerst de doorverwijspagina
+    offerte.html en pas daarna /offerte/ (twee keer laden). Bestanden (met punt) blijven ongemoeid."""
+    return INTERNE_LINK.subn(lambda m: f'href="/{m.group(1)}/{m.group(2) or ""}"', html)
+
 def schrijf(rel, content):
     # Alleen naar de root (GitHub Pages). Geen kopie in public/: dat gaf dubbele content.
     p = os.path.join(ROOT, rel)
@@ -188,16 +203,29 @@ def main():
     else:
         warn("assets/fonts/ ontbreekt: Inter wordt niet meegeleverd")
 
+    # QR-code en printbare reviewkaart (assets/qr/ -> /qr/)
+    qr_in = os.path.join(ROOT, "assets", "qr")
+    if os.path.isdir(qr_in):
+        os.makedirs(os.path.join(ROOT, "qr"), exist_ok=True)
+        for fn in sorted(os.listdir(qr_in)):
+            shutil.copyfile(os.path.join(qr_in, fn), os.path.join(ROOT, "qr", fn))
+
     css = open(os.path.join(ROOT, "assets", "style.css"), encoding="utf-8").read()
     css_min = minify_css(css)
     css_v = hashlib.md5(css_min.encode()).hexdigest()[:8]
     schrijf("style.css", css_min)
+    if len(css_min.encode()) > BUDGET_CSS_KB * 1024:
+        warn(f"style.css is {len(css_min.encode())//1024} KB (budget {BUDGET_CSS_KB} KB). Zet pagina-specifieke CSS in assets/extra/.")
 
     js = open(os.path.join(ROOT, "assets", "script.js"), encoding="utf-8").read()
-    from config import FORM_ENDPOINT
+    from config import FORM_ENDPOINT, TURNSTILE_SITEKEY
+    if not FORM_ENDPOINT or not TURNSTILE_SITEKEY:
+        warn("FORM_ENDPOINT en/of TURNSTILE_SITEKEY in bouw/config.py zijn leeg: formulieren versturen niets (zie worker/README.md)")
     js = js.replace("__FORM_ENDPOINT__", FORM_ENDPOINT).replace("__TEL__", B["telefoon_tonen"]).replace("__TEL_E164__", B["telefoon_e164"])
     js_v = hashlib.md5(js.encode()).hexdigest()[:8]
     schrijf("script.js", js)
+    if len(js.encode()) > BUDGET_JS_KB * 1024:
+        warn(f"script.js is {len(js.encode())//1024} KB (budget {BUDGET_JS_KB} KB). Zet pagina-specifieke JS in assets/extra/.")
 
     # Extra css/js die alleen op bepaalde pagina's laadt (front-matter: "extra": ["wizard"])
     extra_v = {}
@@ -207,7 +235,7 @@ def main():
         if naam.endswith(".css"):
             inhoud = minify_css(inhoud)
         else:
-            inhoud = inhoud.replace("__WHATSAPP__", B["whatsapp"])
+            inhoud = inhoud.replace("__WHATSAPP__", B["whatsapp"]).replace("__TURNSTILE_SITEKEY__", TURNSTILE_SITEKEY)
         extra_v[naam] = hashlib.md5(inhoud.encode()).hexdigest()[:8]
         schrijf(naam, inhoud)
 
@@ -267,12 +295,11 @@ def main():
                 html = html.replace("</body>", f'<script src="/{x}.js?v={extra_v[x + ".js"]}" defer></script>\n</body>', 1)
             if f"{x}.css" not in extra_v and f"{x}.js" not in extra_v:
                 warn(f"{slug}: extra '{x}' bestaat niet in assets/extra/")
-
-        # Automatische linknormalisatie: garandeer altijd trailing slashes bij interne pagina's
-        bekende_slugs = {s["slug"] for s in pages if s.get("slug")}
-        html = re.sub(r'(href=["\'])/([a-z0-9-]+)((?:[\?#][^"\'\s]*)?)(["\'])',
-                      lambda m: f'{m.group(1)}/{m.group(2)}/{m.group(3)}{m.group(4)}' if m.group(2) in bekende_slugs else m.group(0),
-                      html)
+        html, n_fix = normaliseer_links(html)
+        if n_fix:
+            warn(f"{slug or 'index'}: {n_fix} interne link(s) zonder slash automatisch verbeterd; pas de bron aan naar /pagina/")
+        if len(html.encode()) > BUDGET_HTML_KB * 1024:
+            warn(f"{slug or 'index'}: pagina is {len(html.encode())//1024} KB (budget {BUDGET_HTML_KB} KB)")
         rendered[slug] = (p, html)
 
     print("4/6 Bestanden schrijven…")
@@ -299,11 +326,15 @@ def main():
 
     schrijf("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n")
-    schrijf("robots.txt", "User-agent: *\nAllow: /\nDisallow: /assets/\nDisallow: /bouw/\nDisallow: /content/\n\n"
+    schrijf("robots.txt", "User-agent: *\nAllow: /\n\n"
             f"Sitemap: {SITE_URL}/sitemap.xml\n")
 
     print("6/6 Kwaliteitscontrole…")
     controleer(rendered)
+    if "--test" in sys.argv:
+        import test_mobiel
+        for w in test_mobiel.draai(ROOT, [p["url"].replace(SITE_URL, "") for p, _ in rendered.values() if p["slug"] != "404"]):
+            warn(w)
 
     print(f"\nKlaar: {len(rendered)} pagina's, {len(urls)} in sitemap.")
     if warnings:
@@ -318,6 +349,8 @@ def controleer(rendered):
     titles, descs = {}, {}
     for slug, (p, html) in rendered.items():
         naam = slug or "index"
+        if "formsubmit" in html.lower():
+            warn(f"{naam}: bevat nog een verwijzing naar FormSubmit")
         t, d = p["title"], p["description"]
         tl = len(re.sub(r"&amp;", "&", t))
         if tl > 60:
