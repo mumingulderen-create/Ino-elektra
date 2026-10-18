@@ -57,8 +57,20 @@ def business_node(wijken):
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             "opens": "00:00", "closes": "23:59"}],
         "areaServed": areas,
-        "knowsAbout": ["NEN 1010", "NEN 3140", "BEI BLS", "laagspanningsdistributie", "groepenkast vervangen", "Perilex", "laadpaal installatie",
-                       "krachtstroom", "storingsdienst"],
+        "knowsAbout": [
+            "NEN 1010", "NEN 3140", "NEN 3140 VP", "BEI LS VP", "BEI BLS", "VCA VOL",
+            "MBO 2 Laagspanningsdistributie", "groepenkast vervangen", "meterkast vervangen",
+            "Perilex aansluiten", "laadpaal installatie", "thuisbatterij installatie",
+            "krachtstroom aanleggen", "storingsdienst"
+        ],
+        "hasCredential": [
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "degree", "name": "MBO 2 Laagspanningsdistributie"},
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "NEN 3140 VP (Vakbekwaam Persoon)"},
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "BEI LS VP (Vakbekwaam Persoon Laagspanning)"},
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "VCA VOL (Veiligheid voor Operationeel Leidinggevenden)"},
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "certification", "name": "SBB Erkend Leerbedrijf (Relatienummer: 100850431)"},
+        ],
+        "award": "SBB Erkend Leerbedrijf – Wij leiden vakmensen op",
         "sameAs": same,
     }
     if B["kvk"]:
@@ -102,7 +114,10 @@ def schema_graph(page, wijken):
 # --------------------------------------------------------------------------- head
 def head(page, wijken, css_v, font_url=None):
     t, d = page["title"], page["description"]
-    robots = "noindex, follow" if page.get("noindex") else "index, follow, max-image-preview:large, max-snippet:-1"
+    if page.get("slug") == "beheer":
+        robots = "noindex, nofollow"
+    else:
+        robots = "noindex, follow" if page.get("noindex") else "index, follow, max-image-preview:large, max-snippet:-1"
     og_img = page.get("og_image_url") or f"{SITE_URL}/img/og-hero-elektricien.jpg"
     canon = "" if page.get("slug") == "404" else f'<link rel="canonical" href="{page["url"]}">'
     pre = ""
@@ -276,6 +291,11 @@ def footer(wijken, storingen, variant="standaard"):
       <p>Elektricien in Utrecht en omstreken. Vaste prijs vooraf en 24/7 bereikbaar bij storingen.</p>
       <p><a href="tel:{B['telefoon_e164']}" data-track="bellen"><strong>{B['telefoon_tonen']}</strong></a><br>
       <a href="mailto:{B['email']}">{B['email']}</a></p>
+      <div style="margin-top:14px;">
+        <a href="/vakmanschap/" title="INO Techniek is een SBB Erkend Leerbedrijf">
+          <img src="/img/sbb-erkend-leerbedrijf.svg" alt="SBB Erkend Leerbedrijf - Wij leiden vakmensen op" width="140" height="70" loading="lazy" style="display:block;border-radius:6px;">
+        </a>
+      </div>
     </div>
     <div><h2 class="footer-h">Diensten</h2><a href="/diensten/">Alle diensten</a><a href="/groepenkast/">Groepenkast vervangen</a><a href="/perilex/">Perilex &amp; kookgroep</a><a href="/laadpaal-installeren/">Laadpaal installeren</a><a href="/krachtstroom-aanleggen/">Krachtstroom 400V</a><a href="/extra-groep-aanleggen/">Extra groep aanleggen</a><a href="/frezen-stopcontacten-verleggen/">Frezen &amp; stopcontacten</a><a href="/tuinverlichting-buitenelektra/">Tuinverlichting</a><a href="/offerte/">Offerte aanvragen</a><a href="/afspraak/">Afspraak of schouw</a></div>
     <div><h2 class="footer-h">Storing?</h2><a href="/spoed-elektricien-utrecht/">Spoed elektricien 24/7</a>{storing_links}<a href="/tarieven/">Tarieven</a><a href="/faq/">Veelgestelde vragen</a></div>

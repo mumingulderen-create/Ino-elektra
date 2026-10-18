@@ -19,8 +19,9 @@ BEDRIJF = {
     "email": "info@ino-elektra.nl",
     "instagram": "https://www.instagram.com/ino_techniek_en_installatie",
     "linkedin": "https://www.linkedin.com/in/mumin-gulderen",
-    # Google Bedrijfsprofiel (cid uit je bestaande reviews-link)
+    # Google Bedrijfsprofiel
     "google_maps": "https://maps.google.com/?cid=15258938996024411928",
+    "google_maps_short": "https://maps.app.goo.gl/w6tLaCDY26ydscbH8",
     # Google-score zoals Google hem toont (gecontroleerd 24 sept 2026). Bijwerken als het aantal groeit. Alleen zichtbaar tonen met link naar Google,
     # NIET als AggregateRating-schema (Google staat zelf-reviews voor LocalBusiness niet toe).
     # Directe "review schrijven"-link uit je Google Bedrijfsprofiel (knop "Vraag om reviews",
@@ -30,17 +31,27 @@ BEDRIJF = {
     "google_aantal": "37",
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
     "actief_sinds": "2021",
+    # Officiële vakdiploma's en certificeringen van de ondernemer
+    "diplomas": [
+        "MBO 2 Laagspanningsdistributie",
+        "NEN 3140 VP",
+        "BEI LS VP",
+        "VCA VOL",
+    ],
+    # Officiële SBB Erkenning als Leerbedrijf
+    "sbb_erkend": True,
+    "sbb_relatienummer": "100850431",
+    "sbb_startdatum": "15-10-2026",
     # --- Wettelijk verplicht op je website (Handelsregisterwet): KvK-nummer ---
     "kvk": "86669346",
     "btw": "",                                 # VUL_IN (optioneel)
-    # Adres: alleen invullen als je dit ook in Google Bedrijfsprofiel toont.
-    # Werk je vanuit huis als servicegebied-bedrijf? Laat straat/postcode leeg.
-    "straat": "",
-    "postcode": "",
+    # Officieel zakelijk vestigingsadres (Kaap Hoorndreef Utrecht)
+    "straat": "Kaap Hoorndreef 12 B",
+    "postcode": "3563 AS",
     "plaats": "Utrecht",
     "provincie": "Utrecht",
-    "lat": 52.0907,
-    "lng": 5.1214,
+    "lat": 52.1221,
+    "lng": 5.1054,
 }
 
 # Echte Google-reviews (letterlijk overnemen van je Google-profiel, nooit zelf verzinnen).
@@ -140,10 +151,17 @@ NAV = [
         {"label": "Groepenkast vervangen", "href": "/groepenkast/"},
         {"label": "Perilex & kookgroep", "href": "/perilex/"},
         {"label": "Laadpaal installeren", "href": "/laadpaal-installeren/"},
+        {"label": "Thuisbatterij installeren", "href": "/thuisbatterij-installeren/"},
         {"label": "Krachtstroom 400V", "href": "/krachtstroom-aanleggen/"},
         {"label": "Frezen & stopcontacten", "href": "/frezen-stopcontacten-verleggen/"},
         {"label": "Extra groep aanleggen", "href": "/extra-groep-aanleggen/"},
         {"label": "Tuinverlichting", "href": "/tuinverlichting-buitenelektra/"},
+        {"label": "Buitengesloten & cilinder", "href": "/buitengesloten-cilinder-vervangen/"},
+        {"label": "Slim deurslot", "href": "/slim-deurslot-installeren/"},
+        {"label": "Videodeurbel", "href": "/videodeurbel-installeren/"},
+        {"label": "Kookplaat aansluiten", "href": "/inductiekookplaat-aansluiten/"},
+        {"label": "TV ophangen", "href": "/tv-ophangen/"},
+        {"label": "MV-box vervangen", "href": "/mv-box-vervangen/"},
     ]},
     {"label": "Tarieven", "href": "/tarieven/", "key": "tarieven"},
     {"label": "Werkgebied", "href": "/werkgebied/", "key": "werkgebied", "sub": "WIJKEN"},  # automatisch gevuld
@@ -155,8 +173,10 @@ NAV = [
 # Welke pagina-sleutel hoort bij welk hoofdmenu-item (voor 'actief' markeren)
 NAV_GROEP = {
     "groepenkast": "diensten", "perilex": "diensten", "laadpaal-installeren": "diensten",
+    "thuisbatterij-installeren": "diensten",
     "krachtstroom-aanleggen": "diensten", "frezen-stopcontacten-verleggen": "diensten",
     "extra-groep-aanleggen": "diensten", "tuinverlichting-buitenelektra": "diensten", "diensten": "diensten",
+    "buitengesloten-cilinder-vervangen": "diensten", "slim-deurslot-installeren": "diensten", "videodeurbel-installeren": "diensten", "inductiekookplaat-aansluiten": "diensten", "tv-ophangen": "diensten", "mv-box-vervangen": "diensten",
     "spoed-elektricien-utrecht": "spoed", "stroomstoring-utrecht": "spoed",
     "aardlekschakelaar-springt-eruit": "spoed", "kortsluiting-utrecht": "spoed",
     "stopcontact-werkt-niet": "spoed",

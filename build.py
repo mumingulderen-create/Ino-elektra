@@ -60,10 +60,17 @@ BREADCRUMB_NAMEN = {
     "groepenkast": [("Diensten", "/diensten/"), ("Groepenkast", None)],
     "perilex": [("Diensten", "/diensten/"), ("Perilex", None)],
     "laadpaal-installeren": [("Diensten", "/diensten/"), ("Laadpaal", None)],
+    "thuisbatterij-installeren": [("Diensten", "/diensten/"), ("Thuisbatterij installeren", None)],
     "krachtstroom-aanleggen": [("Diensten", "/diensten/"), ("Krachtstroom", None)],
     "frezen-stopcontacten-verleggen": [("Diensten", "/diensten/"), ("Frezen & stopcontacten", None)],
     "extra-groep-aanleggen": [("Diensten", "/diensten/"), ("Extra groep aanleggen", None)],
     "tuinverlichting-buitenelektra": [("Diensten", "/diensten/"), ("Tuinverlichting", None)],
+    "buitengesloten-cilinder-vervangen": [("Diensten", "/diensten/"), ("Buitengesloten", None)],
+    "slim-deurslot-installeren": [("Diensten", "/diensten/"), ("Slim deurslot", None)],
+    "videodeurbel-installeren": [("Diensten", "/diensten/"), ("Videodeurbel", None)],
+    "inductiekookplaat-aansluiten": [("Diensten", "/diensten/"), ("Kookplaat aansluiten", None)],
+    "tv-ophangen": [("Diensten", "/diensten/"), ("TV ophangen", None)],
+    "mv-box-vervangen": [("Diensten", "/diensten/"), ("MV-box vervangen", None)],
     "tarieven": [("Tarieven", None)],
     "werkgebied": [("Werkgebied", None)],
     "wijken": [("Werkgebied", "/werkgebied/"), ("Alle wijken", None)],
@@ -326,7 +333,7 @@ def main():
 
     schrijf("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n")
-    schrijf("robots.txt", "User-agent: *\nAllow: /\n\n"
+    schrijf("robots.txt", "User-agent: *\nAllow: /\nDisallow: /beheer/\n\n"
             f"Sitemap: {SITE_URL}/sitemap.xml\n")
 
     print("6/6 Kwaliteitscontrole…")
