@@ -743,7 +743,7 @@ def blok_reviews_carousel():
 </article>""")
     kaarten.append(f"""<a class="review-slide-card review-slide-more" href="{B['google_maps']}" target="_blank" rel="noopener">
   <div class="review-card-top"><div class="review-google-badge">{g_svg}</div></div>
-  <p class="review-card-text"><strong>Alle {B['google_aantal']} reviews lezen</strong><br>Bekijk alle ervaringen op ons Google-bedrijfsprofiel.</p>
+  <p class="review-card-text"><strong>Alle <span data-g="aantal">{B['google_aantal']}</span> reviews lezen</strong><br>Bekijk alle ervaringen op ons Google-bedrijfsprofiel.</p>
   <span class="mini-link">Naar Google →</span>
 </a>""")
     pijlen = ""
@@ -760,9 +760,9 @@ def blok_reviews_carousel():
         <h2>Wat klanten op Google zeggen</h2>
         <a class="reviews-score-summary" href="{B['google_maps']}" target="_blank" rel="noopener">
           <span class="score-google-icon">{g_svg}</span>
-          <span class="score-number">{B['google_score']}</span>
+          <span class="score-number" data-g="score">{B['google_score']}</span>
           {sterren}
-          <span class="score-total">uit <strong>{B['google_aantal']} Google-reviews</strong></span>
+          <span class="score-total">uit <strong><span data-g="aantal">{B['google_aantal']}</span> Google-reviews</strong></span>
         </a>
       </div>
       {pijlen}
@@ -790,7 +790,7 @@ def blok_storing_rekenhulp():
     <div class="section-heading">
       <span class="eyebrow">REKENHULP</span>
       <h2>Wat kost een storing oplossen?</h2>
-      <p>Kies het moment en hoe lang het ongeveer duurt. Je ziet direct de arbeidskosten, inclusief btw.</p>
+      <p>Kies het moment en hoe lang het ongeveer duurt. Je ziet direct de arbeidskosten, inclusief btw. In ruim 85% van de gevallen is de storing binnen het eerste uur opgelost.</p>
     </div>
     <div class="rekenhulp" data-tarieven='{data}'>
       <fieldset>

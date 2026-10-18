@@ -838,7 +838,7 @@ body{overflow-x:hidden;overflow-x:clip}
   width: 32px;
   height: 32px;
   background: var(--green);
-  color: #ffffff;
+  color: #10220d;
   font-weight: 800;
   font-size: 14px;
   border-radius: 50%;
@@ -858,10 +858,6 @@ body{overflow-x:hidden;overflow-x:clip}
 }
 
 @media (max-width: 800px) {
-  .hero-split-choice {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
   .steps-grid {
     grid-template-columns: 1fr;
     gap: 16px;

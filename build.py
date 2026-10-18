@@ -199,14 +199,6 @@ def main():
     beelden.verwerk_logo()
 
     print("2/6 Assets (css/js/fonts)…")
-    # Zorg dat sbb-erkend-leerbedrijf.svg altijd zowel in / als in /img/ aanwezig is
-    for target_dir in [ROOT, os.path.join(ROOT, "img")]:
-        os.makedirs(target_dir, exist_ok=True)
-        target_path = os.path.join(target_dir, "sbb-erkend-leerbedrijf.svg")
-        source_path = os.path.join(ROOT, "sbb-erkend-leerbedrijf.svg")
-        if os.path.exists(source_path) and target_path != source_path:
-            import shutil
-            shutil.copy2(source_path, target_path)
     # Inter zelf hosten: geen verbinding meer naar fonts.googleapis.com en
     # fonts.gstatic.com (sneller op mobiel, en geen IP-adressen naar Google).
     fonts_in = os.path.join(ROOT, "assets", "fonts")
@@ -233,10 +225,10 @@ def main():
         warn(f"style.css is {len(css_min.encode())//1024} KB (budget {BUDGET_CSS_KB} KB). Zet pagina-specifieke CSS in assets/extra/.")
 
     js = open(os.path.join(ROOT, "assets", "script.js"), encoding="utf-8").read()
-    from config import FORM_ENDPOINT, TURNSTILE_SITEKEY
+    from config import FORM_ENDPOINT, TURNSTILE_SITEKEY, REVIEWS_ENDPOINT
     if not FORM_ENDPOINT or not TURNSTILE_SITEKEY:
         warn("FORM_ENDPOINT en/of TURNSTILE_SITEKEY in bouw/config.py zijn leeg: formulieren versturen niets (zie worker/README.md)")
-    js = js.replace("__FORM_ENDPOINT__", FORM_ENDPOINT).replace("__TEL__", B["telefoon_tonen"]).replace("__TEL_E164__", B["telefoon_e164"])
+    js = js.replace("__REVIEWS_ENDPOINT__", REVIEWS_ENDPOINT).replace("__FORM_ENDPOINT__", FORM_ENDPOINT).replace("__TEL__", B["telefoon_tonen"]).replace("__TEL_E164__", B["telefoon_e164"])
     js_v = hashlib.md5(js.encode()).hexdigest()[:8]
     schrijf("script.js", js)
     if len(js.encode()) > BUDGET_JS_KB * 1024:

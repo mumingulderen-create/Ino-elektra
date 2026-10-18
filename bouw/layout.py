@@ -293,7 +293,7 @@ def footer(wijken, storingen, variant="standaard"):
       <a href="mailto:{B['email']}">{B['email']}</a></p>
       <div style="margin-top:14px;">
         <a href="/vakmanschap/" title="INO Techniek is een SBB Erkend Leerbedrijf">
-          <img src="/sbb-erkend-leerbedrijf.svg" alt="SBB Erkend Leerbedrijf - Wij leiden vakmensen op" width="140" height="70" loading="lazy" style="display:block;border-radius:6px;">
+          <img src="/img/sbb-erkend-leerbedrijf.svg" alt="SBB Erkend Leerbedrijf - Wij leiden vakmensen op" width="140" height="70" loading="lazy" style="display:block;border-radius:6px;">
         </a>
       </div>
     </div>
