@@ -790,7 +790,7 @@ def blok_storing_rekenhulp():
     <div class="section-heading">
       <span class="eyebrow">REKENHULP</span>
       <h2>Wat kost een storing oplossen?</h2>
-      <p>Kies het moment en hoe lang het ongeveer duurt. Je ziet direct de arbeidskosten, inclusief btw. In ruim 85% van de gevallen is de storing binnen het eerste uur opgelost.</p>
+      <p>Kies het moment en hoe lang het ongeveer duurt. Je ziet direct de arbeidskosten, inclusief btw.</p>
     </div>
     <div class="rekenhulp" data-tarieven='{data}'>
       <fieldset>
