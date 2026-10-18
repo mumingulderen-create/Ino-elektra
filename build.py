@@ -199,6 +199,14 @@ def main():
     beelden.verwerk_logo()
 
     print("2/6 Assets (css/js/fonts)…")
+    # Zorg dat sbb-erkend-leerbedrijf.svg altijd zowel in / als in /img/ aanwezig is
+    for target_dir in [ROOT, os.path.join(ROOT, "img")]:
+        os.makedirs(target_dir, exist_ok=True)
+        target_path = os.path.join(target_dir, "sbb-erkend-leerbedrijf.svg")
+        source_path = os.path.join(ROOT, "sbb-erkend-leerbedrijf.svg")
+        if os.path.exists(source_path) and target_path != source_path:
+            import shutil
+            shutil.copy2(source_path, target_path)
     # Inter zelf hosten: geen verbinding meer naar fonts.googleapis.com en
     # fonts.gstatic.com (sneller op mobiel, en geen IP-adressen naar Google).
     fonts_in = os.path.join(ROOT, "assets", "fonts")
