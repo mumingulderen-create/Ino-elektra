@@ -137,7 +137,7 @@ def head(page, wijken, css_v, font_url=None):
     gtag('js', new Date());
     gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});
   }};
-  try {{ if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); }} catch (e) {{}}
+  try {{ var host = location.hostname || ''; if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') {{ if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); }} }} catch (e) {{}}
 </script>""" if GA4_MEASUREMENT_ID else ""
     return f"""<!doctype html>
 <html lang="nl">
@@ -293,7 +293,7 @@ def footer(wijken, storingen, variant="standaard"):
       <a href="mailto:{B['email']}">{B['email']}</a></p>
       <div style="margin-top:14px;">
         <a href="/vakmanschap/" title="INO Techniek is een SBB Erkend Leerbedrijf">
-          <img src="/img/sbb-erkend-leerbedrijf.svg" alt="SBB Erkend Leerbedrijf - Wij leiden vakmensen op" width="140" height="70" loading="lazy" style="display:block;border-radius:6px;">
+          <img src="/sbb-erkend-leerbedrijf.svg" alt="SBB Erkend Leerbedrijf - Wij leiden vakmensen op" width="140" height="70" loading="lazy" style="display:block;border-radius:6px;">
         </a>
       </div>
     </div>

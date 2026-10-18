@@ -1,3 +1,11 @@
+// Veilige cross-origin foutafhandeling
+window.addEventListener('error', function (e) {
+  if (e && e.message === 'Script error.') {
+    // Cross-origin script error (bijv. Google Analytics / Tag Manager in iframe preview)
+    e.preventDefault && e.preventDefault();
+    return true;
+  }
+});
 /* INO Elektra – script.js (v2)
    Klein, zonder frameworks. Wordt met `defer` geladen, blokkeert de pagina dus niet. */
 (function () {
@@ -162,7 +170,7 @@
     var elTitel = document.getElementById("calcTitel");
     var elUitleg = document.getElementById("calcUitleg");
     var elPrijs = document.getElementById("calcPrijs");
-    var P = { basis: 640, driefase: 120, kookgroep: 85, kracht: 185, pv: 95, groep: 45 };
+    var P = { basis: 695, driefase: 120, kookgroep: 85, kracht: 185, pv: 95, groep: 45 };
     try { var sec = document.getElementById("keuzehulp"); if (sec && sec.dataset.prijzen) P = JSON.parse(sec.dataset.prijzen); } catch (e) {}
     var elOfferte = document.getElementById("calcOfferteBtn");
     var elWa = document.getElementById("calcWaBtn");
@@ -417,7 +425,7 @@
       var oud = lees();
       bewaar(v);
       sluit();
-      if (v === "ja") window.inoGA4();
+      if (v === "ja") { var h = location.hostname || ""; if (h.indexOf("ino-elektra.nl") !== -1 && typeof window.inoGA4 === "function") window.inoGA4(); }
       else if (oud === "ja") location.reload(); // intrekken: pagina zonder GA opnieuw laden
     }
     function bouw() {
@@ -481,6 +489,7 @@
   }
   initCookies();
 })();
+
 
 /* Live Google-score: de vaste score staat al in de HTML; dit werkt hem bij via onze
    eigen Worker (geen Google-scripts, geen cookies). Op /reviews/ ook de nieuwste reviews. */
