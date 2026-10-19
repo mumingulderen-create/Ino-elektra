@@ -28,7 +28,7 @@ BEDRIJF = {
     # ziet eruit als https://g.page/r/XXXX/review). Leeg = /review/ stuurt naar je Maps-profiel.
     "google_review_url": "https://g.page/r/CRgHZOsrpMLTEBM/review",
     "google_score": "5,0",
-    "google_aantal": "41",
+    "google_aantal": "46",
     "werkspot": "",                            # VUL_IN: volledige URL van je Werkspot-profiel
     "actief_sinds": "2021",
     # Officiële vakdiploma's en certificeringen van de ondernemer

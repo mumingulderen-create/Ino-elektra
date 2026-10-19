@@ -8,8 +8,8 @@
   "hash": "ca9d123fd5a26c250763b0fbe44841a0"
  },
  "afspraak": {
-  "date": "2026-09-28",
-  "hash": "7b183ddb2ebeaa89998e92dd96f1cd93"
+  "date": "2026-10-19",
+  "hash": "2cf6d8bbbe8937b1b352b489855caeb6"
  },
  "beheer": {
   "date": "2026-10-18",
@@ -20,8 +20,8 @@
   "hash": "1511ea9f05f1a5b295d4a57090e4f11c"
  },
  "contact": {
-  "date": "2026-09-28",
-  "hash": "73f1c4f9de554c04101f2197a2e6ae95"
+  "date": "2026-10-19",
+  "hash": "5ed525687e9db5bc93412e8b487d3558"
  },
  "diensten": {
   "date": "2026-10-18",
@@ -104,8 +104,8 @@
   "hash": "e543d59650bda6351ccaf47e35527fd1"
  },
  "faq": {
-  "date": "2026-10-18",
-  "hash": "b1defe7ac819602a0d16e476e1beec63"
+  "date": "2026-10-19",
+  "hash": "f25820738af6a96ac613ee0505a7944a"
  },
  "frezen-stopcontacten-verleggen": {
   "date": "2026-10-16",
@@ -116,8 +116,8 @@
   "hash": "ce478be9de23a5ca1945fa91a9d04c9d"
  },
  "index": {
-  "date": "2026-10-18",
-  "hash": "bad7cadf7c88fa34b084426a2b1cab39"
+  "date": "2026-10-19",
+  "hash": "7ed383604866614b8193eb12e8695290"
  },
  "inductiekookplaat-aansluiten": {
   "date": "2026-10-16",
@@ -140,8 +140,8 @@
   "hash": "c33e0e5c335c37c024d870e8eef62682"
  },
  "offerte": {
-  "date": "2026-10-16",
-  "hash": "889f799ae05142af822f0686c3a320c4"
+  "date": "2026-10-19",
+  "hash": "c9c3b8ab4b20d699160c68165507b470"
  },
  "perilex": {
   "date": "2026-10-16",
@@ -156,8 +156,8 @@
   "hash": "b3c7a03ccfd0e884a9d1ad95db62a7de"
  },
  "reviews": {
-  "date": "2026-10-18",
-  "hash": "28a6fd311573eacfa391e86a1fee6ed5"
+  "date": "2026-10-19",
+  "hash": "16a1063c1380db7b4cf743e29c715f54"
  },
  "slim-deurslot-installeren": {
   "date": "2026-10-16",
@@ -192,16 +192,16 @@
   "hash": "3fe1f4ce1860123b03abed25141b92ac"
  },
  "vakmanschap": {
-  "date": "2026-10-18",
-  "hash": "5e8c2a913c7fae236f76347190c37183"
+  "date": "2026-10-19",
+  "hash": "fbb487644bd93e786ec73344fccfd53a"
  },
  "videodeurbel-installeren": {
   "date": "2026-10-16",
   "hash": "cb33c12b582e7dc078fc7a2977441944"
  },
  "werkgebied": {
-  "date": "2026-09-28",
-  "hash": "4b567a8e0863cd85457482fbc9cf6ec3"
+  "date": "2026-10-19",
+  "hash": "1667175d03690a2aa727ae2c96c238b4"
  },
  "werkwijze": {
   "date": "2026-09-26",
