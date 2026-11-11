@@ -2,7 +2,7 @@
 {
   "slug": "",
   "title": "Elektricien Utrecht | 24/7 storing &amp; vaste prijs | INO",
-  "description": "Elektricien in Utrecht nodig? Storing, groepenkast, Perilex of laadpaal. 24/7 bereikbaar, vaste prijs vooraf, geen voorrijkosten in Utrecht. Bel 06 28 76 37 75.",
+  "description": "Elektricien in Utrecht nodig? 24/7 bij storing, vaste prijs vooraf en geen voorrijkosten in Utrecht. Google-score {{google_score}} uit {{google_aantal}} reviews. Bel {{tel}}.",
   "og_image": "hero-elektricien.jpg",
   "nav": "index"
 }
@@ -11,7 +11,7 @@
   <div class="container hero-grid-2col">
     <div>
       <h1>Elektricien in Utrecht, <span>ook bij spoed 24/7</span></h1>
-      <p class="lead">Geen stroom, een aardlekschakelaar die blijft uitspringen of toe aan een nieuwe groepenkast? Je belt direct met de monteur, krijgt vooraf een vaste prijs en betaalt binnen de gemeente Utrecht geen voorrijkosten. Ook in Nieuwegein, Maarssen, Vianen, Breukelen en omstreken.</p>
+      <p class="lead"><a class="mini-link" href="/stroomstoring-utrecht/">Geen stroom</a>, een <a class="mini-link" href="/aardlekschakelaar-springt-eruit/">aardlekschakelaar die blijft uitspringen</a> of toe aan een nieuwe groepenkast? Je belt direct met de monteur, krijgt vooraf een vaste prijs en betaalt binnen de gemeente Utrecht geen voorrijkosten. Ook in Nieuwegein, Maarssen, Vianen, Breukelen en omstreken.</p>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="tel:{{tel_e164}}" data-track="bellen">Bel direct {{tel}}</a>
         <a class="btn btn-whatsapp" href="https://wa.me/{{whatsapp}}?text=Hallo%20INO%2C%20ik%20heb%20een%20vraag%20over%20een%20elektrotechnische%20klus.%20Hierbij%20een%20foto." target="_blank" rel="noopener" data-track="whatsapp">WhatsApp een foto</a>
@@ -53,7 +53,7 @@
       <div class="step-card">
         <div class="step-number">2</div>
         <h3>Vooraf een duidelijke vaste prijs</h3>
-        <p>Je weet exact waar je aan toe bent vóórdat we beginnen. Geen verborgen kosten, geen onverwachte nacalculaties en <strong>€ 0,- voorrijkosten</strong> binnen de gemeente Utrecht.</p>
+        <p>Je weet exact waar je aan toe bent vóórdat we beginnen. Geen verborgen kosten, geen onverwachte nacalculaties en <strong>€ {{voorrijkosten_utrecht}},- voorrijkosten</strong> binnen de gemeente Utrecht.</p>
       </div>
       <div class="step-card">
         <div class="step-number">3</div>
@@ -69,18 +69,18 @@
   <div class="container">
     <div class="section-heading" style="margin-bottom:12px;">
       <h2>Duidelijke tarieven, vaste prijs vooraf</h2>
-      <p>Geen verborgen kosten of verrassingen achteraf. € 0,- voorrijkosten binnen de gemeente Utrecht.</p>
+      <p>Geen verborgen kosten of verrassingen achteraf. € {{voorrijkosten_utrecht}},- voorrijkosten binnen de gemeente Utrecht.</p>
     </div>
     <div class="pricing-grid-3">
       <div class="price-card">
         <div class="price-card-title">Uurtarief &amp; Storing</div>
-        <div class="price-amount">€ 90 <span>/ uur (1e uur)</span></div>
-        <div class="price-sub">Ma–vr 08:00–18:00 (inclusief foutdiagnose &amp; btw)</div>
+        <div class="price-amount">€ {{uur_dag}} <span>/ uur</span></div>
+        <div class="price-sub">Standaard uurtarief overdag (ma–vr 08:00–18:00), eerste uur incl. diagnose</div>
         <ul class="price-features">
-          <li><span>✓</span> <strong>Overdag (08:00–18:00):</strong> € 90 all-in (1e uur)</li>
-          <li><span>⚡</span> <strong>Avond (18:00–22:00):</strong> € 120 all-in (1e uur)</li>
-          <li><span>⚡</span> <strong>Nacht &amp; weekend:</strong> € 145 all-in (1e uur)</li>
-          <li><span>✓</span> <strong>€ 0,- voorrijkosten</strong> binnen gemeente Utrecht</li>
+          <li><span>⚡</span> <strong>Avondstoring (ma–vr 18:00–22:00):</strong> € {{uur_avond}} all-in (1e uur)</li>
+          <li><span>⚡</span> <strong>Nacht- &amp; weekendstoring:</strong> € {{uur_nacht}} all-in (1e uur)</li>
+          <li><span>✓</span> <strong>€ {{voorrijkosten_utrecht}},- voorrijkosten</strong> binnen gemeente Utrecht</li>
+          <li><span>✓</span> Vakkundige NEN 3140 storingsdiagnose</li>
         </ul>
         <a href="/tarieven/" class="price-cta btn-secondary">Bekijk alle uurtarieven &rarr;</a>
       </div>
@@ -88,7 +88,7 @@
       <div class="price-card popular">
         <span class="popular-badge">Meest gekozen</span>
         <div class="price-card-title">Groepenkast vervangen</div>
-        <div class="price-amount">€ 695 <span>vanaf, all-in</span></div>
+        <div class="price-amount">€ {{groepenkast_1f}} <span>vanaf, all-in</span></div>
         <div class="price-sub">Compleet gemonteerd, aangesloten &amp; gekeurd</div>
         <ul class="price-features">
           <li><span>✓</span> A-merk componenten (ABB of Hager)</li>
@@ -101,7 +101,7 @@
 
       <div class="price-card">
         <div class="price-card-title">Perilex &amp; Kookgroep</div>
-        <div class="price-amount">€ 120 <span>vanaf (incl. btw)</span></div>
+        <div class="price-amount">€ {{perilex_aansluiten}} <span>vanaf, all-in</span></div>
         <div class="price-sub">Voor inductiekookplaten &amp; elektrisch koken</div>
         <ul class="price-features">
           <li><span>✓</span> Aansluiten op bestaande geschikte leiding</li>
@@ -142,7 +142,7 @@
       <article class="service-card"><h3>Storing &amp; spoed 24/7</h3><p>Overdag € {{uur_dag}} voor het eerste uur, inclusief diagnose. Direct de monteur aan de lijn.</p><a href="/spoed-elektricien-utrecht/">Spoedservice</a></article>
       <article class="service-card" id="laadpaal"><h3>Laadpaal installeren</h3><p>Wallbox aan de gevel of op de oprit, met eigen groep en waar nodig load balancing.</p><a href="/laadpaal-installeren/">Laadpaal laten plaatsen</a></article>
       <article class="service-card"><h3>Krachtstroom 400V</h3><p>3-fase groep voor warmtepomp, sauna, jacuzzi of werkplaats. Juist berekend en veilig aangelegd.</p><a href="/krachtstroom-aanleggen/">Krachtstroom aanleggen</a></article>
-      <article class="service-card" id="aarding"><h3>Aarding &amp; NEN-inspectie</h3><p>Aardpen slaan, aarding doormeten en complete NEN 1010 / NEN 3140 veiligheidskeuring van je installatie.</p><a href="/vakmanschap/">Vakmanschap &amp; keuring</a></article>
+      <article class="service-card"><h3>Frezen &amp; stopcontacten</h3><p>Stofarm sleuven frezen vanaf € {{frezen_per_meter}}/m, stopcontact verleggen vanaf € {{stopcontact_verleggen}} per punt.</p><a href="/frezen-stopcontacten-verleggen/">Bekijk prijzen</a></article>
     </div>
     <p style="margin-top:22px"><a class="mini-link" href="/diensten/">Alle diensten bekijken</a> · <a class="mini-link" href="/tuinverlichting-buitenelektra/">Tuinverlichting &amp; buitenelektra</a></p>
   </div>
@@ -225,9 +225,8 @@
       </a>
     </div>
     <!--ALS werkspot--><div class="werkspot-corner" style="margin-top:14px">
-      <span class="review-stars small">★★★★★</span>
-      <span>5.0 op <strong>Werkspot</strong></span>
-      <a href="{{werkspot}}" target="_blank" rel="noopener" class="mini-link">bekijken →</a>
+      <span>Ook te vinden op <strong>Werkspot</strong></span>
+      <a href="{{werkspot}}" target="_blank" rel="noopener" class="mini-link">bekijk ons profiel →</a>
     </div><!--/ALS-->
   </div>
 </section>

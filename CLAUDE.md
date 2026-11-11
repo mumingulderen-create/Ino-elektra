@@ -12,14 +12,15 @@ Dit is het enige regelbestand. Geef het mee aan elke AI die aan de site werkt. U
 - Na elke wijziging `python3 build.py --test` (zonder playwright: `python3 build.py`) en alle aandachtspunten oplossen vóór je commit. Na wijzigingen in `worker/`: `cd worker && npm test`.
 
 ## Bevestigd door de eigenaar
-- Prijzen van de live site kloppen. Groepenkast all-in: 1-fase € 640, 3-fase € 760 (de calculator rekent met dezelfde bedragen).
+- Prijzen van de live site kloppen. Groepenkast all-in: 1-fase € 695, 3-fase € 815 (de calculator rekent met dezelfde bedragen).
 - Perilex-stekker aansluiten € 120 (`perilex_aansluiten`), nieuwe kookgroep € 150 (`perilex_kookgroep`). Er bestaat geen € 275.
 - Zaterdag, zondag, feestdagen en 22:00–08:00: nachttarief.
 - Aanrijtijd vanuit Overvecht: gemeente Utrecht 5–30 min, daarbuiten 15–40 min (`AANRIJTIJD`). Geen andere tijden noemen.
 - **Niet** NEN 1010-gecertificeerd, wel werken **volgens** NEN 1010. **Wel** NEN 3140-gecertificeerd.
 - Ruim 85% van de storingen is binnen het eerste uur opgelost.
+- Engels spreken: bevestigd (6 nov 2026). Prijzen op de homepage volgen `config.py` (geen losse bedragen meer); thuisbatterij aansluiten richtprijs `thuisbatterij_min`/`thuisbatterij_max` (€ 350–750); fabrieksgarantie materialen 2 jaar.
 - Vakmanschap (bevestigd 26 sept 2026): MBO Monteur Laagspanningsdistributie (Crebo 25769, Techniek College Rotterdam), STIPEL VP LS-netten (BEI BLS), 2,5 jaar monteur bij Stedin, VP bij Heijmans en Liander, 4 jaar zelfstandig. LinkedIn: `BEDRIJF["linkedin"]`.
-- Google: 5,0 uit 41 reviews (18 okt 2026), `google_score`/`google_aantal`. KvK 86669346.
+- Google: 5,0 uit 46 reviews (23 okt 2026), `google_score`/`google_aantal`. KvK 86669346.
 - Werkgebied: Utrecht met alle wijken, Maarssen, Nieuwegein, Vianen, Breukelen, Houten, Zeist, IJsselstein, De Bilt, Woerden, Amersfoort, Veenendaal. Niets daarbuiten zonder akkoord.
 - Voltfix Elektrotechniek (Amsterdam, eigenaar Hassan) is een bevriende elektricien. Link alleen op /werkgebied/ (#collega-netwerk) en /contact/, nooit in header of footer. Geen claims over hun diensten.
 
@@ -30,8 +31,16 @@ Dit is het enige regelbestand. Geef het mee aan elke AI die aan de site werkt. U
 - Uitleg hoe klanten zelf aan de groepenkast of leidingen werken (de bestaande veilige eerste stappen op storingspagina's niet uitbreiden).
 - Wijkpagina's maken door alleen de plaatsnaam te wisselen (doorway pages). Elke wijk: eigen woningtypes, buurten, klussen en FAQ; `"praktijk"` alleen met echte klussen.
 - Sitewide links naar andere bedrijven.
-- Google Analytics laden vóór akkoord in de cookiemelding (`bouw/layout.py` + `initCookies` in `assets/script.js`).
+- Google Analytics of de Google Ads-tag laden vóór akkoord in de cookiemelding (`bouw/layout.py` + `initCookies` in `assets/script.js`).
 - Secrets (API-keys, wachtwoorden) in de repo, HTML of JavaScript.
+- Een beheer-/CRM-/inlogpagina op de publieke site zetten. Een login in client-side JavaScript is schijnbeveiliging (met één console-regel te omzeilen) en klantgegevens in localStorage zijn niet AVG-veilig. CRM hoort in een afgeschermd hulpmiddel (Brevo CRM, Moneybird). /beheer/ is om die reden uit v2 verwijderd (24 okt 2026); niet opnieuw toevoegen.
+
+## Twee talen (NL en EN, sinds 6 nov 2026)
+- Elke pagina bestaat in het Nederlands (`/pagina/`) en het Engels (`/en/page/`). Vlag-schakelaar NL | EN in de header; navigeren blijft in dezelfde taal.
+- Engelse bron: `content/en/<zelfde bestandsnaam als NL>.html`, `bouw/wijken_en.py`, `bouw/storingen_en.py`. Slugkoppeling en kruimelpadnamen: `bouw/taal.py`. Sjablonen: `L("nl", "en")` en `pad("/nl-pad/")`. Scripts: `bouw/vertaling_js.py` maakt `script-en.js` e.d.
+- Pas je een Nederlandse tekst aan, pas dan de Engelse tegenhanger ook aan. Nieuwe pagina: slug in `EN_SLUG` + Engels bestand. De build waarschuwt bij een ontbrekende vertaling, bij links naar de andere taal en bij JS-teksten die niet meer gevonden worden.
+- In het Engels dezelfde regels: alleen placeholders voor prijzen, geen nieuwe claims, Brits Engels, you-vorm. Reviews alleen origineel of als vertaling gemarkeerd ("translated from Dutch"). "English spoken" is bevestigd door de eigenaar (6 nov 2026) en staat op de Engelse site (bovenbalk, homepage, spoed, contact, offerte, wijken, FAQ, `knowsLanguage` in JSON-LD).
+- Formulieren op `/en/` sturen `taal=en`; de Worker geeft dan Engelse meldingen en een Engelse bevestiging (`worker/src/taal.js`), de mail aan info@ krijgt `[EN]`.
 
 ## SEO en tekst
 - Title ≤ 60 tekens, description 120–160, precies één H1 met zoekwoord.
@@ -51,10 +60,13 @@ Dit is het enige regelbestand. Geef het mee aan elke AI die aan de site werkt. U
 - Formulieren (quoteForm, spoedForm, appointmentForm) → Turnstile → Cloudflare Worker `ino-form-api` (`worker/`, `POST https://api.ino-elektra.nl/api/form`) → Brevo → info@ino-elektra.nl + bevestiging klant. Geen FormSubmit. Secrets `TURNSTILE_SECRET_KEY` en `BREVO_API_KEY` alleen in Cloudflare. Nieuwe formuliervelden ook toevoegen aan de witte lijst in `worker/src/validatie.js`.
 
 ## Nog open (eigenaar)
-- Formulieren activeren: Brevo, Turnstile, Worker deployen, domein naar Cloudflare DNS (voor api.ino-elektra.nl), daarna `FORM_ENDPOINT` en `TURNSTILE_SITEKEY` invullen. Tot dan tonen de formulieren een foutmelding met het telefoonnummer. Stappen: `worker/README.md`.
+- Google Ads (11 nov 2026): `GOOGLE_ADS_ID` in `config.py` laadt samen met GA4 na akkoord; bellen en verstuurd formulier sturen `conversion`. De ID `AW-7124503256` lijkt op het accountnummer en er is nog geen conversielabel: eigenaar moet de echte `AW-…/label` uit Google Ads opgeven. Ankers voor sitelinks op de homepage: `#groepenkast`, `#kookgroep`, `#laadpaal`, `#storing`, `#contact`. Cookiemelding en /privacy/ noemen Google Ads.
+- Formulieren zijn ACTIEF (bevestigd eigenaar 24 okt 2026): Brevo, Turnstile en Worker `ino-form-api` op `api.ino-elektra.nl` draaien; `FORM_ENDPOINT` en `TURNSTILE_SITEKEY` staan ingevuld in `config.py`. Secrets alleen in Cloudflare. Achtergrond/onderhoud: `worker/README.md`.
 - Live Google-reviews: `GET /api/reviews` in de Worker staat klaar (`worker/src/reviews.js`). Place ID staat in `wrangler.toml` (servicegebied-bedrijf: alleen vindbaar met `includePureServiceAreaBusinesses`). Eigenaar moet nog: secret `GOOGLE_PLACES_API_KEY` zetten en Worker deployen (`worker/README.md`). Score/aantal in HTML met `data-g="score"`/`data-g="aantal"`; vaste waarden in `config.py` blijven de terugval.
 - `BEDRIJF["werkspot"]` (URL; het Werkspot-blok blijft verborgen tot dit is ingevuld), eventueel `btw`.
 - Echte foto's (`assets/foto/`) en echte praktijkvoorbeelden per wijk.
+- Engelse site: Worker opnieuw deployen (`cd worker && npx wrangler deploy`) voor Engelse foutmeldingen en bevestigingsmail.
 - Nog bevestigen door eigenaar (staat al op de site, niet uitgebreid): samenwerking met stratenmakers (/tuinverlichting-buitenelektra/), staffelkorting bij 3+ stopcontacten (/frezen-stopcontacten-verleggen/), "offerte doorgaans binnen 24 uur" (/tarieven/), betalen via betaalverzoek of factuur (/spoed/, /faq/).
 - Aanrijtijd 15–40 min geldt voor "buiten de gemeente Utrecht"; voor Amersfoort en Veenendaal niet noemen tot de eigenaar dat bevestigt.
 - Nieuwe dienstpagina's (15 okt 2026, v2-concept, eigenaar past later aan): /buitengesloten-cilinder-vervangen/, /slim-deurslot-installeren/, /videodeurbel-installeren/, /inductiekookplaat-aansluiten/, /tv-ophangen/, /mv-box-vervangen/. Nog geen vaste prijzen; ze rekenen op uurtarief (+ materiaal apart). Vaste prijzen alleen toevoegen in `config.py` na opgave eigenaar. Nog bevestigen: legitimatiecheck bij deur openen, SKG-cilinder als optie, buitensluiting ook 's avonds/weekend, plaat inbouwen op uurtarief, beugel door klant of in overleg.
+- /aardpen-slaan/ (22 okt 2026): bevestigd KLIC-melding vooraf, meestal binnen één dagdeel klaar, altijd een meetrapport. Prijs: alleen "offerte op aanvraag" + schouw, geen bedragen. Niet gebruiken: pneumatisch/machinaal slaan, "officieel certificaat", 166 ohm, 6–15 meter. "Erkend installateur" pas toevoegen als de eigenaar de organisatie (en nummer) heeft opgegeven; tot dan "NEN 3140-gecertificeerd, werkt volgens NEN 1010".
