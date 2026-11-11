@@ -122,7 +122,7 @@ def blok_stedin_checker(toon_kop=True):
 
   </div>
 {voet_uitleg}
-  </div>on>"""
+  </section>"""
 
 
 def tarief_kaarten(voorrij=True):
