@@ -28,7 +28,7 @@ def faq_html(faq, titel="Veelgestelde vragen", intro=""):
 
 def cta_band(titel="Direct hulp of een vaste prijs?", tekst="Bel, app een foto van je meterkast of vraag een offerte aan. Je hoort altijd vooraf wat het kost.", wijk=""):
     q = f"?wijk={wijk}" if wijk else ""
-    return f"""<section class="contact-cta">
+    return f"""<section class="contact-cta" id="contact">
   <div class="container">
     <h2>{titel}</h2>
     <p>{tekst}</p>

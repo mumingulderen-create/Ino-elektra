@@ -4,7 +4,7 @@ mobiele belbalk en de structured data (JSON-LD) voor Google.
 """
 import json, datetime
 from html import escape
-from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, TARIEVEN as T
+from config import SITE_URL, BEDRIJF as B, NAV, NAV_GROEP, GOOGLE_SITE_VERIFICATION, GA4_MEASUREMENT_ID, GOOGLE_ADS_ID, TARIEVEN as T
 
 JAAR = datetime.date.today().year
 
@@ -114,10 +114,7 @@ def schema_graph(page, wijken):
 # --------------------------------------------------------------------------- head
 def head(page, wijken, css_v, font_url=None):
     t, d = page["title"], page["description"]
-    if page.get("slug") == "beheer":
-        robots = "noindex, nofollow"
-    else:
-        robots = "noindex, follow" if page.get("noindex") else "index, follow, max-image-preview:large, max-snippet:-1"
+    robots = "noindex, follow" if page.get("noindex") else "index, follow, max-image-preview:large, max-snippet:-1"
     og_img = page.get("og_image_url") or f"{SITE_URL}/img/og-hero-elektricien.jpg"
     canon = "" if page.get("slug") == "404" else f'<link rel="canonical" href="{page["url"]}">'
     pre = ""
@@ -125,20 +122,21 @@ def head(page, wijken, css_v, font_url=None):
         href, srcset, sizes = page["lcp"]
         pre = (f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}"'
                f' imagesizes="{sizes}" fetchpriority="high" media="(min-width: 801px)">')
-    # GA4 laadt pas NA toestemming (cookiemelding in script.js). Zonder akkoord: geen cookies, geen verzoek naar Google.
+    # GA4 & Google Ads laden pas NA toestemming (cookiemelding in script.js). Zonder akkoord: geen cookies, geen verzoek naar Google.
+    ads_config = f"\n    gtag('config', '{GOOGLE_ADS_ID}');" if GOOGLE_ADS_ID else ""
     ga4_tag = f"""\n<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
   window.inoGA4 = function () {{
     if (window.inoGA4geladen) return; window.inoGA4geladen = true;
     var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}';
+    s.src = 'https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID or GOOGLE_ADS_ID}';
     document.head.appendChild(s);
     gtag('js', new Date());
-    gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});
+    gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});{ads_config}
   }};
   try {{ var host = location.hostname || ''; if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') {{ if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); }} }} catch (e) {{}}
-</script>""" if GA4_MEASUREMENT_ID else ""
+</script>""" if (GA4_MEASUREMENT_ID or GOOGLE_ADS_ID) else ""
     return f"""<!doctype html>
 <html lang="nl">
 <head>

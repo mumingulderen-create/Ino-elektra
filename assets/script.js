@@ -130,7 +130,12 @@ window.addEventListener('error', function (e) {
         })
         .then(function () {
           track("formulier_verstuurd", { formulier: form.id || "form" });
-          track("generate_lead", { formulier: form.id || "form", currency: "EUR" });
+          track("generate_lead", { event_category: "formulier", event_label: "offerte_aanvraag", formulier: form.id || "form", currency: "EUR" });
+          try {
+            if (typeof window.gtag === "function") {
+              window.gtag("event", "generate_lead", { "event_category": "formulier", "event_label": "offerte_aanvraag" });
+            }
+          } catch (e) {}
           toon(result, "form-result", "<strong>Je aanvraag is succesvol verzonden.</strong><br>Bedankt " + esc(data.get("name") || "") + ", " + okMsg);
           form.reset();
           if (list) list.textContent = "";
@@ -363,6 +368,12 @@ window.addEventListener('error', function (e) {
     var isWa = href.indexOf("wa.me") !== -1 || a.getAttribute("data-track") === "whatsapp";
 
     if (isTel) {
+      try {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "conversion", { "send_to": "AW-7124503256" });
+          window.gtag("event", "click_to_call", { "event_category": "contact", "event_label": "telefoon" });
+        }
+      } catch (e) {}
       track("klik_bellen", { pagina: location.pathname });
       track("contact", { method: "phone", pagina: location.pathname });
     } else if (isWa) {

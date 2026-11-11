@@ -89,11 +89,15 @@ PRIORITY = {
     "spoed-elektricien-utrecht": "0.9",
     "groepenkast": "0.9",
     "perilex": "0.9",
+    "laadpaal-installeren": "0.8",
+    "stroomstoring-utrecht": "0.8",
+    "kortsluiting-utrecht": "0.8",
+    "thuisbatterij-installeren": "0.8",
     "tarieven": "0.8",
     "diensten": "0.8",
-    "offerte": "0.6",
-    "afspraak": "0.5",
-    "contact": "0.6"
+    "offerte": "0.7",
+    "contact": "0.7",
+    "afspraak": "0.6",
 }
 
 warnings = []
@@ -333,7 +337,7 @@ def main():
 
     schrijf("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n")
-    schrijf("robots.txt", "User-agent: *\nAllow: /\nDisallow: /beheer/\n\n"
+    schrijf("robots.txt", "User-agent: *\nAllow: /\n\n"
             f"Sitemap: {SITE_URL}/sitemap.xml\n")
 
     print("6/6 Kwaliteitscontrole…")
