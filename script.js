@@ -133,6 +133,8 @@ window.addEventListener('error', function (e) {
           track("generate_lead", { event_category: "formulier", event_label: "offerte_aanvraag", formulier: form.id || "form", currency: "EUR" });
           try {
             if (typeof window.gtag === "function") {
+              window.gtag("event", "conversion", { "send_to": "AW-7124503256" });
+              window.gtag("event", "conversion_event_contact", { "event_category": "formulier", "event_label": "offerte_aanvraag" });
               window.gtag("event", "generate_lead", { "event_category": "formulier", "event_label": "offerte_aanvraag" });
             }
           } catch (e) {}
@@ -371,6 +373,7 @@ window.addEventListener('error', function (e) {
       try {
         if (typeof window.gtag === "function") {
           window.gtag("event", "conversion", { "send_to": "AW-7124503256" });
+          window.gtag("event", "conversion_event_contact", { "event_category": "contact", "event_label": "telefoon" });
           window.gtag("event", "click_to_call", { "event_category": "contact", "event_label": "telefoon" });
         }
       } catch (e) {}
@@ -506,6 +509,9 @@ window.addEventListener('error', function (e) {
    eigen Worker (geen Google-scripts, geen cookies). Op /reviews/ ook de nieuwste reviews. */
 (function () {
   try {
+    var host = (location.hostname || "").toLowerCase();
+    // In preview iFrames or external environments: avoid CORS block
+    if (host.indexOf("run.app") !== -1 || host.indexOf("google") !== -1) return;
     var url = "https://api.ino-elektra.nl/api/reviews";
     if (!url || url === "" || !window.fetch || !document.querySelector("[data-g]")) return;
     function maak(tag, cls, tekst) { var e = document.createElement(tag); if (cls) e.className = cls; if (tekst != null) e.textContent = tekst; return e; }
