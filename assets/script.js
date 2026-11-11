@@ -130,14 +130,8 @@ window.addEventListener('error', function (e) {
         })
         .then(function () {
           track("formulier_verstuurd", { formulier: form.id || "form" });
-          track("generate_lead", { event_category: "formulier", event_label: "offerte_aanvraag", formulier: form.id || "form", currency: "EUR" });
-          try {
-            if (typeof window.gtag === "function") {
-              window.gtag("event", "conversion", { "send_to": "AW-7124503256" });
-              window.gtag("event", "conversion_event_contact", { "event_category": "formulier", "event_label": "offerte_aanvraag" });
-              window.gtag("event", "generate_lead", { "event_category": "formulier", "event_label": "offerte_aanvraag" });
-            }
-          } catch (e) {}
+          track("generate_lead", { formulier: form.id || "form", currency: "EUR" });
+          if (window.inoAds) track("conversion", { send_to: window.inoAds });
           toon(result, "form-result", "<strong>Je aanvraag is succesvol verzonden.</strong><br>Bedankt " + esc(data.get("name") || "") + ", " + okMsg);
           form.reset();
           if (list) list.textContent = "";
@@ -370,15 +364,9 @@ window.addEventListener('error', function (e) {
     var isWa = href.indexOf("wa.me") !== -1 || a.getAttribute("data-track") === "whatsapp";
 
     if (isTel) {
-      try {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "conversion", { "send_to": "AW-7124503256" });
-          window.gtag("event", "conversion_event_contact", { "event_category": "contact", "event_label": "telefoon" });
-          window.gtag("event", "click_to_call", { "event_category": "contact", "event_label": "telefoon" });
-        }
-      } catch (e) {}
       track("klik_bellen", { pagina: location.pathname });
       track("contact", { method: "phone", pagina: location.pathname });
+      if (window.inoAds) track("conversion", { send_to: window.inoAds });
     } else if (isWa) {
       track("klik_whatsapp", { pagina: location.pathname });
       track("contact", { method: "whatsapp", pagina: location.pathname });
@@ -456,7 +444,7 @@ window.addEventListener('error', function (e) {
         '<div class="consent-details" hidden>' +
           '<div class="consent-rij"><div><strong>Noodzakelijk</strong><span>Onthoudt je cookiekeuze en beschermt formulieren tegen spam. Altijd aan.</span></div>' +
             '<label class="consent-schakel is-vast"><input type="checkbox" checked disabled><span class="consent-slider" aria-hidden="true"></span><span class="sr-only">Noodzakelijk, altijd aan</span></label></div>' +
-          '<div class="consent-rij"><div><strong>Statistieken</strong><span>Google Analytics: welke pagina’s bekeken worden. Geanonimiseerd, niet voor advertenties.</span></div>' +
+          '<div class="consent-rij"><div><strong>Statistieken en advertentiemeting</strong><span>Google Analytics: welke pagina’s bekeken worden. Google Ads: of een advertentie tot een telefoontje of aanvraag leidt.</span></div>' +
             '<label class="consent-schakel"><input type="checkbox" data-consent-stat><span class="consent-slider" aria-hidden="true"></span><span class="sr-only">Statistieken toestaan</span></label></div>' +
         '</div>' +
         '<div class="consent-knoppen">' +
@@ -509,9 +497,6 @@ window.addEventListener('error', function (e) {
    eigen Worker (geen Google-scripts, geen cookies). Op /reviews/ ook de nieuwste reviews. */
 (function () {
   try {
-    var host = (location.hostname || "").toLowerCase();
-    // In preview iFrames or external environments: avoid CORS block
-    if (host.indexOf("run.app") !== -1 || host.indexOf("google") !== -1) return;
     var url = "__REVIEWS_ENDPOINT__";
     if (!url || url === "" || !window.fetch || !document.querySelector("[data-g]")) return;
     function maak(tag, cls, tekst) { var e = document.createElement(tag); if (cls) e.className = cls; if (tekst != null) e.textContent = tekst; return e; }
