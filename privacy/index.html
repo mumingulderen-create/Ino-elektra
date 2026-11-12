@@ -6,19 +6,57 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  window.inoGA4 = function () {
-    if (window.inoGA4geladen) return; window.inoGA4geladen = true;
-    var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', 'G-HR6L1S8V7P', { anonymize_ip: true });
-    window.inoAds = 'AW-7124503256'; gtag('config', 'AW-7124503256');
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+  window.inoGA4 = function (k) {
+    var s = k && typeof k === 'object' ? !!k.stat : true;
+    var a = k && typeof k === 'object' ? !!k.ads : true;
+    if (!s && !a) return;
+    gtag('consent', 'update', {
+      analytics_storage: s ? 'granted' : 'denied',
+      ad_storage: a ? 'granted' : 'denied',
+      ad_user_data: a ? 'granted' : 'denied',
+      ad_personalization: a ? 'granted' : 'denied'
+    });
+    if (!window.inoGA4geladen) {
+      window.inoGA4geladen = true;
+      var sc = document.createElement('script'); sc.async = true;
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
+      document.head.appendChild(sc);
+      gtag('js', new Date());
+    }
+    if (s && !window.inoGA4Actief && 'G-HR6L1S8V7P') {
+      window.inoGA4Actief = true;
+      gtag('config', 'G-HR6L1S8V7P', { anonymize_ip: true });
+    }
+    if (a && !window.inoAds && 'AW-7124503256') {
+      window.inoAds = 'AW-7124503256';
+      gtag('config', 'AW-7124503256');
+    }
   };
-  try { var host = location.hostname || ''; if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') { if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); } } catch (e) {}
+  try {
+    var host = location.hostname || '';
+    if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') {
+      var c = localStorage.getItem('ino_cookies');
+      var d = parseInt(localStorage.getItem('ino_cookies_datum') || '0', 10);
+      var geldig = d > 0 && (Date.now() - d <= 365 * 864e5);
+      if (c && !geldig) {
+        localStorage.removeItem('ino_cookies');
+        localStorage.removeItem('ino_cookies_datum');
+      } else if (geldig && c && c !== 'nee') {
+        var p = c === 'ja' ? {stat:true, ads:true} : JSON.parse(c);
+        if (p && (p.stat || p.ads)) window.inoGA4(p);
+      }
+    }
+  } catch (e) {}
 </script>
 <title>Privacyverklaring | INO Techniek en Installatie</title>
-<meta name="description" content="Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.">
+<meta name="description" content="Hoe INO Techniek en Installatie omgaat met je gegevens, cookies en Google Consent Mode v2 als je belt, appt of een offerteformulier invult.">
 <link rel="canonical" href="https://ino-elektra.nl/privacy/">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#278a1d">
@@ -27,7 +65,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="INO Techniek en Installatie">
 <meta property="og:title" content="Privacyverklaring | INO Techniek en Installatie">
-<meta property="og:description" content="Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.">
+<meta property="og:description" content="Hoe INO Techniek en Installatie omgaat met je gegevens, cookies en Google Consent Mode v2 als je belt, appt of een offerteformulier invult.">
 <meta property="og:url" content="https://ino-elektra.nl/privacy/">
 <meta property="og:image" content="https://ino-elektra.nl/img/og-hero-elektricien.jpg">
 <meta property="og:image:width" content="1200">
@@ -39,7 +77,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin>
 <link rel="stylesheet" href="/style.css?v=c6927610">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Electrician","EmergencyService"],"@id":"https://ino-elektra.nl/#business","name":"INO Techniek en Installatie","alternateName":"INO Elektra Utrecht","url":"https://ino-elektra.nl/","logo":"https://ino-elektra.nl/logo.png","image":"https://ino-elektra.nl/img/og-hero-elektricien.jpg","telephone":"+31628763775","email":"info@ino-elektra.nl","priceRange":"€90-€145 per uur","currenciesAccepted":"EUR","paymentAccepted":"iDEAL, betaalverzoek, bankoverschrijving, contant","foundingDate":"2021","address":{"@type":"PostalAddress","addressLocality":"Utrecht","addressRegion":"Utrecht","addressCountry":"NL","streetAddress":"Kaap Hoorndreef 12 B","postalCode":"3563 AS"},"geo":{"@type":"GeoCoordinates","latitude":52.1221,"longitude":5.1054},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],"areaServed":[{"@type":"City","name":"Utrecht"},{"@type":"Place","name":"Utrecht Binnenstad & Centrum, Utrecht"},{"@type":"Place","name":"Utrecht Oost, Utrecht"},{"@type":"Place","name":"Leidsche Rijn, Utrecht"},{"@type":"Place","name":"Vleuten-De Meern, Utrecht"},{"@type":"Place","name":"Utrecht West & Lombok, Utrecht"},{"@type":"Place","name":"Zuilen & Ondiep (Noordwest), Utrecht"},{"@type":"Place","name":"Overvecht, Utrecht"},{"@type":"Place","name":"Hoograven, Lunetten & Tolsteeg, Utrecht"},{"@type":"Place","name":"Kanaleneiland, Utrecht"},{"@type":"Place","name":"Transwijk, Utrecht"},{"@type":"Place","name":"Utrecht Noordoost & Wittevrouwen, Utrecht"},{"@type":"City","name":"Nieuwegein"},{"@type":"City","name":"Maarssen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"Vianen"},{"@type":"City","name":"Breukelen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"De Bilt"},{"@type":"City","name":"Woerden"}],"knowsAbout":["NEN 1010","NEN 3140","NEN 3140 VP","BEI LS VP","BEI BLS","VCA VOL","MBO 2 Laagspanningsdistributie","groepenkast vervangen","meterkast vervangen","Perilex aansluiten","laadpaal installatie","thuisbatterij installatie","krachtstroom aanleggen","storingsdienst"],"hasCredential":[{"@type":"EducationalOccupationalCredential","credentialCategory":"degree","name":"MBO 2 Laagspanningsdistributie"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"NEN 3140 VP (Vakbekwaam Persoon)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"BEI LS VP (Vakbekwaam Persoon Laagspanning)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"VCA VOL (Veiligheid voor Operationeel Leidinggevenden)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"SBB Erkend Leerbedrijf (Relatienummer: 100850431)"}],"award":"SBB Erkend Leerbedrijf – Wij leiden vakmensen op","knowsLanguage":["nl","en"],"sameAs":["https://www.instagram.com/ino_techniek_en_installatie","https://www.linkedin.com/in/mumin-gulderen","https://maps.google.com/?cid=15258938996024411928","https://www.werkspot.nl/profiel/ino-techniek-en-installatie"],"identifier":{"@type":"PropertyValue","propertyID":"KvK","value":"86669346"},"taxID":"86669346"},{"@type":"WebSite","@id":"https://ino-elektra.nl/#website","url":"https://ino-elektra.nl/","name":"INO Techniek en Installatie","inLanguage":["nl-NL","en"],"publisher":{"@id":"https://ino-elektra.nl/#business"}},{"@type":"BreadcrumbList","@id":"https://ino-elektra.nl/privacy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ino-elektra.nl/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://ino-elektra.nl/privacy/"}]},{"@type":"WebPage","@id":"https://ino-elektra.nl/privacy/#webpage","url":"https://ino-elektra.nl/privacy/","name":"Privacyverklaring | INO Techniek en Installatie","description":"Hoe INO Techniek en Installatie omgaat met je gegevens als je belt, appt of een offerte- of terugbelformulier invult. Kort en duidelijk uitgelegd.","inLanguage":"nl-NL","isPartOf":{"@id":"https://ino-elektra.nl/#website"},"about":{"@id":"https://ino-elektra.nl/#business"},"dateModified":"2026-11-11","primaryImageOfPage":{"@type":"ImageObject","url":"https://ino-elektra.nl/img/og-hero-elektricien.jpg"},"breadcrumb":{"@id":"https://ino-elektra.nl/privacy/#breadcrumb"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["Electrician","EmergencyService"],"@id":"https://ino-elektra.nl/#business","name":"INO Techniek en Installatie","alternateName":"INO Elektra Utrecht","url":"https://ino-elektra.nl/","logo":"https://ino-elektra.nl/logo.png","image":"https://ino-elektra.nl/img/og-hero-elektricien.jpg","telephone":"+31628763775","email":"info@ino-elektra.nl","priceRange":"€90-€145 per uur","currenciesAccepted":"EUR","paymentAccepted":"iDEAL, betaalverzoek, bankoverschrijving, contant","foundingDate":"2021","address":{"@type":"PostalAddress","addressLocality":"Utrecht","addressRegion":"Utrecht","addressCountry":"NL","streetAddress":"Kaap Hoorndreef 12 B","postalCode":"3563 AS"},"geo":{"@type":"GeoCoordinates","latitude":52.1221,"longitude":5.1054},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],"areaServed":[{"@type":"City","name":"Utrecht"},{"@type":"Place","name":"Utrecht Binnenstad & Centrum, Utrecht"},{"@type":"Place","name":"Utrecht Oost, Utrecht"},{"@type":"Place","name":"Leidsche Rijn, Utrecht"},{"@type":"Place","name":"Vleuten-De Meern, Utrecht"},{"@type":"Place","name":"Utrecht West & Lombok, Utrecht"},{"@type":"Place","name":"Zuilen & Ondiep (Noordwest), Utrecht"},{"@type":"Place","name":"Overvecht, Utrecht"},{"@type":"Place","name":"Hoograven, Lunetten & Tolsteeg, Utrecht"},{"@type":"Place","name":"Kanaleneiland, Utrecht"},{"@type":"Place","name":"Transwijk, Utrecht"},{"@type":"Place","name":"Utrecht Noordoost & Wittevrouwen, Utrecht"},{"@type":"City","name":"Nieuwegein"},{"@type":"City","name":"Maarssen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"Vianen"},{"@type":"City","name":"Breukelen"},{"@type":"City","name":"Houten"},{"@type":"City","name":"Zeist"},{"@type":"City","name":"IJsselstein"},{"@type":"City","name":"De Bilt"},{"@type":"City","name":"Woerden"}],"knowsAbout":["NEN 1010","NEN 3140","NEN 3140 VP","BEI LS VP","BEI BLS","VCA VOL","MBO 2 Laagspanningsdistributie","groepenkast vervangen","meterkast vervangen","Perilex aansluiten","laadpaal installatie","thuisbatterij installatie","krachtstroom aanleggen","storingsdienst"],"hasCredential":[{"@type":"EducationalOccupationalCredential","credentialCategory":"degree","name":"MBO 2 Laagspanningsdistributie"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"NEN 3140 VP (Vakbekwaam Persoon)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"BEI LS VP (Vakbekwaam Persoon Laagspanning)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"VCA VOL (Veiligheid voor Operationeel Leidinggevenden)"},{"@type":"EducationalOccupationalCredential","credentialCategory":"certification","name":"SBB Erkend Leerbedrijf (Relatienummer: 100850431)"}],"award":"SBB Erkend Leerbedrijf – Wij leiden vakmensen op","knowsLanguage":["nl","en"],"sameAs":["https://www.instagram.com/ino_techniek_en_installatie","https://www.linkedin.com/in/mumin-gulderen","https://maps.google.com/?cid=15258938996024411928","https://www.werkspot.nl/profiel/ino-techniek-en-installatie"],"identifier":{"@type":"PropertyValue","propertyID":"KvK","value":"86669346"},"taxID":"86669346"},{"@type":"WebSite","@id":"https://ino-elektra.nl/#website","url":"https://ino-elektra.nl/","name":"INO Techniek en Installatie","inLanguage":["nl-NL","en"],"publisher":{"@id":"https://ino-elektra.nl/#business"}},{"@type":"BreadcrumbList","@id":"https://ino-elektra.nl/privacy/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ino-elektra.nl/"},{"@type":"ListItem","position":2,"name":"Privacy","item":"https://ino-elektra.nl/privacy/"}]},{"@type":"WebPage","@id":"https://ino-elektra.nl/privacy/#webpage","url":"https://ino-elektra.nl/privacy/","name":"Privacyverklaring | INO Techniek en Installatie","description":"Hoe INO Techniek en Installatie omgaat met je gegevens, cookies en Google Consent Mode v2 als je belt, appt of een offerteformulier invult.","inLanguage":"nl-NL","isPartOf":{"@id":"https://ino-elektra.nl/#website"},"about":{"@id":"https://ino-elektra.nl/#business"},"dateModified":"2026-11-12","primaryImageOfPage":{"@type":"ImageObject","url":"https://ino-elektra.nl/img/og-hero-elektricien.jpg"},"breadcrumb":{"@id":"https://ino-elektra.nl/privacy/#breadcrumb"}}]}</script>
 <link rel="stylesheet" href="/donker.css?v=c2f39b40" media="(prefers-color-scheme: dark)" id="donkerCss">
 <script>try{var t=localStorage.getItem("ino_thema");if(t)document.getElementById("donkerCss").media=t==="donker"?"all":"not all"}catch(e){}</script>
 </head>
@@ -70,7 +108,7 @@
 <section class="lp-hero">
   <div class="container">
     <h1>Privacyverklaring</h1>
-    <p>Kort en duidelijk: welke gegevens we gebruiken, waarvoor en hoe lang.</p>
+    <p>Kort en duidelijk: welke gegevens en cookies we gebruiken, waarvoor, van welke aanbieders en hoe lang.</p>
   </div>
 </section>
 <section class="section">
@@ -89,10 +127,80 @@
     <h2>Hoe lang bewaren we je gegevens?</h2>
     <p>Aanvragen die niet tot een opdracht leiden verwijderen we binnen 12 maanden. Facturen en bijbehorende gegevens bewaren we 7 jaar, omdat de wet (fiscale bewaarplicht) dat verplicht.</p>
 
-    <h2>Cookies</h2>
-    <p>We gebruiken Google Analytics 4 om te zien hoe bezoekers de site gebruiken, bijvoorbeeld welke pagina's bekeken worden en hoe vaak er op de belknop wordt geklikt. Dit gebeurt <strong>alleen als je daar in de cookiemelding akkoord op geeft</strong>. Zonder akkoord plaatsen we geen analytische cookies en sturen we niets naar Google Analytics. IP-adressen worden door Google Analytics niet opgeslagen.</p>
-    <p>Je keuze bewaren we in je eigen browser (noodzakelijke opslag) en vragen we na 12 maanden opnieuw. Je kunt die altijd wijzigen via de link "Cookie-instellingen" onderaan elke pagina. Kies je met de knop in de menubalk voor de lichte of donkere weergave, dan onthoudt je browser ook die keuze.</p>
-    <p>We adverteren via Google Ads. Om te zien of een advertentie tot een telefoontje of aanvraag leidt, plaatst Google Ads een cookie en meten we klikken op de belknop en verstuurde formulieren. Ook dit gebeurt alleen na je akkoord in de cookiemelding. We verkopen geen gegevens. Het lettertype staat op onze eigen server; daarvoor wordt niets naar Google gestuurd.</p>
+    <h2>Cookies, Google Consent Mode v2 en toestemming</h2>
+    <p>In de cookiebanner kun je per categorie apart kiezen: <strong>Noodzakelijke opslag</strong> (altijd actief), <strong>Google Analytics (statistieken)</strong> en <strong>Google Ads (advertentiemeting)</strong>. Optionele keuzes staan nooit vooraf aangevinkt en weigeren ("Alleen noodzakelijk") is net zo eenvoudig als accepteren.</p>
+    <p>We gebruiken <strong>Google Consent Mode v2</strong>. Standaard staan alle optionele signalen (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> en <code>ad_personalization</code>) op geweigerd. Vóórdat je expliciet toestemming geeft, worden er geen Google-scripts geladen en vinden er geen verzoeken naar Google Analytics of Google Ads plaats. Het lettertype staat op onze eigen server; daarvoor wordt niets naar Google gestuurd.</p>
+    <ul>
+      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet geanonimiseerd welke pagina's bekeken worden en hoe vaak er op bel-, WhatsApp- of offerteknoppen wordt geklikt. Alleen actief na jouw keuze voor Google Analytics.</li>
+      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet of een klik op onze Google-advertentie leidt tot een telefoontje, WhatsApp-bericht of ingevuld formulier (<code>conversion_event_contact</code>). Alleen actief na jouw keuze voor Google Ads. We tonen geen advertenties van derden en verkopen geen gegevens.</li>
+    </ul>
+    <p><strong>Bewaartermijn en intrekken van toestemming:</strong> je cookiekeuze wordt maximaal 12 maanden (365 dagen) bewaard in je browser. Na 12 maanden vervalt je eerdere toestemming automatisch en laden we geen Google Analytics of Google Ads meer totdat je opnieuw kiest. Je kunt je voorkeur op elk moment aanpassen of intrekken via <a href="#cookie-instellingen" data-cookie-instellingen>Cookie-instellingen</a> onderaan elke pagina. Trek je toestemming in, dan stoppen we verdere meting direct en verwijderen we waar technisch mogelijk eerder geplaatste first-party trackingcookies (zoals <code>_ga*</code>, <code>_gid</code>, <code>_gat*</code>, <code>_gcl_*</code> en <code>_gac_*</code>). Daarnaast kun je opgeslagen cookies altijd zelf wissen via je browserinstellingen.</p>
+
+    <h2>Overzicht van cookies en browseropslag</h2>
+    <div class="table-container">
+      <table class="responstijd-table">
+        <thead>
+          <tr>
+            <th>Naam / techniek</th>
+            <th>Categorie</th>
+            <th>Aanbieder</th>
+            <th>Doeleinde</th>
+            <th>Bewaartermijn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ino_cookies</code> (localStorage)</td>
+            <td>Noodzakelijk</td>
+            <td>INO Techniek en Installatie (eigen website)</td>
+            <td>Bewaart je voorkeuren per categorie (statistieken en advertentiemeting).</td>
+            <td>12 maanden</td>
+          </tr>
+          <tr>
+            <td><code>ino_cookies_datum</code> (localStorage)</td>
+            <td>Noodzakelijk</td>
+            <td>INO Techniek en Installatie (eigen website)</td>
+            <td>Bewaart het tijdstip van je keuze zodat toestemming na 12 maanden automatisch vervalt.</td>
+            <td>12 maanden</td>
+          </tr>
+          <tr>
+            <td><code>ino_thema</code> (localStorage)</td>
+            <td>Noodzakelijk (voorkeur)</td>
+            <td>INO Techniek en Installatie (eigen website)</td>
+            <td>Onthoudt je keuze voor lichte of donkere weergave wanneer je op de themaknop klikt.</td>
+            <td>Totdat je browseropslag wist</td>
+          </tr>
+          <tr>
+            <td><code>inoReviews</code> (sessionStorage)</td>
+            <td>Functioneel</td>
+            <td>INO Techniek en Installatie (eigen website)</td>
+            <td>Tijdelijke cache van onze actuele Google-reviewscore via onze eigen server, zonder verbinding met Google.</td>
+            <td>Einde browsersessie (max. 1 uur)</td>
+          </tr>
+          <tr>
+            <td>Cloudflare Turnstile</td>
+            <td>Noodzakelijk (beveiliging)</td>
+            <td>Cloudflare Inc.</td>
+            <td>Beschermt offerte- en contactformulieren tegen spam en geautomatiseerd misbruik.</td>
+            <td>Sessie / tijdelijk</td>
+          </tr>
+          <tr>
+            <td><code>_ga</code>, <code>_ga_*</code>, <code>_gid</code>, <code>_gat*</code></td>
+            <td>Statistieken (alleen na toestemming)</td>
+            <td>Google Analytics 4 (Google)</td>
+            <td>Onderscheidt anonieme bezoeken en meet paginabezoek en interacties (bellen, WhatsApp, formulieren).</td>
+            <td>Tot 2 jaar (<code>_ga</code>), 24 uur (<code>_gid</code>), 1 minuut (<code>_gat</code>) — of direct gewist bij intrekken</td>
+          </tr>
+          <tr>
+            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gac_*</code></td>
+            <td>Advertentiemeting (alleen na toestemming)</td>
+            <td>Google Ads (Google)</td>
+            <td>Koppelt klikken op Google-advertenties aan conversies (bellen, WhatsApp of offerteaanvraag).</td>
+            <td>90 dagen — of direct gewist bij intrekken</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2>Jouw rechten</h2>
     <p>Je mag altijd vragen welke gegevens we van je hebben, en die laten aanpassen of verwijderen. Stuur een mail, dan regelen we het binnen 30 dagen. Ben je het ergens niet mee eens, dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
@@ -145,6 +253,6 @@
     </span>
   </span>
 </a>
-<script src="/script.js?v=2637e9b6" defer></script>
+<script src="/script.js?v=88589e0e" defer></script>
 </body>
 </html>

@@ -148,21 +148,61 @@ def head(page, wijken, css_v, font_url=None):
         href, srcset, sizes = page["lcp"]
         pre = (f'\n<link rel="preload" as="image" type="image/webp" href="{href}" imagesrcset="{srcset}"'
                f' imagesizes="{sizes}" fetchpriority="high" media="(min-width: 801px)">')
-    ads_config = f"\n    window.inoAds = '{GOOGLE_ADS_ID}'; gtag('config', '{GOOGLE_ADS_ID}');" if GOOGLE_ADS_ID else ""
-    # GA4 en Google Ads laden pas NA toestemming (cookiemelding in script.js). Zonder akkoord: geen cookies, geen verzoek naar Google.
+    ga_id = GA4_MEASUREMENT_ID
+    ads_id = GOOGLE_ADS_ID
+    # Consent Mode v2 standaard op 'denied'; GA4 en Google Ads laden pas NA geldige, niet-verlopen toestemming.
     ga4_tag = f"""\n<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
-  window.inoGA4 = function () {{
-    if (window.inoGA4geladen) return; window.inoGA4geladen = true;
-    var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id={GA4_MEASUREMENT_ID}';
-    document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', '{GA4_MEASUREMENT_ID}', {{ anonymize_ip: true }});{ads_config}
+  gtag('consent', 'default', {{
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  }});
+  window.inoGA4 = function (k) {{
+    var s = k && typeof k === 'object' ? !!k.stat : true;
+    var a = k && typeof k === 'object' ? !!k.ads : true;
+    if (!s && !a) return;
+    gtag('consent', 'update', {{
+      analytics_storage: s ? 'granted' : 'denied',
+      ad_storage: a ? 'granted' : 'denied',
+      ad_user_data: a ? 'granted' : 'denied',
+      ad_personalization: a ? 'granted' : 'denied'
+    }});
+    if (!window.inoGA4geladen) {{
+      window.inoGA4geladen = true;
+      var sc = document.createElement('script'); sc.async = true;
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id={ga_id or ads_id}';
+      document.head.appendChild(sc);
+      gtag('js', new Date());
+    }}
+    if (s && !window.inoGA4Actief && '{ga_id}') {{
+      window.inoGA4Actief = true;
+      gtag('config', '{ga_id}', {{ anonymize_ip: true }});
+    }}
+    if (a && !window.inoAds && '{ads_id}') {{
+      window.inoAds = '{ads_id}';
+      gtag('config', '{ads_id}');
+    }}
   }};
-  try {{ var host = location.hostname || ''; if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') {{ if (localStorage.getItem('ino_cookies') === 'ja') window.inoGA4(); }} }} catch (e) {{}}
-</script>""" if GA4_MEASUREMENT_ID else ""
+  try {{
+    var host = location.hostname || '';
+    if (host === 'ino-elektra.nl' || host === 'www.ino-elektra.nl') {{
+      var c = localStorage.getItem('ino_cookies');
+      var d = parseInt(localStorage.getItem('ino_cookies_datum') || '0', 10);
+      var geldig = d > 0 && (Date.now() - d <= 365 * 864e5);
+      if (c && !geldig) {{
+        localStorage.removeItem('ino_cookies');
+        localStorage.removeItem('ino_cookies_datum');
+      }} else if (geldig && c && c !== 'nee') {{
+        var p = c === 'ja' ? {{stat:true, ads:true}} : JSON.parse(c);
+        if (p && (p.stat || p.ads)) window.inoGA4(p);
+      }}
+    }}
+  }} catch (e) {{}}
+</script>""" if (ga_id or ads_id) else ""
     return f"""<!doctype html>
 <html lang="{taal.TAAL}">
 <head>

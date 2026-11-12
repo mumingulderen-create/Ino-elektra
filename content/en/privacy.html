@@ -1,15 +1,12 @@
-<!--
-{
+<!--{
   "title": "Privacy statement | INO Techniek en Installatie",
-  "description": "How INO Techniek en Installatie handles your data when you call, send a WhatsApp or fill in a quote or call-back form. Explained briefly and clearly.",
+  "description": "How INO Techniek en Installatie handles your data, cookies and Google Consent Mode v2 when you call, WhatsApp or fill in a quote form.",
   "nav": "privacy",
   "noindex": true
-}
--->
-<section class="lp-hero">
+}--><section class="lp-hero">
   <div class="container">
     <h1>Privacy statement</h1>
-    <p>Brief and clear: which data we use, what for and for how long. This is a translation; the <a href="/privacy/" hreflang="nl" lang="nl">Dutch version</a> is the official one.</p>
+    <p>Brief and clear: which data and cookies we use, why, from which providers and for how long. This is a translation; the <a href="/privacy/" hreflang="nl" lang="nl">Dutch version</a> is the official one.</p>
   </div>
 </section>
 <section class="section">
@@ -28,10 +25,80 @@
     <h2>How long do we keep your data?</h2>
     <p>Requests that do not lead to a job are deleted within 12 months. We keep invoices and related data for 7 years, because Dutch law (the tax retention obligation) requires this.</p>
 
-    <h2>Cookies</h2>
-    <p>We use Google Analytics 4 to see how visitors use the site, for example which pages are viewed and how often the call button is clicked. This <strong>only happens if you agree in the cookie notice</strong>. Without your consent we place no analytics cookies and send nothing to Google Analytics. IP addresses are not stored by Google Analytics.</p>
-    <p>We store your choice in your own browser (necessary storage) and ask again after 12 months. You can always change it via the "Cookie settings" link at the bottom of every page. If you choose light or dark mode with the button in the menu bar, your browser remembers that choice too.</p>
-    <p>We advertise through Google Ads. To see whether an advert leads to a call or request, Google Ads places a cookie and we measure clicks on the call button and submitted forms. This also only happens after you agree in the cookie notice. We do not sell data. The font is hosted on our own server, so nothing is sent to Google for it.</p>
+    <h2>Cookies, Google Consent Mode v2 and consent</h2>
+    <p>In the cookie banner you can choose separately by category: <strong>Necessary storage</strong> (always on), <strong>Google Analytics (statistics)</strong> and <strong>Google Ads (ad measurement)</strong>. Optional categories are never pre-ticked and rejecting ("Necessary only") is just as easy as accepting.</p>
+    <p>We implement <strong>Google Consent Mode v2</strong>. By default, all optional storage and ad signals (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> and <code>ad_personalization</code>) are set to denied. Before you give explicit consent, no Google scripts are loaded and no requests are sent to Google Analytics or Google Ads. The font is hosted on our own server, so nothing is sent to Google for it.</p>
+    <ul>
+      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures anonymously which pages are viewed and how often call, WhatsApp or quote buttons are used. Only active when you consent to Google Analytics.</li>
+      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures whether a click on our Google advert leads to a phone call, WhatsApp message or submitted form (<code>conversion_event_contact</code>). Only active when you consent to Google Ads. We do not show third-party ads or sell data.</li>
+    </ul>
+    <p><strong>Retention period and withdrawing consent:</strong> your cookie choice is stored in your browser for up to 12 months (365 days). After 12 months, any previous consent expires automatically and we will not load Google Analytics or Google Ads until you make a new choice. You can change or withdraw your preferences at any time via <a href="#cookie-settings" data-cookie-instellingen>Cookie settings</a> at the bottom of every page. When you withdraw consent, future tracking stops immediately and we delete previously placed first-party tracking cookies (such as <code>_ga*</code>, <code>_gid</code>, <code>_gat*</code>, <code>_gcl_*</code> and <code>_gac_*</code>) where technically possible. You can also clear cookies manually in your browser settings.</p>
+
+    <h2>Overview of cookies and browser storage</h2>
+    <div class="table-container">
+      <table class="responstijd-table">
+        <thead>
+          <tr>
+            <th>Name / technology</th>
+            <th>Category</th>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Retention period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>ino_cookies</code> (localStorage)</td>
+            <td>Necessary</td>
+            <td>INO Techniek en Installatie (own website)</td>
+            <td>Stores your preferences per category (statistics and ad measurement).</td>
+            <td>12 months</td>
+          </tr>
+          <tr>
+            <td><code>ino_cookies_datum</code> (localStorage)</td>
+            <td>Necessary</td>
+            <td>INO Techniek en Installatie (own website)</td>
+            <td>Stores the timestamp of your choice so consent expires automatically after 12 months.</td>
+            <td>12 months</td>
+          </tr>
+          <tr>
+            <td><code>ino_thema</code> (localStorage)</td>
+            <td>Necessary (preference)</td>
+            <td>INO Techniek en Installatie (own website)</td>
+            <td>Remembers your light or dark mode choice when you click the theme toggle.</td>
+            <td>Until cleared in browser</td>
+          </tr>
+          <tr>
+            <td><code>inoReviews</code> (sessionStorage)</td>
+            <td>Functional</td>
+            <td>INO Techniek en Installatie (own website)</td>
+            <td>Short-lived cache of our live Google review score via our own server, without connecting to Google.</td>
+            <td>Browser session (max. 1 hour)</td>
+          </tr>
+          <tr>
+            <td>Cloudflare Turnstile</td>
+            <td>Necessary (security)</td>
+            <td>Cloudflare Inc.</td>
+            <td>Protects quote and contact forms against spam and automated abuse.</td>
+            <td>Session / temporary</td>
+          </tr>
+          <tr>
+            <td><code>_ga</code>, <code>_ga_*</code>, <code>_gid</code>, <code>_gat*</code></td>
+            <td>Statistics (only with consent)</td>
+            <td>Google Analytics 4 (Google)</td>
+            <td>Distinguishes anonymous visits and measures page views and clicks on call, WhatsApp and form actions.</td>
+            <td>Up to 2 years (<code>_ga</code>), 24 hours (<code>_gid</code>), 1 minute (<code>_gat</code>) — or deleted immediately on withdrawal</td>
+          </tr>
+          <tr>
+            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gac_*</code></td>
+            <td>Ad measurement (only with consent)</td>
+            <td>Google Ads (Google)</td>
+            <td>Links clicks on Google adverts to conversions (call, WhatsApp or quote request).</td>
+            <td>90 days — or deleted immediately on withdrawal</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2>Your rights</h2>
     <p>You can always ask which data we hold about you, and have it corrected or deleted. Send us an email and we will arrange it within 30 days. If you disagree with something, you can file a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).</p>

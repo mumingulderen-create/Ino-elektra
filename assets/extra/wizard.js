@@ -2,7 +2,7 @@
 (function () {
   function esc(v) { return String(v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
   function track(evt, params) {
-    try { if (window.inoGA4geladen && window.gtag) window.gtag("event", evt, params || {}); } catch (e) {}
+    try { if (window.inoGA4Actief && window.gtag) window.gtag("event", evt, params || {}); } catch (e) {}
   }
   function initKlusWizard() {
     var wizard = document.getElementById("quoteWizard");
@@ -262,7 +262,7 @@
         var waUrl = "https://wa.me/__WHATSAPP__?text=" + encodeURIComponent(lines.join("\n"));
         track("formulier_verstuurd", { formulier: "quoteForm", method: "whatsapp_wizard" });
         track("generate_lead", { formulier: "quoteForm", method: "whatsapp_wizard", currency: "EUR" });
-        if (window.inoAds) track("conversion_event_contact"); // conversieactie CONTACT in Google Ads
+        try { if (window.inoAds && window.gtag) window.gtag("event", "conversion_event_contact"); } catch (e) {}
         window.open(waUrl, "_blank", "noopener");
       });
     }
