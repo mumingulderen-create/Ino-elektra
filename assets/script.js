@@ -370,6 +370,7 @@ window.addEventListener('error', function (e) {
     } else if (isWa) {
       track("klik_whatsapp", { pagina: location.pathname });
       track("contact", { method: "whatsapp", pagina: location.pathname });
+      if (window.inoAds) track("conversion_event_contact"); // conversieactie CONTACT in Google Ads
     }
   });
 

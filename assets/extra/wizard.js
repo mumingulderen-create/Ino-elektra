@@ -262,6 +262,7 @@
         var waUrl = "https://wa.me/__WHATSAPP__?text=" + encodeURIComponent(lines.join("\n"));
         track("formulier_verstuurd", { formulier: "quoteForm", method: "whatsapp_wizard" });
         track("generate_lead", { formulier: "quoteForm", method: "whatsapp_wizard", currency: "EUR" });
+        if (window.inoAds) track("conversion_event_contact"); // conversieactie CONTACT in Google Ads
         window.open(waUrl, "_blank", "noopener");
       });
     }
