@@ -14,19 +14,18 @@
     wait_for_update: 500
   });
   window.inoGA4 = function (k) {
-    var s = k && typeof k === 'object' ? !!k.stat : true;
-    var a = k && typeof k === 'object' ? !!k.ads : true;
+    var s = !!(k && k.stat), a = !!(k && k.ads);
     if (!s && !a) return;
     gtag('consent', 'update', {
       analytics_storage: s ? 'granted' : 'denied',
       ad_storage: a ? 'granted' : 'denied',
       ad_user_data: a ? 'granted' : 'denied',
-      ad_personalization: a ? 'granted' : 'denied'
+      ad_personalization: 'denied'
     });
     if (!window.inoGA4geladen) {
       window.inoGA4geladen = true;
       var sc = document.createElement('script'); sc.async = true;
-      sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + (s && 'G-HR6L1S8V7P' ? 'G-HR6L1S8V7P' : 'AW-7124503256');
       document.head.appendChild(sc);
       gtag('js', new Date());
     }
@@ -128,11 +127,11 @@
     <p>Aanvragen die niet tot een opdracht leiden verwijderen we binnen 12 maanden. Facturen en bijbehorende gegevens bewaren we 7 jaar, omdat de wet (fiscale bewaarplicht) dat verplicht.</p>
 
     <h2>Cookies, Google Consent Mode v2 en toestemming</h2>
-    <p>In de cookiebanner kun je per categorie apart kiezen: <strong>Noodzakelijke opslag</strong> (altijd actief), <strong>Google Analytics (statistieken)</strong> en <strong>Google Ads (advertentiemeting)</strong>. Optionele keuzes staan nooit vooraf aangevinkt en weigeren ("Alleen noodzakelijk") is net zo eenvoudig als accepteren.</p>
-    <p>We gebruiken <strong>Google Consent Mode v2</strong>. Standaard staan alle optionele signalen (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> en <code>ad_personalization</code>) op geweigerd. Vóórdat je expliciet toestemming geeft, worden er geen Google-scripts geladen en vinden er geen verzoeken naar Google Analytics of Google Ads plaats. Het lettertype staat op onze eigen server; daarvoor wordt niets naar Google gestuurd.</p>
+    <p>In de cookiebanner kun je per categorie apart kiezen: <strong>Noodzakelijke opslag</strong> (altijd actief), <strong>Google Analytics (statistieken)</strong> en <strong>Google Ads (conversiemeting)</strong>. Optionele keuzes staan nooit vooraf aangevinkt en weigeren ("Alleen noodzakelijk") is net zo eenvoudig als accepteren.</p>
+    <p>We gebruiken <strong>Google Consent Mode v2</strong>. Standaard staan alle optionele signalen (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> en <code>ad_personalization</code>) op geweigerd (<code>denied</code>). Vóórdat je expliciet toestemming geeft, worden er geen Google-scripts geladen en vinden er geen verzoeken naar Google Analytics of Google Ads plaats. Het lettertype staat op onze eigen server; daarvoor wordt niets naar Google gestuurd.</p>
     <ul>
-      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet geanonimiseerd welke pagina's bekeken worden en hoe vaak er op bel-, WhatsApp- of offerteknoppen wordt geklikt. Alleen actief na jouw keuze voor Google Analytics.</li>
-      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet of een klik op onze Google-advertentie leidt tot een telefoontje, WhatsApp-bericht of ingevuld formulier (<code>conversion_event_contact</code>). Alleen actief na jouw keuze voor Google Ads. We tonen geen advertenties van derden en verkopen geen gegevens.</li>
+      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet geanonimiseerd welke pagina's bekeken worden en hoe vaak er op bel-, WhatsApp- of offerteknoppen wordt geklikt (<code>analytics_storage</code> wordt alleen bij deze keuze op <code>granted</code> gezet).</li>
+      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — aanbieder: Google Ireland Limited / Google LLC. Meet of een klik op onze Google-advertentie leidt tot een telefoontje, WhatsApp-bericht of ingevuld formulier (<code>conversion_event_contact</code>). Alleen na jouw keuze voor Google Ads conversiemeting worden <code>ad_storage</code> en <code>ad_user_data</code> (voor het meten en doorgeven van conversiegegevens) op <code>granted</code> gezet. <strong><code>ad_personalization</code> blijft altijd op <code>denied</code> staan</strong>: we gebruiken geen gepersonaliseerde advertenties of remarketing en verkopen geen gegevens.</li>
     </ul>
     <p><strong>Bewaartermijn en intrekken van toestemming:</strong> je cookiekeuze wordt maximaal 12 maanden (365 dagen) bewaard in je browser. Na 12 maanden vervalt je eerdere toestemming automatisch en laden we geen Google Analytics of Google Ads meer totdat je opnieuw kiest. Je kunt je voorkeur op elk moment aanpassen of intrekken via <a href="#cookie-instellingen" data-cookie-instellingen>Cookie-instellingen</a> onderaan elke pagina. Trek je toestemming in, dan stoppen we verdere meting direct en verwijderen we waar technisch mogelijk eerder geplaatste first-party trackingcookies (zoals <code>_ga*</code>, <code>_gid</code>, <code>_gat*</code>, <code>_gcl_*</code> en <code>_gac_*</code>). Daarnaast kun je opgeslagen cookies altijd zelf wissen via je browserinstellingen.</p>
 
@@ -153,7 +152,7 @@
             <td><code>ino_cookies</code> (localStorage)</td>
             <td>Noodzakelijk</td>
             <td>INO Techniek en Installatie (eigen website)</td>
-            <td>Bewaart je voorkeuren per categorie (statistieken en advertentiemeting).</td>
+            <td>Bewaart je voorkeuren per categorie (statistieken en Google Ads conversiemeting).</td>
             <td>12 maanden</td>
           </tr>
           <tr>
@@ -192,10 +191,10 @@
             <td>Tot 2 jaar (<code>_ga</code>), 24 uur (<code>_gid</code>), 1 minuut (<code>_gat</code>) — of direct gewist bij intrekken</td>
           </tr>
           <tr>
-            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gac_*</code></td>
-            <td>Advertentiemeting (alleen na toestemming)</td>
+            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gcl_dc</code>, <code>_gac_*</code></td>
+            <td>Conversiemeting (alleen na toestemming)</td>
             <td>Google Ads (Google)</td>
-            <td>Koppelt klikken op Google-advertenties aan conversies (bellen, WhatsApp of offerteaanvraag).</td>
+            <td>Koppelt klikken op Google-advertenties aan conversies (bellen, WhatsApp of offerteaanvraag) zonder advertentiepersonalisatie.</td>
             <td>90 dagen — of direct gewist bij intrekken</td>
           </tr>
         </tbody>
@@ -253,6 +252,6 @@
     </span>
   </span>
 </a>
-<script src="/script.js?v=88589e0e" defer></script>
+<script src="/script.js?v=eb2df32c" defer></script>
 </body>
 </html>

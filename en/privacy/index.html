@@ -14,19 +14,18 @@
     wait_for_update: 500
   });
   window.inoGA4 = function (k) {
-    var s = k && typeof k === 'object' ? !!k.stat : true;
-    var a = k && typeof k === 'object' ? !!k.ads : true;
+    var s = !!(k && k.stat), a = !!(k && k.ads);
     if (!s && !a) return;
     gtag('consent', 'update', {
       analytics_storage: s ? 'granted' : 'denied',
       ad_storage: a ? 'granted' : 'denied',
       ad_user_data: a ? 'granted' : 'denied',
-      ad_personalization: a ? 'granted' : 'denied'
+      ad_personalization: 'denied'
     });
     if (!window.inoGA4geladen) {
       window.inoGA4geladen = true;
       var sc = document.createElement('script'); sc.async = true;
-      sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + (s && 'G-HR6L1S8V7P' ? 'G-HR6L1S8V7P' : 'AW-7124503256');
       document.head.appendChild(sc);
       gtag('js', new Date());
     }
@@ -128,11 +127,11 @@
     <p>Requests that do not lead to a job are deleted within 12 months. We keep invoices and related data for 7 years, because Dutch law (the tax retention obligation) requires this.</p>
 
     <h2>Cookies, Google Consent Mode v2 and consent</h2>
-    <p>In the cookie banner you can choose separately by category: <strong>Necessary storage</strong> (always on), <strong>Google Analytics (statistics)</strong> and <strong>Google Ads (ad measurement)</strong>. Optional categories are never pre-ticked and rejecting ("Necessary only") is just as easy as accepting.</p>
-    <p>We implement <strong>Google Consent Mode v2</strong>. By default, all optional storage and ad signals (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> and <code>ad_personalization</code>) are set to denied. Before you give explicit consent, no Google scripts are loaded and no requests are sent to Google Analytics or Google Ads. The font is hosted on our own server, so nothing is sent to Google for it.</p>
+    <p>In the cookie banner you can choose separately by category: <strong>Necessary storage</strong> (always on), <strong>Google Analytics (statistics)</strong> and <strong>Google Ads (conversion tracking)</strong>. Optional categories are never pre-ticked and rejecting ("Necessary only") is just as easy as accepting.</p>
+    <p>We implement <strong>Google Consent Mode v2</strong>. By default, all optional storage and ad signals (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code> and <code>ad_personalization</code>) are set to <code>denied</code>. Before you give explicit consent, no Google scripts are loaded and no requests are sent to Google Analytics or Google Ads. The font is hosted on our own server, so nothing is sent to Google for it.</p>
     <ul>
-      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures anonymously which pages are viewed and how often call, WhatsApp or quote buttons are used. Only active when you consent to Google Analytics.</li>
-      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures whether a click on our Google advert leads to a phone call, WhatsApp message or submitted form (<code>conversion_event_contact</code>). Only active when you consent to Google Ads. We do not show third-party ads or sell data.</li>
+      <li><strong>Google Analytics 4 (<code>G-HR6L1S8V7P</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures anonymously which pages are viewed and how often call, WhatsApp or quote buttons are used (<code>analytics_storage</code> is set to <code>granted</code> only with this choice).</li>
+      <li><strong>Google Ads (<code>AW-7124503256</code>)</strong> — provider: Google Ireland Limited / Google LLC. Measures whether a click on our Google advert leads to a phone call, WhatsApp message or submitted form (<code>conversion_event_contact</code>). Only when you consent to Google Ads conversion tracking are <code>ad_storage</code> and <code>ad_user_data</code> (for measuring and sharing conversion data) set to <code>granted</code>. <strong><code>ad_personalization</code> always remains <code>denied</code></strong>: we do not run personalised ads or remarketing and do not sell data.</li>
     </ul>
     <p><strong>Retention period and withdrawing consent:</strong> your cookie choice is stored in your browser for up to 12 months (365 days). After 12 months, any previous consent expires automatically and we will not load Google Analytics or Google Ads until you make a new choice. You can change or withdraw your preferences at any time via <a href="#cookie-settings" data-cookie-instellingen>Cookie settings</a> at the bottom of every page. When you withdraw consent, future tracking stops immediately and we delete previously placed first-party tracking cookies (such as <code>_ga*</code>, <code>_gid</code>, <code>_gat*</code>, <code>_gcl_*</code> and <code>_gac_*</code>) where technically possible. You can also clear cookies manually in your browser settings.</p>
 
@@ -153,7 +152,7 @@
             <td><code>ino_cookies</code> (localStorage)</td>
             <td>Necessary</td>
             <td>INO Techniek en Installatie (own website)</td>
-            <td>Stores your preferences per category (statistics and ad measurement).</td>
+            <td>Stores your preferences per category (statistics and Google Ads conversion tracking).</td>
             <td>12 months</td>
           </tr>
           <tr>
@@ -192,10 +191,10 @@
             <td>Up to 2 years (<code>_ga</code>), 24 hours (<code>_gid</code>), 1 minute (<code>_gat</code>) — or deleted immediately on withdrawal</td>
           </tr>
           <tr>
-            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gac_*</code></td>
-            <td>Ad measurement (only with consent)</td>
+            <td><code>_gcl_au</code>, <code>_gcl_aw</code>, <code>_gcl_dc</code>, <code>_gac_*</code></td>
+            <td>Conversion tracking (only with consent)</td>
             <td>Google Ads (Google)</td>
-            <td>Links clicks on Google adverts to conversions (call, WhatsApp or quote request).</td>
+            <td>Links clicks on Google adverts to conversions (call, WhatsApp or quote request) without ad personalisation.</td>
             <td>90 days — or deleted immediately on withdrawal</td>
           </tr>
         </tbody>
@@ -253,6 +252,6 @@
     </span>
   </span>
 </a>
-<script src="/script-en.js?v=ce0d5b48" defer></script>
+<script src="/script-en.js?v=1c6cb4ec" defer></script>
 </body>
 </html>

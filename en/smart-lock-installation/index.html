@@ -14,19 +14,18 @@
     wait_for_update: 500
   });
   window.inoGA4 = function (k) {
-    var s = k && typeof k === 'object' ? !!k.stat : true;
-    var a = k && typeof k === 'object' ? !!k.ads : true;
+    var s = !!(k && k.stat), a = !!(k && k.ads);
     if (!s && !a) return;
     gtag('consent', 'update', {
       analytics_storage: s ? 'granted' : 'denied',
       ad_storage: a ? 'granted' : 'denied',
       ad_user_data: a ? 'granted' : 'denied',
-      ad_personalization: a ? 'granted' : 'denied'
+      ad_personalization: 'denied'
     });
     if (!window.inoGA4geladen) {
       window.inoGA4geladen = true;
       var sc = document.createElement('script'); sc.async = true;
-      sc.src = 'https://www.googletagmanager.com/gtag/js?id=G-HR6L1S8V7P';
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + (s && 'G-HR6L1S8V7P' ? 'G-HR6L1S8V7P' : 'AW-7124503256');
       document.head.appendChild(sc);
       gtag('js', new Date());
     }
@@ -266,6 +265,6 @@
     </span>
   </span>
 </a>
-<script src="/script-en.js?v=ce0d5b48" defer></script>
+<script src="/script-en.js?v=1c6cb4ec" defer></script>
 </body>
 </html>

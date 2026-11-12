@@ -162,19 +162,18 @@ def head(page, wijken, css_v, font_url=None):
     wait_for_update: 500
   }});
   window.inoGA4 = function (k) {{
-    var s = k && typeof k === 'object' ? !!k.stat : true;
-    var a = k && typeof k === 'object' ? !!k.ads : true;
+    var s = !!(k && k.stat), a = !!(k && k.ads);
     if (!s && !a) return;
     gtag('consent', 'update', {{
       analytics_storage: s ? 'granted' : 'denied',
       ad_storage: a ? 'granted' : 'denied',
       ad_user_data: a ? 'granted' : 'denied',
-      ad_personalization: a ? 'granted' : 'denied'
+      ad_personalization: 'denied'
     }});
     if (!window.inoGA4geladen) {{
       window.inoGA4geladen = true;
       var sc = document.createElement('script'); sc.async = true;
-      sc.src = 'https://www.googletagmanager.com/gtag/js?id={ga_id or ads_id}';
+      sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + (s && '{ga_id}' ? '{ga_id}' : '{ads_id}');
       document.head.appendChild(sc);
       gtag('js', new Date());
     }}
