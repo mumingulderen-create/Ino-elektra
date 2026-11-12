@@ -223,8 +223,10 @@
     // Direct versturen via WhatsApp knop in Stap 3
     var btnSendWhatsApp = document.getElementById("btnSendWhatsApp");
     if (btnSendWhatsApp) {
+      var waGemeten = false, waKlikTijd = 0;
       btnSendWhatsApp.addEventListener("click", function (e) {
         e.preventDefault();
+        e.stopPropagation();
         var form = document.getElementById("quoteForm");
         var nameField = form ? form.querySelector("input[name='name']") : null;
         var phoneField = form ? form.querySelector("input[name='phone']") : null;
@@ -259,10 +261,17 @@
         if (postcodeVal || numberVal) lines.push("- Address/postcode: " + (postcodeVal + " " + numberVal).trim());
         lines.push("\nI will send photos of my situation.");
 
+        var nu = Date.now();
+        if (nu - waKlikTijd < 1500) return;
+        waKlikTijd = nu;
         var waUrl = "https://wa.me/31628763775?text=" + encodeURIComponent(lines.join("\n"));
-        track("formulier_verstuurd", { formulier: "quoteForm", method: "whatsapp_wizard" });
-        track("generate_lead", { formulier: "quoteForm", method: "whatsapp_wizard", currency: "EUR" });
-        try { if (window.inoAds && window.gtag) window.gtag("event", "conversion_event_contact"); } catch (e) {}
+        if (!waGemeten && !(form && form._inoA)) {
+          waGemeten = true;
+          if (form) form._inoA = true;
+          track("formulier_verstuurd", { formulier: "quoteForm", method: "whatsapp_wizard" });
+          track("generate_lead", { formulier: "quoteForm", method: "whatsapp_wizard", currency: "EUR" });
+          try { if (window.inoAds && window.gtag) window.gtag("event", "conversion_event_contact"); } catch (e) {}
+        }
         window.open(waUrl, "_blank", "noopener");
       });
     }

@@ -185,14 +185,21 @@ async function run() {
       const dlAfterClicks = await getDataLayer();
       assert.equal(dlAfterClicks.some((e) => e[0] === "event"), false, "Clicks before consent must emit 0 gtag events");
 
-      // English site pre-consent check
+      // English site pre-consent check (mobile 375x812)
+      await page.setViewportSize({ width: 375, height: 812 });
       await page.goto(`${SITE_ORIGIN}/en/`, { waitUntil: "networkidle" });
       assert.equal(googleRequests().length, 0, "EN before consent: 0 Google requests");
+      const dlEn = await getDataLayer();
+      assert.deepEqual(dlEn[0], [
+        "consent",
+        "default",
+        { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", wait_for_update: 500 },
+      ]);
       const enText = await page.locator(".consent").innerText();
       assert(enText.includes("Your privacy") && enText.includes("Necessary only") && enText.includes("Accept all"));
       assert.equal(pageErrors.length, 0);
       await context.close();
-      console.log("PASS [Chromium] 1. Pre-consent (NL + EN)");
+      console.log("PASS [Chromium] 1. Pre-consent (NL desktop + EN mobile 375px)");
     }
 
     // 2. Reject All ("Alleen noodzakelijk")
@@ -285,18 +292,20 @@ async function run() {
       assert(cks.includes("_gcl_au") && cks.includes("_gcl_aw") && cks.includes("_gac_gb_12345"));
       assert(!cks.some((n) => n === "_ga" || n === "_gid"), "Ads-only must set 0 GA4 cookies");
 
-      // Test call + WhatsApp clicks -> exactly 1 conversion_event_contact per click, 0 GA4 events
+      // Test double-click on call + WhatsApp links -> strictly 1 conversion_event_contact per action, 0 GA4 events
       await page.locator('a[data-track="bellen"]').first().click();
+      await page.locator('a[data-track="bellen"]').first().click();
+      await page.locator('a[data-track="whatsapp"]').first().click();
       await page.locator('a[data-track="whatsapp"]').first().click();
       await page.waitForTimeout(150);
       let dlEvents = (await getDataLayer()).filter((e) => e[0] === "event");
-      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 2);
+      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 2, "Double-click on tel/WhatsApp must emit max 1 per link");
       assert.equal(dlEvents.some((e) => e[1] === "klik_bellen" || e[1] === "klik_whatsapp"), false);
       assert.equal(networkLog.some((r) => r.type === "ga_collect"), false);
 
-      // Navigate to /offerte/ and test both quote form submit & wizard WhatsApp without duplicates
+      // NL /offerte/: wizard WhatsApp double-click + subsequent form submit -> max 1 conversion_event_contact
       await page.goto(`${SITE_ORIGIN}/offerte/`, { waitUntil: "networkidle" });
-      // Step 1 -> Step 2 (fill required message) -> Step 3
+      assert.equal(await page.locator("#btnSendWhatsApp").getAttribute("data-track"), null, "#btnSendWhatsApp must not carry data-track=whatsapp");
       await page.locator("#wizardStep1Next").click();
       await page.locator('#quoteForm textarea[name="message"]').fill("Groepenkast vervangen");
       await page.locator('[data-step="2"] [data-wizard-next]').click();
@@ -305,22 +314,63 @@ async function run() {
       await page.locator('#quoteForm input[name="email"]').fill("jan@example.nl");
       await page.locator('#quoteForm input[name="akkoord"]').check();
 
-      // Wizard WhatsApp button (step 3)
+      // Rapid double click on Wizard WhatsApp button (step 3)
+      await page.locator("#btnSendWhatsApp").click();
       await page.locator("#btnSendWhatsApp").click();
       await page.waitForTimeout(150);
       dlEvents = (await getDataLayer()).filter((e) => e[0] === "event");
-      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 1, "Wizard WhatsApp emits exactly 1 conversion");
+      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 1, "Double-click Wizard WhatsApp emits exactly 1 conversion");
       assert.equal(dlEvents.some((e) => e[1] === "generate_lead"), false, "Ads-only emits 0 GA4 generate_lead");
+      const nlWaUrls = await page.evaluate(() => window.__openedUrls);
+      assert.equal(nlWaUrls.length, 1, "Rapid double-click opens WhatsApp only once");
+      assert(nlWaUrls[0].startsWith("https://wa.me/") && decodeURIComponent(nlWaUrls[0]).includes("Hallo INO Techniek"));
 
-      // Submit quote form via #btnSendEmail
+      // Subsequent email submit on the SAME wizard form must still work AND emit 0 extra conversions
       await page.locator("#btnSendEmail").click();
       await page.waitForSelector(".form-result", { state: "visible" });
+      assert(networkLog.some((r) => r.type === "worker_form"), "Quote email submit calls /api/form");
       dlEvents = (await getDataLayer()).filter((e) => e[0] === "event");
-      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 2, "Quote submit emits exactly 1 more conversion (total 2 on /offerte/)");
+      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 1, "Same-form submit after WhatsApp must not double-count conversion_event_contact");
+
+      // EN /en/quote/ (mobile 390x844): Wizard WhatsApp (1 conversion) & fresh Email submit (1 conversion)
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(`${SITE_ORIGIN}/en/quote/`, { waitUntil: "networkidle" });
+      assert.equal(await page.locator("#btnSendWhatsApp").getAttribute("data-track"), null);
+      await page.locator("#wizardStep1Next").click();
+      await page.locator('#quoteForm textarea[name="message"]').fill("Replace fuse box");
+      await page.locator('[data-step="2"] [data-wizard-next]').click();
+      await page.locator('#quoteForm input[name="name"]').fill("John Smith");
+      await page.locator('#quoteForm input[name="phone"]').fill("0612345678");
+      await page.locator('#quoteForm input[name="email"]').fill("john@example.com");
+      await page.locator('#quoteForm input[name="akkoord"]').check();
+      await page.locator("#btnSendWhatsApp").click();
+      await page.locator("#btnSendWhatsApp").click();
+      await page.waitForTimeout(150);
+      dlEvents = (await getDataLayer()).filter((e) => e[0] === "event");
+      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 1, "EN Wizard WhatsApp double-click emits exactly 1 conversion");
+      const enWaUrls = await page.evaluate(() => window.__openedUrls);
+      assert.equal(enWaUrls.length, 1);
+      assert(decodeURIComponent(enWaUrls[0]).includes("Hello INO Techniek"));
+
+      // Fresh load of /en/quote/ -> Email form submit emits 1 conversion
+      networkLog.length = 0;
+      await page.goto(`${SITE_ORIGIN}/en/quote/`, { waitUntil: "networkidle" });
+      await page.locator("#wizardStep1Next").click();
+      await page.locator('#quoteForm textarea[name="message"]').fill("Install EV charger");
+      await page.locator('[data-step="2"] [data-wizard-next]').click();
+      await page.locator('#quoteForm input[name="name"]').fill("John Smith");
+      await page.locator('#quoteForm input[name="phone"]').fill("0612345678");
+      await page.locator('#quoteForm input[name="email"]').fill("john@example.com");
+      await page.locator('#quoteForm input[name="akkoord"]').check();
+      await page.locator("#btnSendEmail").click();
+      await page.waitForSelector(".form-result", { state: "visible" });
+      assert(networkLog.some((r) => r.type === "worker_form"), "EN quote form calls /api/form");
+      dlEvents = (await getDataLayer()).filter((e) => e[0] === "event");
+      assert.equal(dlEvents.filter((e) => e[1] === "conversion_event_contact").length, 1, "Fresh EN quote email submit emits exactly 1 conversion");
       assert.equal(networkLog.some((r) => r.type === "ga_collect"), false, "Still 0 GA4 requests on Ads-only");
       assert.equal(pageErrors.length, 0);
       await context.close();
-      console.log("PASS [Chromium] 4. Ads-only + Conversion tracking (no duplicates)");
+      console.log("PASS [Chromium] 4. Ads-only + NL/EN Quote Wizard & Anti-duplicate Conversions");
     }
 
     // 5. Accept All + Conversion tests (no duplicates) + Withdraw Consent + Cookie deletion
@@ -372,9 +422,9 @@ async function run() {
       console.log("PASS [Chromium] 5. Accept All (ad_personalization=denied) + Withdraw Consent");
     }
 
-    // 6. Expired Consent + Privacy Policy Tables + Core UI Smoke Check
+    // 6. Expired Consent (>365d & legacy 'ja') + Privacy Policy Tables + Core UI Smoke Check (390px + 375px)
     {
-      const { context, page, googleRequests, getDataLayer, pageErrors } = await setupContext(browser, { viewport: { width: 390, height: 844 } });
+      const { context, page, googleRequests, getDataLayer, pageErrors } = await setupContext(browser, { viewport: { width: 375, height: 812 } });
       await page.goto(`${SITE_ORIGIN}/`, { waitUntil: "networkidle" });
       await page.evaluate(() => {
         localStorage.setItem("ino_cookies", JSON.stringify({ stat: true, ads: true }));
@@ -404,9 +454,18 @@ async function run() {
         assert(enTable.includes(k), "EN privacy table missing: " + k);
       }
 
+      // Legacy 'ja' without valid timestamp must also be treated as expired -> 0 requests & re-opens banner
+      await page.evaluate(() => {
+        localStorage.setItem("ino_cookies", "ja");
+        localStorage.removeItem("ino_cookies_datum");
+      });
+      await page.reload({ waitUntil: "networkidle" });
+      assert.equal(googleRequests().length, 0, "Legacy 'ja' without date: 0 Google requests");
+      assert.equal(await page.locator(".consent").isVisible(), true, "Legacy 'ja' without date re-opens banner");
+
       assert.equal(pageErrors.length, 0, "Zero JS errors on mobile smoke check");
       await context.close();
-      console.log("PASS [Chromium] 6. Expired Consent + Privacy Tables + UI Smoke");
+      console.log("PASS [Chromium] 6. Expired Consent (>365d & legacy) + Privacy Tables + Mobile 375px Smoke");
     }
   } finally {
     await browser.close();

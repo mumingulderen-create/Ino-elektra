@@ -1,13 +1,7 @@
-// Veilige cross-origin foutafhandeling
 window.addEventListener('error', function (e) {
-  if (e && e.message === 'Script error.') {
-    // Cross-origin script error (bijv. Google Analytics / Tag Manager in iframe preview)
-    e.preventDefault && e.preventDefault();
-    return true;
-  }
+  if (e && e.message === 'Script error.') { e.preventDefault && e.preventDefault(); return true; }
 });
-/* INO Elektra – script.js (v2)
-   Klein, zonder frameworks. Wordt met `defer` geladen, blokkeert de pagina dus niet. */
+/* INO Elektra – script.js (v2) */
 (function () {
   "use strict";
 
@@ -131,9 +125,9 @@ window.addEventListener('error', function (e) {
         .then(function () {
           track("formulier_verstuurd", { formulier: form.id || "form" });
           track("generate_lead", { formulier: form.id || "form", currency: "EUR" });
-          trackAds();
+          if (!form._inoA) { form._inoA = true; trackAds(); }
           toon(result, "form-result", "<strong>Your request has been sent.</strong><br>Thank you " + esc(data.get("name") || "") + ", " + okMsg);
-          form.reset();
+          form.reset(); form._inoA = false;
           if (list) list.textContent = "";
         })
         .catch(function (err) {
@@ -365,6 +359,9 @@ window.addEventListener('error', function (e) {
     var isTel = href.indexOf("tel:") === 0 || a.getAttribute("data-track") === "bellen";
     var isWa = href.indexOf("wa.me") !== -1 || a.getAttribute("data-track") === "whatsapp";
 
+    var nu = Date.now();
+    if ((isTel || isWa) && a._inoT && nu - a._inoT < 1500) return;
+    if (isTel || isWa) a._inoT = nu;
     if (isTel) {
       track("klik_bellen", { pagina: location.pathname });
       track("contact", { method: "phone", pagina: location.pathname });
